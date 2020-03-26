@@ -541,13 +541,18 @@ if __name__ == "__main__":
 
     # Defining a ramp with a program time vs. energy (warning: initial energy cannot be 0)
 
+    from blond_common.datatypes.datatypes import ring_program, momentum_compaction
     from blond_common.interfaces.beam.beam import Particle
     from blond_common.interfaces.input_parameters.ring import Ring
     from scipy.constants import u, c, e
 
     ring_length = 2*np.pi*100                   # Machine circumference [m]
     bending_radius = 70.079                     # Bending radius [m]
-    bending_field = 1.136487                    # Bending field [T]
+#     bending_field = ring_program(
+#         1.136487, func_type='bending field')    # Bending field [T]
+    bending_field = ring_program(
+        [[0, 1e-3], [1.136487, 1.136487]],
+        func_type='bending field')              # Bending field [T]
     gamma_transition = 6.1                      # Transition gamma
     alpha_0 = 1/gamma_transition**2.
 
@@ -556,8 +561,7 @@ if __name__ == "__main__":
     particle = Particle(particle_mass, particle_charge)
 
     ring = Ring(ring_length, alpha_0, bending_field,
-                particle, synchronous_data_type='bending field',
-                bending_radius=bending_radius)
+                particle, bending_radius=bending_radius)
 
     from blond_common.interfaces.input_parameters.rf_parameters import RFStation
 
@@ -567,7 +571,7 @@ if __name__ == "__main__":
     voltage = [0, 16.1e3, 12.4e3]  # V, h28->h169 rebucketting
     phi_rf = [np.pi, np.pi, np.pi]  # rad
 
-    rf_station = RFStation(ring, harmonic, voltage, phi_rf, n_rf=3)
+    rf_station = RFStation(ring, harmonic, voltage, phi_rf)
 
     from blond_common.rf_functions.potential import rf_voltage_generation
 
