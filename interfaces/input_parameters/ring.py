@@ -281,7 +281,7 @@ class Ring:
                                                     len(self.use_turns)]))
         self.alpha_order = i
         
-        for i in range(3 - self.alpha_order):
+        for i in range(self.alpha_order+1, 3):
             setattr(self, 'alpha_'+str(i), np.zeros([self.n_sections, 
                                                     len(self.use_turns)]))
             setattr(self, 'eta_'+str(i), np.zeros([self.n_sections, 
