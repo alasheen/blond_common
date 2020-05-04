@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -91,8 +91,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../fitting.html">fitting package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../fitting.html#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../fitting.distribution.html">fitting.distribution module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../fitting.distribution_functions.html">fitting.distribution_functions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../fitting.profile.html">fitting.profile module</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../fitting.html#examples">Examples</a></li>
@@ -193,16 +192,21 @@
 <span class="sd">:Authors: **Alexandre Lasheen**, **Danilo Quartullo**, **Helga Timko**</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span>
-<span class="kn">from</span> <span class="nn">builtins</span> <span class="k">import</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">range</span><span class="p">,</span> <span class="nb">object</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">range</span><span class="p">,</span> <span class="nb">object</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.constants</span> <span class="k">import</span> <span class="n">c</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="k">import</span> <span class="n">cumtrapz</span>
-<span class="kn">from</span> <span class="nn">..beam.beam</span> <span class="k">import</span> <span class="n">Proton</span>
-<span class="kn">from</span> <span class="nn">..input_parameters.rf_parameters_options</span> <span class="k">import</span> <span class="n">RFStationOptions</span>
+<span class="kn">from</span> <span class="nn">scipy.constants</span> <span class="kn">import</span> <span class="n">c</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">cumtrapz</span>
+<span class="kn">from</span> <span class="nn">..beam.beam</span> <span class="kn">import</span> <span class="n">Proton</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1">#BLonD_Common imports</span>
+<span class="kn">from</span> <span class="nn">...datatypes</span> <span class="kn">import</span> <span class="n">datatypes</span> <span class="k">as</span> <span class="n">dTypes</span>
+<span class="kn">from</span> <span class="nn">...devtools</span> <span class="kn">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">excpt</span>
+<span class="kn">from</span> <span class="nn">...devtools</span> <span class="kn">import</span> <span class="n">assertions</span> <span class="k">as</span> <span class="n">assrt</span>
 
 
-<div class="viewcode-block" id="RFStation"><a class="viewcode-back" href="../../../interfaces.input_parameters.html#blond_common.interfaces.input_parameters.rf_parameters.RFStation">[docs]</a><span class="k">class</span> <span class="nc">RFStation</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="RFStation"><a class="viewcode-back" href="../../../interfaces.input_parameters.html#blond_common.interfaces.input_parameters.rf_parameters.RFStation">[docs]</a><span class="k">class</span> <span class="nc">RFStation</span><span class="p">:</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot; Class containing all the RF parameters for all the RF systems in one</span>
 <span class="sd">    ring segment or RF station.</span>
 
@@ -383,23 +387,210 @@
 <span class="sd">    &gt;&gt;&gt; rf_station = RFStation(ring, [35640, 71280], [6e6, 6e5], [0, 0], 2)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Ring</span><span class="p">,</span> <span class="n">harmonic</span><span class="p">,</span> <span class="n">voltage</span><span class="p">,</span> <span class="n">phi_rf_d</span><span class="p">,</span> <span class="n">n_rf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                 <span class="n">section_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">omega_rf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">phi_noise</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">phi_modulation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">RFStationOptions</span><span class="o">=</span><span class="n">RFStationOptions</span><span class="p">()):</span>
+    <span class="c1">#TODO: move offsets to tracking only version</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Ring</span><span class="p">,</span> <span class="n">harmonic</span><span class="p">,</span> <span class="n">voltage</span><span class="p">,</span> <span class="n">phi_rf_d</span><span class="p">,</span>
+                 <span class="n">section_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">omega_rf_offset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">phi_rf_offset</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
         <span class="c1"># Different indices</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">section_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">section_index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        
+        
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">section_index</span> <span class="o">&lt;</span> <span class="mi">0</span> \
                 <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">section_index</span> <span class="o">&gt;</span> <span class="n">Ring</span><span class="o">.</span><span class="n">n_sections</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;ERROR in RFStation: section_index out of&quot;</span> <span class="o">+</span>
                                <span class="s2">&quot; allowed range!&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n_rf</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_rf</span><span class="p">)</span>
 
-        <span class="c1"># Imported from Ring</span>
+
+        <span class="c1">#Coercion of voltage to RF_section_function datatype</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">voltage</span><span class="p">,</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">voltage_program</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">voltage</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">):</span>
+                <span class="n">voltage</span> <span class="o">=</span> <span class="p">(</span><span class="n">voltage</span><span class="p">,</span> <span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">voltage</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="n">useV</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">harmonic</span><span class="p">:</span>
+                    <span class="n">useV</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">voltage</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">voltage</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Unrecognised harmonics in voltage&quot;</span><span class="p">)</span>
+                <span class="n">voltage</span> <span class="o">=</span> <span class="n">useV</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">voltage</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">voltage_program</span><span class="p">(</span><span class="o">*</span><span class="n">voltage</span><span class="p">,</span> 
+                                                 <span class="n">harmonics</span> <span class="o">=</span> <span class="n">harmonic</span><span class="p">,</span> 
+                                                 <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">excpt</span><span class="o">.</span><span class="n">DataDefinitionError</span><span class="p">:</span>
+                <span class="n">voltage</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">voltage_program</span><span class="p">(</span><span class="o">*</span><span class="n">voltage</span><span class="p">,</span> 
+                                                 <span class="n">harmonics</span> <span class="o">=</span> <span class="n">harmonic</span><span class="p">)</span>
+
+        <span class="c1">#Coercion of phase to RF_section_function datatype</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">phi_rf_d</span><span class="p">,</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">phase_program</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">phi_rf_d</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">):</span>
+                <span class="n">phi_rf_d</span> <span class="o">=</span> <span class="p">(</span><span class="n">phi_rf_d</span><span class="p">,</span> <span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">phi_rf_d</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="n">usePhi</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">harmonic</span><span class="p">:</span>
+                    <span class="n">usePhi</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">phi_rf_d</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">phi_rf_d</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Unrecognised harmonics in phi_rf_d&quot;</span><span class="p">)</span>
+                <span class="n">phi_rf_d</span> <span class="o">=</span> <span class="n">usePhi</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">phi_rf_d</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">phase_program</span><span class="p">(</span><span class="o">*</span><span class="n">phi_rf_d</span><span class="p">,</span> 
+                                                 <span class="n">harmonics</span> <span class="o">=</span> <span class="n">harmonic</span><span class="p">,</span> 
+                                                 <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">excpt</span><span class="o">.</span><span class="n">DataDefinitionError</span><span class="p">:</span>
+                <span class="n">phi_rf_d</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">phase_program</span><span class="p">(</span><span class="o">*</span><span class="n">phi_rf_d</span><span class="p">,</span> 
+                                                <span class="n">harmonics</span> <span class="o">=</span> <span class="n">harmonic</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">):</span>
+            <span class="n">harmonic</span> <span class="o">=</span> <span class="p">(</span><span class="n">harmonic</span><span class="p">,)</span>
+
+        <span class="n">assrt</span><span class="o">.</span><span class="n">equal_arrays</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="n">voltage</span><span class="o">.</span><span class="n">harmonics</span><span class="p">,</span> 
+                           <span class="n">phi_rf_d</span><span class="o">.</span><span class="n">harmonics</span><span class="p">,</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Declared harmonics and harmonics of voltage and phase&#39;</span>
+            <span class="o">+</span> <span class="s1">&#39; functions do not all match&#39;</span><span class="p">,</span> <span class="n">exception</span> <span class="o">=</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputDataError</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_rf</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">voltage</span><span class="o">.</span><span class="n">harmonics</span><span class="p">)</span>
+        
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ring_pars</span><span class="p">(</span><span class="n">Ring</span><span class="p">)</span>
+
+        <span class="c1"># The order alpha_order used here can be replaced by Ring.alpha_order</span>
+        <span class="c1"># when the assembler can differentiate the cases &#39;simple&#39; and &#39;full&#39;</span>
+        <span class="c1"># for the drift</span>
+        <span class="n">alpha_order</span> <span class="o">=</span> <span class="mi">2</span><span class="c1">#Ring.alpha_order</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">alpha_order</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">dummy</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">Ring</span><span class="p">,</span> <span class="s1">&#39;eta_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;eta_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">,</span> <span class="n">dummy</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">section_index</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sign_eta_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eta_0</span><span class="p">)</span>
+
+        <span class="c1"># Reshape design voltage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span> <span class="o">=</span> <span class="n">voltage</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">use_time</span> <span class="o">=</span> <span class="n">Ring</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span> 
+                                       <span class="n">use_turns</span> <span class="o">=</span> <span class="n">Ring</span><span class="o">.</span><span class="n">use_turns</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">harmonic</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">harmonic</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">harmonic</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span>
+            
+        <span class="c1"># Checking if the RFStation is empty</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">empty</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">empty</span> <span class="o">=</span> <span class="kc">False</span>
+
+
+        <span class="c1"># Reshape design phase</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phi_rf_d</span> <span class="o">=</span> <span class="n">phi_rf_d</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">use_time</span> <span class="o">=</span> <span class="n">Ring</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span> 
+                                         <span class="n">use_turns</span> <span class="o">=</span> <span class="n">Ring</span><span class="o">.</span><span class="n">use_turns</span><span class="p">)</span>
+
+
+        <span class="c1"># Calculating design rf angular frequency</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">omega_rf_d</span> <span class="o">=</span> <span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">harmonic</span> <span class="o">/</span> \
+                            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ring_circumference</span><span class="p">)</span>
+        
+        
+        <span class="c1"># Calculating omega and phi offsets</span>
+        <span class="k">if</span> <span class="n">omega_rf_offset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">useoff</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">harmonic</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">omega_rf_offset</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">omega_offset</span><span class="p">(</span><span class="o">*</span><span class="n">useoff</span><span class="p">,</span> 
+                                                  <span class="n">harmonics</span><span class="o">=</span><span class="n">harmonic</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">omega_rf_offset</span><span class="p">,</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">omega_offset</span><span class="p">):</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">omega_rf_offset</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="n">useoff</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">harmonic</span><span class="p">:</span>
+                    <span class="n">useoff</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">omega_rf_offset</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">omega_rf_offset</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Unrecognised harmonics in phi_rf_d&quot;</span><span class="p">)</span>
+                <span class="n">omega_rf_offset</span> <span class="o">=</span> <span class="n">useoff</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">omega_rf_offset</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">omega_offset</span><span class="p">(</span><span class="o">*</span><span class="n">omega_rf_offset</span><span class="p">,</span> 
+                                                 <span class="n">harmonics</span> <span class="o">=</span> <span class="n">harmonic</span><span class="p">,</span> 
+                                                 <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+
+            <span class="k">except</span> <span class="n">excpt</span><span class="o">.</span><span class="n">DataDefinitionError</span><span class="p">:</span>
+                <span class="n">omega_rf_offset</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">omega_offset</span><span class="p">(</span><span class="o">*</span><span class="n">omega_rf_offset</span><span class="p">,</span> 
+                                                      <span class="n">harmonics</span> <span class="o">=</span> <span class="n">harmonic</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">omega_rf_offset</span> <span class="o">=</span> <span class="n">omega_rf_offset</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">harmonic</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span>
+                                                       <span class="n">Ring</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span> 
+                                                       <span class="n">Ring</span><span class="o">.</span><span class="n">use_turns</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">phi_rf_offset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">useoff</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">harmonic</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">phi_rf_offset</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">phase_offset</span><span class="p">(</span><span class="o">*</span><span class="n">useoff</span><span class="p">,</span> 
+                                                <span class="n">harmonics</span><span class="o">=</span><span class="n">harmonic</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">phi_rf_offset</span><span class="p">,</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">phase_offset</span><span class="p">):</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">phi_rf_offset</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="n">useoff</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">harmonic</span><span class="p">:</span>
+                    <span class="n">useoff</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">phi_rf_offset</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">omega_rf_offset</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Unrecognised harmonics in phi_rf_d&quot;</span><span class="p">)</span>
+                <span class="n">phi_rf_offset</span> <span class="o">=</span> <span class="n">useoff</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">phi_rf_offset</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">phase_offset</span><span class="p">(</span><span class="o">*</span><span class="n">phi_rf_offset</span><span class="p">,</span> 
+                                                 <span class="n">harmonics</span> <span class="o">=</span> <span class="n">harmonic</span><span class="p">,</span> 
+                                                 <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+
+            <span class="k">except</span> <span class="n">excpt</span><span class="o">.</span><span class="n">DataDefinitionError</span><span class="p">:</span>
+                <span class="n">phi_rf_offset</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">phase_offset</span><span class="p">(</span><span class="o">*</span><span class="n">phi_rf_offset</span><span class="p">,</span> 
+                                                   <span class="n">harmonics</span> <span class="o">=</span> <span class="n">harmonic</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">phi_rf_offset</span> <span class="o">=</span> <span class="n">phi_rf_offset</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">harmonic</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span>
+                                                   <span class="n">Ring</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span> 
+                                                   <span class="n">Ring</span><span class="o">.</span><span class="n">use_turns</span><span class="p">)</span>
+        
+        <span class="n">deltaPhaseFromOmega</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega_rf_offset</span><span class="o">.</span><span class="n">calc_delta_phase</span><span class="p">(</span>
+                                                    <span class="n">Ring</span><span class="o">.</span><span class="n">omega_rev</span><span class="p">)</span>
+        <span class="n">deltaOmegaFromPhase</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi_rf_offset</span><span class="o">.</span><span class="n">calc_delta_omega</span><span class="p">(</span>
+                                                    <span class="n">Ring</span><span class="o">.</span><span class="n">omega_rev</span><span class="p">)</span>        
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">phi_rf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phi_rf_d</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">omega_rf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">omega_rf_d</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">phi_rf</span> <span class="o">+=</span> <span class="n">deltaPhaseFromOmega</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi_rf_offset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">omega_rf</span> <span class="o">+=</span> <span class="n">deltaOmegaFromPhase</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega_rf_offset</span>
+        
+        <span class="c1"># Copy of the desing rf programs in the one used for tracking</span>
+        <span class="c1"># and that can be changed by feedbacks</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dphi_rf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_rf</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t_rf</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega_rf</span>
+
+        <span class="c1"># From helper functions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phi_s</span> <span class="o">=</span> <span class="n">calculate_phi_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Q_s</span> <span class="o">=</span> <span class="n">calculate_Q_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">omega_s0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q_s</span><span class="o">*</span><span class="n">Ring</span><span class="o">.</span><span class="n">omega_rev</span>
+
+
+<div class="viewcode-block" id="RFStation.from_rf_systems"><a class="viewcode-back" href="../../../interfaces.input_parameters.html#blond_common.interfaces.input_parameters.rf_parameters.RFStation.from_rf_systems">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_rf_systems</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">Ring</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">section_index</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+
+        <span class="bp">self</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">section_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">section_index</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ring_pars</span><span class="p">(</span><span class="n">Ring</span><span class="p">)</span>
+        
+        <span class="n">rfShape</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">)]</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">voltage_program</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">rfShape</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phi_rf_d</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">phase_program</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">rfShape</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">harmonic</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">rfShape</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi_rf_d</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">harmonic</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> \
+                            <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="bp">self</span></div>
+        
+    
+    <span class="k">def</span> <span class="nf">_ring_pars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Ring</span><span class="p">):</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span> <span class="o">=</span> <span class="n">Ring</span><span class="o">.</span><span class="n">Particle</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span> <span class="o">=</span> <span class="n">Ring</span><span class="o">.</span><span class="n">n_turns</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span> <span class="o">=</span> <span class="n">Ring</span><span class="o">.</span><span class="n">cycle_time</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ring_circumference</span> <span class="o">=</span> <span class="n">Ring</span><span class="o">.</span><span class="n">ring_circumference</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">section_length</span> <span class="o">=</span> <span class="n">Ring</span><span class="o">.</span><span class="n">ring_length</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">section_index</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">length_ratio</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section_length</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">ring_circumference</span><span class="p">)</span>
@@ -411,118 +602,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">delta_E</span> <span class="o">=</span> <span class="n">Ring</span><span class="o">.</span><span class="n">delta_E</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">section_index</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span> <span class="o">=</span> <span class="n">Ring</span><span class="o">.</span><span class="n">alpha_order</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">charge</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">charge</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span> <span class="o">=</span> <span class="n">Ring</span><span class="o">.</span><span class="n">use_turns</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 
-        <span class="c1"># The order alpha_order used here can be replaced by Ring.alpha_order</span>
-        <span class="c1"># when the assembler can differentiate the cases &#39;simple&#39; and &#39;full&#39;</span>
-        <span class="c1"># for the drift</span>
-        <span class="n">alpha_order</span> <span class="o">=</span> <span class="mi">2</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">alpha_order</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-            <span class="n">dummy</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">Ring</span><span class="p">,</span> <span class="s1">&#39;eta_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;eta_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">,</span> <span class="n">dummy</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">section_index</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sign_eta_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eta_0</span><span class="p">)</span>
-
-        <span class="c1"># Reshape input rf programs</span>
-        <span class="c1"># Reshape design harmonic</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">harmonic</span> <span class="o">=</span> <span class="n">RFStationOptions</span><span class="o">.</span><span class="n">reshape_data</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span>
-                                                      <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="p">,</span>
-                                                      <span class="bp">self</span><span class="o">.</span><span class="n">n_rf</span><span class="p">,</span>
-                                                      <span class="n">Ring</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span>
-                                                      <span class="n">Ring</span><span class="o">.</span><span class="n">RingOptions</span><span class="o">.</span><span class="n">t_start</span><span class="p">)</span>
-        <span class="c1"># Reshape design voltage</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span> <span class="o">=</span> <span class="n">RFStationOptions</span><span class="o">.</span><span class="n">reshape_data</span><span class="p">(</span><span class="n">voltage</span><span class="p">,</span>
-                                                     <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="p">,</span>
-                                                     <span class="bp">self</span><span class="o">.</span><span class="n">n_rf</span><span class="p">,</span>
-                                                     <span class="n">Ring</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span>
-                                                     <span class="n">Ring</span><span class="o">.</span><span class="n">RingOptions</span><span class="o">.</span><span class="n">t_start</span><span class="p">)</span>
-
-        <span class="c1"># Checking if the RFStation is empty</span>
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">empty</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">empty</span> <span class="o">=</span> <span class="kc">False</span>
-
-        <span class="c1"># Reshape design phase</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">phi_rf_d</span> <span class="o">=</span> <span class="n">RFStationOptions</span><span class="o">.</span><span class="n">reshape_data</span><span class="p">(</span><span class="n">phi_rf_d</span><span class="p">,</span>
-                                                      <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="p">,</span>
-                                                      <span class="bp">self</span><span class="o">.</span><span class="n">n_rf</span><span class="p">,</span>
-                                                      <span class="n">Ring</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span>
-                                                      <span class="n">Ring</span><span class="o">.</span><span class="n">RingOptions</span><span class="o">.</span><span class="n">t_start</span><span class="p">)</span>
-
-        <span class="c1"># Calculating design rf angular frequency</span>
-        <span class="k">if</span> <span class="n">omega_rf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">omega_rf_d</span> <span class="o">=</span> <span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">harmonic</span> <span class="o">/</span> \
-                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ring_circumference</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">omega_rf_d</span> <span class="o">=</span> <span class="n">RFStationOptions</span><span class="o">.</span><span class="n">reshape_data</span><span class="p">(</span>
-                <span class="n">omega_rf</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">n_rf</span><span class="p">,</span>
-                <span class="n">Ring</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span>
-                <span class="n">Ring</span><span class="o">.</span><span class="n">RingOptions</span><span class="o">.</span><span class="n">t_start</span><span class="p">)</span>
-
-        <span class="c1"># Reshape phase noise</span>
-        <span class="k">if</span> <span class="n">phi_noise</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">phi_noise</span> <span class="o">=</span> <span class="n">RFStationOptions</span><span class="o">.</span><span class="n">reshape_data</span><span class="p">(</span>
-                <span class="n">phi_noise</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">n_rf</span><span class="p">,</span>
-                <span class="n">Ring</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span>
-                <span class="n">Ring</span><span class="o">.</span><span class="n">RingOptions</span><span class="o">.</span><span class="n">t_start</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">phi_noise</span> <span class="o">=</span> <span class="kc">None</span>
-
-        <span class="k">if</span> <span class="n">phi_modulation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-            <span class="k">try</span><span class="p">:</span>
-                <span class="nb">iter</span><span class="p">(</span><span class="n">phi_modulation</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-                <span class="n">phi_modulation</span> <span class="o">=</span> <span class="p">[</span><span class="n">phi_modulation</span><span class="p">]</span>
-
-            <span class="n">dPhi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_rf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
-            <span class="n">dOmega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_rf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
-            <span class="k">for</span> <span class="n">pMod</span> <span class="ow">in</span> <span class="n">phi_modulation</span><span class="p">:</span>
-                <span class="n">system</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">harmonic</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">pMod</span><span class="o">.</span><span class="n">harmonic</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">system</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No matching harmonic in phi_modulation&quot;</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">system</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;Phase modulation not yet</span>
-<span class="s2">                                       implemented with multiple systems</span>
-<span class="s2">                                       at the same harmonic.&quot;&quot;&quot;</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">system</span> <span class="o">=</span> <span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-                <span class="n">pMod</span><span class="o">.</span><span class="n">calc_modulation</span><span class="p">()</span>
-                <span class="n">pMod</span><span class="o">.</span><span class="n">calc_delta_omega</span><span class="p">(</span>
-                    <span class="p">(</span><span class="n">Ring</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega_rf_d</span><span class="p">[</span><span class="n">system</span><span class="p">]))</span>
-                <span class="n">dPhiInput</span><span class="p">,</span> <span class="n">dOmegaInput</span> <span class="o">=</span> <span class="n">pMod</span><span class="o">.</span><span class="n">extend_to_n_rf</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">harmonic</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
-                <span class="n">dPhi</span> <span class="o">+=</span> <span class="n">RFStationOptions</span><span class="o">.</span><span class="n">reshape_data</span><span class="p">(</span>
-                    <span class="n">dPhiInput</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">n_rf</span><span class="p">,</span>
-                    <span class="n">Ring</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span>
-                    <span class="n">Ring</span><span class="o">.</span><span class="n">RingOptions</span><span class="o">.</span><span class="n">t_start</span><span class="p">)</span>
-                <span class="n">dOmega</span> <span class="o">+=</span> <span class="n">RFStationOptions</span><span class="o">.</span><span class="n">reshape_data</span><span class="p">(</span>
-                    <span class="n">dOmegaInput</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">n_rf</span><span class="p">,</span>
-                    <span class="n">Ring</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span>
-                    <span class="n">Ring</span><span class="o">.</span><span class="n">RingOptions</span><span class="o">.</span><span class="n">t_start</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">phi_modulation</span> <span class="o">=</span> <span class="p">(</span><span class="n">dPhi</span><span class="p">,</span> <span class="n">dOmega</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">phi_modulation</span> <span class="o">=</span> <span class="kc">None</span>
-
-        <span class="c1"># Copy of the desing rf programs in the one used for tracking</span>
-        <span class="c1"># and that can be changed by feedbacks</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">phi_rf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phi_rf_d</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dphi_rf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_rf</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">omega_rf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">omega_rf_d</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">t_rf</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega_rf</span>
-
-        <span class="c1"># From helper functions</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">phi_s</span> <span class="o">=</span> <span class="n">calculate_phi_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Q_s</span> <span class="o">=</span> <span class="n">calculate_Q_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">omega_s0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q_s</span><span class="o">*</span><span class="n">Ring</span><span class="o">.</span><span class="n">omega_rev</span>
 
 <div class="viewcode-block" id="RFStation.eta_tracking"><a class="viewcode-back" href="../../../interfaces.input_parameters.html#blond_common.interfaces.input_parameters.rf_parameters.RFStation.eta_tracking">[docs]</a>    <span class="k">def</span> <span class="nf">eta_tracking</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beam</span><span class="p">,</span> <span class="n">counter</span><span class="p">,</span> <span class="n">dE</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Function to calculate the slippage factor as a function of the</span>
@@ -541,8 +622,66 @@
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
                 <span class="n">eta_i</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;eta_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))[</span><span class="n">counter</span><span class="p">]</span>
                 <span class="n">eta</span> <span class="o">+=</span> <span class="n">eta_i</span> <span class="o">*</span> <span class="p">(</span><span class="n">delta</span><span class="o">**</span><span class="n">i</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">eta</span></div></div>
+            <span class="k">return</span> <span class="n">eta</span></div>
 
+
+<div class="viewcode-block" id="RFStation.parameters_at_time"><a class="viewcode-back" href="../../../interfaces.input_parameters.html#blond_common.interfaces.input_parameters.rf_parameters.RFStation.parameters_at_time">[docs]</a>    <span class="k">def</span> <span class="nf">parameters_at_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle_moments</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Function to return various RF parameters at a specific moment in</span>
+<span class="sd">        time.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        cycle_moments : float array</span>
+<span class="sd">            Moments of time at which cycle parameters are to be calculated [s].</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        parameters : dictionary</span>
+<span class="sd">            Contains &#39;momentum&#39;, &#39;beta&#39;, &#39;gamma&#39;, &#39;energy&#39;, &#39;kin_energy&#39;,</span>
+<span class="sd">            &#39;f_rev&#39;, &#39;t_rev&#39;. &#39;omega_rev&#39;, &#39;eta_0&#39;, and &#39;delta_E&#39; interpolated</span>
+<span class="sd">            to the moments contained in the &#39;cycle_moments&#39; array</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">voltage</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">phase</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">harmonic</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">omega</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi_rf_d</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">harmonic</span><span class="p">,</span>
+                              <span class="bp">self</span><span class="o">.</span><span class="n">omega_rf_d</span><span class="p">):</span>
+            <span class="n">voltage</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">cycle_moments</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+            <span class="n">phase</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">cycle_moments</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+            <span class="n">harmonic</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">cycle_moments</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span>
+            <span class="n">omega</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">cycle_moments</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;voltage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">voltage</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;phi_rf_d&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">phase</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;harmonic&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">harmonic</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;omega_rf_d&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">omega</span>
+
+        <span class="k">return</span> <span class="n">parameters</span></div>
+    
+    
+<div class="viewcode-block" id="RFStation.parameters_at_turn"><a class="viewcode-back" href="../../../interfaces.input_parameters.html#blond_common.interfaces.input_parameters.rf_parameters.RFStation.parameters_at_turn">[docs]</a>    <span class="k">def</span> <span class="nf">parameters_at_turn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn</span><span class="p">):</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span> <span class="o">==</span> <span class="n">turn</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;turn &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">turn</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; has not been &quot;</span>
+                                   <span class="o">+</span> <span class="s2">&quot;stored for the specified interpolation&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters_at_sample</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RFStation.parameters_at_sample"><a class="viewcode-back" href="../../../interfaces.input_parameters.html#blond_common.interfaces.input_parameters.rf_parameters.RFStation.parameters_at_sample">[docs]</a>    <span class="k">def</span> <span class="nf">parameters_at_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">):</span>
+        
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;voltage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="p">[:,</span> <span class="n">sample</span><span class="p">]</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;phi_rf_d&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi_rf_d</span><span class="p">[:,</span> <span class="n">sample</span><span class="p">]</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;harmonic&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">harmonic</span><span class="p">[:,</span> <span class="n">sample</span><span class="p">]</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;omega_rf_d&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega_rf_d</span><span class="p">[:,</span> <span class="n">sample</span><span class="p">]</span>
+        
+        <span class="k">return</span> <span class="n">parameters</span></div></div>
+        
 
 <div class="viewcode-block" id="calculate_Q_s"><a class="viewcode-back" href="../../../interfaces.input_parameters.html#blond_common.interfaces.input_parameters.rf_parameters.calculate_Q_s">[docs]</a><span class="k">def</span> <span class="nf">calculate_Q_s</span><span class="p">(</span><span class="n">RFStation</span><span class="p">,</span> <span class="n">Particle</span><span class="o">=</span><span class="n">Proton</span><span class="p">()):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot; Function calculating the turn-by-turn synchrotron tune for</span>
@@ -610,7 +749,10 @@
 
     <span class="k">if</span> <span class="n">accelerating_systems</span> <span class="o">==</span> <span class="s1">&#39;as_single&#39;</span><span class="p">:</span>
 
-        <span class="n">denergy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RFStation</span><span class="o">.</span><span class="n">delta_E</span><span class="p">,</span> <span class="n">RFStation</span><span class="o">.</span><span class="n">delta_E</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">RFStation</span><span class="o">.</span><span class="n">delta_E</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">RFStation</span><span class="o">.</span><span class="n">momentum</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">denergy</span> <span class="o">=</span> <span class="n">RFStation</span><span class="o">.</span><span class="n">delta_E</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">denergy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RFStation</span><span class="o">.</span><span class="n">delta_E</span><span class="p">,</span> <span class="n">RFStation</span><span class="o">.</span><span class="n">delta_E</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">acceleration_ratio</span> <span class="o">=</span> <span class="n">denergy</span><span class="o">/</span><span class="p">(</span><span class="n">Particle</span><span class="o">.</span><span class="n">charge</span><span class="o">*</span><span class="n">RFStation</span><span class="o">.</span><span class="n">voltage</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
         <span class="n">acceleration_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">acceleration_ratio</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span>
                                      <span class="p">(</span><span class="n">acceleration_ratio</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>

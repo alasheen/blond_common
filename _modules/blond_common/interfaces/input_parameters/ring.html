@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -91,8 +91,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../fitting.html">fitting package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../fitting.html#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../fitting.distribution.html">fitting.distribution module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../fitting.distribution_functions.html">fitting.distribution_functions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../fitting.profile.html">fitting.profile module</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../fitting.html#examples">Examples</a></li>
@@ -179,7 +178,7 @@
             
   <h1>Source code for blond_common.interfaces.input_parameters.ring</h1><div class="highlight"><pre>
 <span></span><span class="c1"># coding: utf8</span>
-<span class="c1"># Copyright 2014-2019 CERN. This software is distributed under the</span>
+<span class="c1"># Copyright 2014-2020 CERN. This software is distributed under the</span>
 <span class="c1"># terms of the GNU General Public Licence version 3 (GPL Version 3),</span>
 <span class="c1"># copied verbatim in the file LICENCE.md.</span>
 <span class="c1"># In applying this licence, CERN does not waive the privileges and immunities</span>
@@ -192,15 +191,21 @@
 <span class="sd">    :Authors: **Alexandre Lasheen**, **Danilo Quartullo**, **Helga Timko**</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
-<span class="kn">from</span> <span class="nn">builtins</span> <span class="k">import</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">range</span><span class="p">,</span> <span class="nb">object</span>
+<span class="c1"># General imports</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">from</span> <span class="nn">scipy.constants</span> <span class="k">import</span> <span class="n">c</span>
-<span class="kn">from</span> <span class="nn">..input_parameters.ring_options</span> <span class="k">import</span> <span class="n">RingOptions</span>
+<span class="kn">from</span> <span class="nn">scipy.constants</span> <span class="kn">import</span> <span class="n">c</span>
+
+<span class="c1"># BLonD_Common imports</span>
+<span class="kn">from</span> <span class="nn">...devtools</span> <span class="kn">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">excpt</span>
+<span class="kn">from</span> <span class="nn">...devtools</span> <span class="kn">import</span> <span class="n">assertions</span> <span class="k">as</span> <span class="n">assrt</span>
+<span class="kn">from</span> <span class="nn">..beam</span> <span class="kn">import</span> <span class="n">beam</span>
+<span class="kn">from</span> <span class="nn">...datatypes</span> <span class="kn">import</span> <span class="n">datatypes</span> <span class="k">as</span> <span class="n">dTypes</span>
+<span class="kn">from</span> <span class="nn">...utilities</span> <span class="kn">import</span> <span class="n">timing</span> <span class="k">as</span> <span class="n">tmng</span>
+<span class="kn">from</span> <span class="nn">...utilities</span> <span class="kn">import</span> <span class="n">rel_transforms</span> <span class="k">as</span> <span class="n">rt</span>
+<span class="kn">from</span> <span class="nn">...maths</span> <span class="kn">import</span> <span class="n">calculus</span> <span class="k">as</span> <span class="n">calc</span>
 
 
-<div class="viewcode-block" id="Ring"><a class="viewcode-back" href="../../../interfaces.input_parameters.html#blond_common.interfaces.input_parameters.ring.Ring">[docs]</a><span class="k">class</span> <span class="nc">Ring</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Ring"><a class="viewcode-back" href="../../../interfaces.input_parameters.html#blond_common.interfaces.input_parameters.ring.Ring">[docs]</a><span class="k">class</span> <span class="nc">Ring</span><span class="p">:</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot; Class containing the general properties of the synchrotron that are</span>
 <span class="sd">    independent of the RF system or the beam.</span>
 
@@ -356,16 +361,31 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ring_length</span><span class="p">,</span> <span class="n">alpha_0</span><span class="p">,</span> <span class="n">synchronous_data</span><span class="p">,</span> <span class="n">Particle</span><span class="p">,</span>
-                 <span class="n">n_turns</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">synchronous_data_type</span><span class="o">=</span><span class="s1">&#39;momentum&#39;</span><span class="p">,</span>
-                 <span class="n">bending_radius</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_sections</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha_1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha_2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">RingOptions</span><span class="o">=</span><span class="n">RingOptions</span><span class="p">()):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ring_length</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">Particle</span><span class="p">,</span>
+                 <span class="n">momentum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kin_energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">bending_field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bending_radius</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 
-        <span class="c1"># Conversion of initial inputs to expected types</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_turns</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_sections</span><span class="p">)</span>
+        <span class="c1"># Checking that at least one synchronous data input is passed</span>
+        <span class="n">syncDataTypes</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;momentum&#39;</span><span class="p">,</span> <span class="s1">&#39;kin_energy&#39;</span><span class="p">,</span> <span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="s1">&#39;B_field&#39;</span><span class="p">)</span>
+        <span class="n">syncDataInput</span> <span class="o">=</span> <span class="p">(</span><span class="n">momentum</span><span class="p">,</span> <span class="n">kin_energy</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">bending_field</span><span class="p">)</span>
+        <span class="n">assrt</span><span class="o">.</span><span class="n">single_not_none</span><span class="p">(</span><span class="o">*</span><span class="n">syncDataInput</span><span class="p">,</span>
+                              <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Exactly one of &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">syncDataTypes</span><span class="p">)</span> <span class="o">+</span>
+                              <span class="s1">&#39; must be declared&#39;</span><span class="p">,</span>
+                              <span class="n">exception</span><span class="o">=</span><span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">)</span>
 
-        <span class="c1"># Ring length and checks</span>
+        <span class="c1"># Checking that the bending_radius is passed with the bending_field</span>
+        <span class="k">if</span> <span class="n">bending_field</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">bending_radius</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;If bending_field is used, bending_radius &quot;</span>
+                                   <span class="o">+</span> <span class="s2">&quot;must be defined.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Taking the first synchronous_data input not declared as None</span>
+        <span class="c1"># The assertion above ensures that only one is declared</span>
+        <span class="k">for</span> <span class="n">func_type</span><span class="p">,</span> <span class="n">synchronous_data</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">syncDataTypes</span><span class="p">,</span> <span class="n">syncDataInput</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">synchronous_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">break</span>
+
+        <span class="c1"># Setting ring length, circumerence, radius, bending radius if defined</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ring_length</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ring_length</span><span class="p">,</span> <span class="n">ndmin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ring_circumference</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ring_length</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ring_radius</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ring_circumference</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
@@ -375,84 +395,146 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">bending_radius</span> <span class="o">=</span> <span class="n">bending_radius</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ring_length</span><span class="p">):</span>
-            <span class="c1">#InputDataError</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;ERROR in Ring: Number of sections and ring &quot;</span> <span class="o">+</span>
-                               <span class="s2">&quot;length size do not match!&quot;</span><span class="p">)</span>
-
         <span class="c1"># Primary particle mass and charge used for energy calculations</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span> <span class="o">=</span> <span class="n">Particle</span>
-
-        <span class="c1"># Keeps RingOptions as an attribute</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">RingOptions</span> <span class="o">=</span> <span class="n">RingOptions</span>
+        <span class="c1"># If a string is passed, will generate the relevant Particle object</span>
+        <span class="c1"># based on the name</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Particle</span><span class="p">,</span> <span class="n">beam</span><span class="o">.</span><span class="n">Particle</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span> <span class="o">=</span> <span class="n">Particle</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">make_particle</span><span class="p">(</span><span class="n">Particle</span><span class="p">)</span>
 
         <span class="c1"># Reshaping the input synchronous data to the adequate format and</span>
         <span class="c1"># get back the momentum program from RingOptions</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">=</span> <span class="n">RingOptions</span><span class="o">.</span><span class="n">reshape_data</span><span class="p">(</span>
-            <span class="n">synchronous_data</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span>
-            <span class="n">interp_time</span><span class="o">=</span><span class="n">RingOptions</span><span class="o">.</span><span class="n">interp_time</span><span class="p">,</span>
-            <span class="n">input_to_momentum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">synchronous_data_type</span><span class="o">=</span><span class="n">synchronous_data_type</span><span class="p">,</span>
-            <span class="n">mass</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="p">,</span>
-            <span class="n">charge</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">charge</span><span class="p">,</span>
-            <span class="n">circumference</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ring_circumference</span><span class="p">,</span>
-            <span class="n">bending_radius</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bending_radius</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">synchronous_data</span><span class="p">,</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">_ring_program</span><span class="p">):</span>
+            <span class="n">synchronous_data</span> <span class="o">=</span> \
+                <span class="n">dTypes</span><span class="o">.</span><span class="n">_ring_program</span><span class="o">.</span><span class="n">conversions</span><span class="p">[</span><span class="n">func_type</span><span class="p">](</span><span class="n">synchronous_data</span><span class="p">)</span>
 
+        <span class="k">if</span> <span class="n">synchronous_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ring_length</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputDataError</span><span class="p">(</span><span class="s2">&quot;ERROR in Ring: Number of sections &quot;</span> <span class="o">+</span>
+                                       <span class="s2">&quot;and ring length size do not match!&quot;</span><span class="p">)</span>
+
+        <span class="n">t_start</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;t_start&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">t_stop</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;t_stop&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+        <span class="n">interp_time</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;interp_time&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">interp_time</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">):</span>
+            <span class="n">interp_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">interp_time</span><span class="p">,</span> <span class="p">)</span>
+
+        <span class="n">sample_func</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="n">tmng</span><span class="o">.</span><span class="n">time_from_sampling</span><span class="p">(</span><span class="o">*</span><span class="n">interp_time</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">t_start</span> <span class="o">&gt;</span> <span class="n">start</span><span class="p">:</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">t_start</span>
+        <span class="k">if</span> <span class="n">t_stop</span> <span class="o">&lt;</span> <span class="n">stop</span><span class="p">:</span>
+            <span class="n">stop</span> <span class="o">=</span> <span class="n">t_stop</span>
+
+        <span class="n">synchronous_data</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">charge</span><span class="p">,</span>
+                                 <span class="bp">self</span><span class="o">.</span><span class="n">bending_radius</span><span class="p">)</span>
+
+        <span class="n">interpolation</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;interpolation&quot;</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+        <span class="n">store_turns</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;store_turns&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">=</span> <span class="n">synchronous_data</span><span class="o">.</span><span class="n">preprocess</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ring_circumference</span><span class="p">,</span> <span class="n">sample_func</span><span class="p">,</span>
+            <span class="n">interpolation</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span>
+            <span class="n">store_turns</span><span class="o">=</span><span class="n">store_turns</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">store_turns</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parameters_at_turn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameters_at_turn</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parameters_at_turn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_no_parameters_at_turn</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="c1"># Updating the number of turns in case it was changed after ramp</span>
         <span class="c1"># interpolation</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;WARNING in Ring: The number of turns for the &quot;</span> <span class="o">+</span>
-                          <span class="s2">&quot;simulation was changed by passing a momentum &quot;</span> <span class="o">+</span>
-                          <span class="s2">&quot;program.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="o">.</span><span class="n">n_turns</span>
 
         <span class="c1"># Derived from momentum</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">energy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">kin_energy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> \
-            <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">delta_E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="n">rt</span><span class="o">.</span><span class="n">mom_to_beta</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">rt</span><span class="o">.</span><span class="n">mom_to_gamma</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">energy</span> <span class="o">=</span> <span class="n">rt</span><span class="o">.</span><span class="n">momentum_to_energy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span>
+                                            <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kin_energy</span> <span class="o">=</span> <span class="n">rt</span><span class="o">.</span><span class="n">momentum_to_kin_energy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span>
+                                                    <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">t_rev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ring_length</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="o">*</span><span class="n">c</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">RingOptions</span><span class="o">.</span><span class="n">interp_time</span> <span class="o">==</span> <span class="s1">&#39;t_rev&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t_rev</span><span class="p">)</span>  <span class="c1"># Always starts with zero</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">RingOptions</span><span class="o">.</span><span class="n">interp_time</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span>
-                <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t_rev</span><span class="p">)</span><span class="o">*</span><span class="n">RingOptions</span><span class="o">.</span><span class="n">interp_time</span><span class="p">,</span>
-                <span class="n">RingOptions</span><span class="o">.</span><span class="n">interp_time</span><span class="p">)</span>  <span class="c1"># Always starts with zero</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">RingOptions</span><span class="o">.</span><span class="n">interp_time</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">or</span> \
-                <span class="nb">isinstance</span><span class="p">(</span><span class="n">RingOptions</span><span class="o">.</span><span class="n">interp_time</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">RingOptions</span><span class="o">.</span><span class="n">interp_time</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Always starts with zero</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delta_E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">delta_E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_recalc_delta_E</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">f_rev</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">t_rev</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">omega_rev</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">f_rev</span>
 
         <span class="c1"># Momentum compaction, checks, and derived slippage factors</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">alpha_0</span> <span class="o">=</span> <span class="n">RingOptions</span><span class="o">.</span><span class="n">reshape_data</span><span class="p">(</span>
-            <span class="n">alpha_0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span>
-            <span class="n">interp_time</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="k">if</span> <span class="n">alpha_1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">alpha_1</span> <span class="o">=</span> <span class="n">RingOptions</span><span class="o">.</span><span class="n">reshape_data</span><span class="p">(</span>
-                <span class="n">alpha_1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span>
-                <span class="n">interp_time</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">):</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">alpha_2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">alpha_2</span> <span class="o">=</span> <span class="n">RingOptions</span><span class="o">.</span><span class="n">reshape_data</span><span class="p">(</span>
-                <span class="n">alpha_2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span>
-                <span class="n">interp_time</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">([</span><span class="n">k</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">alpha</span><span class="o">.</span><span class="n">keys</span><span class="p">()]):</span>
+                    <span class="k">raise</span> <span class="ne">TypeError</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;If alpha is dict all keys must be &quot;</span>
+                                       <span class="o">+</span> <span class="s2">&quot;numeric and integer&quot;</span><span class="p">)</span>
 
-            <span class="c1"># Filling alpha_1 with zeros if only alpha_2 program was set</span>
-            <span class="k">if</span> <span class="n">alpha_1</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">alpha_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha_2</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+            <span class="n">maxAlpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">alpha</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="p">[</span><span class="n">alpha</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxAlpha</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">_function</span><span class="p">):</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="p">(</span><span class="n">alpha</span><span class="p">,)</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">alpha</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">momentum_compaction</span><span class="p">):</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">momentum_compaction</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;alpha_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span>
+                                                     <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span>
+                                                     <span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span><span class="p">))</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;eta_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span>
+                                                   <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span><span class="p">)]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span> <span class="o">=</span> <span class="n">i</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;alpha_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">):</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;alpha_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span>
+                                                         <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span><span class="p">)]))</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;eta_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span>
+                                                       <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span><span class="p">)]))</span>
 
         <span class="c1"># Slippage factor derived from alpha, beta, gamma</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">eta_generation</span><span class="p">()</span>
+
+    <span class="c1"># TODO: different interpollation for different components</span>
+    <span class="c1"># (e.g. alpha and momentum)</span>
+<div class="viewcode-block" id="Ring.from_ring_sections"><a class="viewcode-back" href="../../../interfaces.input_parameters.html#blond_common.interfaces.input_parameters.ring.Ring.from_ring_sections">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_ring_sections</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">Particle</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span>
+                           <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="c1"># Primary particle mass and charge used for energy calculations</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Particle</span><span class="p">,</span> <span class="n">beam</span><span class="o">.</span><span class="n">Particle</span><span class="p">):</span>
+            <span class="n">Particle</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">make_particle</span><span class="p">(</span><span class="n">Particle</span><span class="p">)</span>
+
+        <span class="n">synchronous_data</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">momentum_program</span><span class="o">.</span><span class="n">combine_single_sections</span><span class="p">(</span>
+                            <span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">synchronous_data</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">),</span>
+                            <span class="n">charge</span><span class="o">=</span><span class="n">Particle</span><span class="o">.</span><span class="n">charge</span><span class="p">,</span>
+                            <span class="n">rest_mass</span><span class="o">=</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="p">,</span>
+                            <span class="n">bending_radius</span><span class="o">=</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">bending_radius</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">),</span>
+                            <span class="n">interpolation</span><span class="o">=</span><span class="n">interpolation</span><span class="p">)</span>
+
+        <span class="n">ring_length</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a</span><span class="o">.</span><span class="n">section_length</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">])</span>
+
+        <span class="n">alpha</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">alpha</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">momentum_compaction</span><span class="o">.</span><span class="n">combine_single_sections</span><span class="p">(</span>
+                            <span class="o">*</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;alpha_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">),</span>
+                            <span class="n">interpolation</span><span class="o">=</span><span class="n">interpolation</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">ring_length</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">Particle</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="n">synchronous_data</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Ring.eta_generation"><a class="viewcode-back" href="../../../interfaces.input_parameters.html#blond_common.interfaces.input_parameters.ring.Ring.eta_generation">[docs]</a>    <span class="k">def</span> <span class="nf">eta_generation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Function to generate the slippage factors (zeroth, first, and</span>
@@ -465,28 +547,19 @@
 <span class="sd">                Third Edition, 2012.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
+        <span class="c1"># TODO: Safe handling of alpha_order &gt; 2</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-            <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_eta&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))()</span>
-
-        <span class="c1"># Fill unused eta arrays with zeros</span>
-        <span class="c1"># This can be removed when the BLonD assembler is in place</span>
-        <span class="c1"># to avoid high order momentum compaction programs filled</span>
-        <span class="c1"># with zeros (should be propagated in RFStation.__init__())</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;eta_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span>
-                                                  <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="o">+</span><span class="mi">1</span><span class="p">]))</span></div>
+            <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_eta&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))()</span></div>
 
     <span class="k">def</span> <span class="nf">_eta0</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Function to calculate the zeroth order slippage factor eta_0 &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">eta_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">eta_0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">2.</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_eta1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Function to calculate the first order slippage factor eta_1 &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">eta_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">eta_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> \
                 <span class="bp">self</span><span class="o">.</span><span class="n">alpha_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">eta_0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -494,7 +567,6 @@
     <span class="k">def</span> <span class="nf">_eta2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Function to calculate the second order slippage factor eta_2 &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">eta_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">eta_2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> \
                 <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha_0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span>\
@@ -539,11 +611,63 @@
                                             <span class="bp">self</span><span class="o">.</span><span class="n">omega_rev</span><span class="p">)</span>
         <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;eta_0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">cycle_moments</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span>
                                         <span class="bp">self</span><span class="o">.</span><span class="n">eta_0</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;delta_E&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">cycle_moments</span><span class="p">,</span>
-                                          <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
-                                          <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delta_E</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;delta_E&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">cycle_moments</span><span class="p">,</span>
+                                              <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span>
+                                              <span class="bp">self</span><span class="o">.</span><span class="n">delta_E</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;delta_E&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">cycle_moments</span><span class="p">,</span>
+                                              <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                              <span class="bp">self</span><span class="o">.</span><span class="n">delta_E</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;charge&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">charge</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;cycle_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cycle_moments</span>
 
-        <span class="k">return</span> <span class="n">parameters</span></div></div>
+        <span class="k">return</span> <span class="n">parameters</span></div>
+
+    <span class="k">def</span> <span class="nf">_no_parameters_at_turn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;parameters_at_turn only available if &quot;</span> <span class="o">+</span>
+                           <span class="s2">&quot;store_turns = True at object declaration&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parameters_at_turn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn</span><span class="p">):</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span> <span class="o">==</span> <span class="n">turn</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;turn &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">turn</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; has not been &quot;</span>
+                                   <span class="o">+</span> <span class="s2">&quot;stored for the specified interpolation&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters_at_sample</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Ring.parameters_at_sample"><a class="viewcode-back" href="../../../interfaces.input_parameters.html#blond_common.interfaces.input_parameters.ring.Ring.parameters_at_sample">[docs]</a>    <span class="k">def</span> <span class="nf">parameters_at_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">):</span>
+
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;momentum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">sample</span><span class="p">]</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">sample</span><span class="p">]</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">sample</span><span class="p">]</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">sample</span><span class="p">]</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;kin_energy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kin_energy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">sample</span><span class="p">]</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;f_rev&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_rev</span><span class="p">[</span><span class="n">sample</span><span class="p">]</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;t_rev&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_rev</span><span class="p">[</span><span class="n">sample</span><span class="p">]</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;omega_rev&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega_rev</span><span class="p">[</span><span class="n">sample</span><span class="p">]</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;eta_0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_0</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">sample</span><span class="p">]</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;delta_E&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta_E</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">sample</span><span class="p">]</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;charge&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">charge</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;cycle_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">[</span><span class="n">sample</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">parameters</span></div>
+
+    <span class="k">def</span> <span class="nf">_recalc_delta_E</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Function to recalculate delta_E.</span>
+<span class="sd">        If interpolation is not done on a turn-by-turn basis the delta_E will</span>
+<span class="sd">        not be correct.  This function recalculates it to give the correct</span>
+<span class="sd">        value for each turn.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">):</span>
+            <span class="n">derivative</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">deriv_cubic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span>
+                                          <span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">[</span><span class="n">section</span><span class="p">])[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">delta_E</span><span class="p">[</span><span class="n">section</span><span class="p">]</span> <span class="o">=</span> <span class="n">derivative</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">t_rev</span></div>
 </pre></div>
 
            </div>

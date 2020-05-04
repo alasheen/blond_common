@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -92,8 +92,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="fitting.html">fitting package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="fitting.html#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="fitting.distribution.html">fitting.distribution module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fitting.distribution_functions.html">fitting.distribution_functions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fitting.profile.html">fitting.profile module</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="fitting.html#examples">Examples</a></li>
@@ -186,52 +185,84 @@
 <span id="rf-functions-potential-module"></span><h1>rf_functions.potential module<a class="headerlink" href="#module-blond_common.rf_functions.potential" title="Permalink to this headline">¶</a></h1>
 <p><strong>Module containing base functions to compute like rf voltage, rf potential,
 separatrices, acceptance, emittance, synchrotron frequency</strong></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Authors:</th><td class="field-body"><strong>Simon Albright</strong>, <strong>Alexandre Lasheen</strong></td>
-</tr>
-</tbody>
-</table>
-<dl class="function">
+<dl class="field-list simple">
+<dt class="field-odd">Authors</dt>
+<dd class="field-odd"><p><strong>Simon Albright</strong>, <strong>Alexandre Lasheen</strong></p>
+</dd>
+</dl>
+<dl class="py function">
 <dt id="blond_common.rf_functions.potential.area_vs_hamiltonian_cubic">
-<code class="descclassname">blond_common.rf_functions.potential.</code><code class="descname">area_vs_hamiltonian_cubic</code><span class="sig-paren">(</span><em>time_array</em>, <em>potential_array</em>, <em>eta_0</em>, <em>beta_rel</em>, <em>tot_energy</em>, <em>min_potential_well=None</em>, <em>inner_max_potential_well=None</em>, <em>n_points_reinterp=None</em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#area_vs_hamiltonian_cubic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.area_vs_hamiltonian_cubic" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">blond_common.rf_functions.potential.</code><code class="sig-name descname">area_vs_hamiltonian_cubic</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time_array</span></em>, <em class="sig-param"><span class="n">potential_array</span></em>, <em class="sig-param"><span class="n">eta_0</span></em>, <em class="sig-param"><span class="n">beta_rel</span></em>, <em class="sig-param"><span class="n">tot_energy</span></em>, <em class="sig-param"><span class="n">min_potential_well</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">inner_max_potential_well</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">min_n_points</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#area_vs_hamiltonian_cubic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.area_vs_hamiltonian_cubic" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
+<dt id="blond_common.rf_functions.potential.area_vs_hamiltonian_hybrid">
+<code class="sig-prename descclassname">blond_common.rf_functions.potential.</code><code class="sig-name descname">area_vs_hamiltonian_hybrid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time_array</span></em>, <em class="sig-param"><span class="n">potential_array</span></em>, <em class="sig-param"><span class="n">eta_0</span></em>, <em class="sig-param"><span class="n">beta_rel</span></em>, <em class="sig-param"><span class="n">tot_energy</span></em>, <em class="sig-param"><span class="n">min_potential_well</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">inner_max_potential_well</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">min_n_points</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">trapzThresh</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#area_vs_hamiltonian_hybrid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.area_vs_hamiltonian_hybrid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt id="blond_common.rf_functions.potential.find_potential_wells_cubic">
-<code class="descclassname">blond_common.rf_functions.potential.</code><code class="descname">find_potential_wells_cubic</code><span class="sig-paren">(</span><em>time_array_full</em>, <em>potential_well_full</em>, <em>relative_max_val_precision_limit=1e-06</em>, <em>mest=10</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#find_potential_wells_cubic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.find_potential_wells_cubic" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">blond_common.rf_functions.potential.</code><code class="sig-name descname">find_potential_wells_cubic</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time_array_full</span></em>, <em class="sig-param"><span class="n">potential_well_full</span></em>, <em class="sig-param"><span class="n">relative_max_val_precision_limit</span><span class="o">=</span><span class="default_value">1e-06</span></em>, <em class="sig-param"><span class="n">mest</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">edge_is_max</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#find_potential_wells_cubic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.find_potential_wells_cubic" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
+<dt id="blond_common.rf_functions.potential.potential_to_hamiltonian">
+<code class="sig-prename descclassname">blond_common.rf_functions.potential.</code><code class="sig-name descname">potential_to_hamiltonian</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time_array</span></em>, <em class="sig-param"><span class="n">potential_array</span></em>, <em class="sig-param"><span class="n">beta</span></em>, <em class="sig-param"><span class="n">energy</span></em>, <em class="sig-param"><span class="n">eta</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#potential_to_hamiltonian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.potential_to_hamiltonian" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt id="blond_common.rf_functions.potential.potential_well_cut_cubic">
-<code class="descclassname">blond_common.rf_functions.potential.</code><code class="descname">potential_well_cut_cubic</code><span class="sig-paren">(</span><em>time_array_full</em>, <em>potential_well_full</em>, <em>potwell_max_locs</em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#potential_well_cut_cubic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.potential_well_cut_cubic" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">blond_common.rf_functions.potential.</code><code class="sig-name descname">potential_well_cut_cubic</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time_array_full</span></em>, <em class="sig-param"><span class="n">potential_well_full</span></em>, <em class="sig-param"><span class="n">potwell_max_locs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#potential_well_cut_cubic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.potential_well_cut_cubic" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="blond_common.rf_functions.potential.rf_potential_generation">
-<code class="descclassname">blond_common.rf_functions.potential.</code><code class="descname">rf_potential_generation</code><span class="sig-paren">(</span><em>n_points</em>, <em>t_rev</em>, <em>voltage</em>, <em>harmonic_number</em>, <em>phi_offset</em>, <em>eta_0</em>, <em>charge</em>, <em>energy_increment</em>, <em>time_bounds=None</em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#rf_potential_generation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.rf_potential_generation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">blond_common.rf_functions.potential.</code><code class="sig-name descname">rf_potential_generation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_points</span></em>, <em class="sig-param"><span class="n">t_rev</span></em>, <em class="sig-param"><span class="n">voltage</span></em>, <em class="sig-param"><span class="n">harmonic_number</span></em>, <em class="sig-param"><span class="n">phi_offset</span></em>, <em class="sig-param"><span class="n">eta_0</span></em>, <em class="sig-param"><span class="n">charge</span></em>, <em class="sig-param"><span class="n">energy_increment</span></em>, <em class="sig-param"><span class="n">time_bounds</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#rf_potential_generation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.rf_potential_generation" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="blond_common.rf_functions.potential.rf_potential_generation_cubic">
-<code class="descclassname">blond_common.rf_functions.potential.</code><code class="descname">rf_potential_generation_cubic</code><span class="sig-paren">(</span><em>time_array</em>, <em>voltage_array</em>, <em>eta_0</em>, <em>charge</em>, <em>t_rev</em>, <em>energy_increment</em>, <em>interpolated_voltage_minus_increment=None</em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#rf_potential_generation_cubic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.rf_potential_generation_cubic" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">blond_common.rf_functions.potential.</code><code class="sig-name descname">rf_potential_generation_cubic</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time_array</span></em>, <em class="sig-param"><span class="n">voltage_array</span></em>, <em class="sig-param"><span class="n">eta_0</span></em>, <em class="sig-param"><span class="n">charge</span></em>, <em class="sig-param"><span class="n">t_rev</span></em>, <em class="sig-param"><span class="n">energy_increment</span></em>, <em class="sig-param"><span class="n">interpolated_voltage_minus_increment</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#rf_potential_generation_cubic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.rf_potential_generation_cubic" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="blond_common.rf_functions.potential.rf_voltage_generation">
-<code class="descclassname">blond_common.rf_functions.potential.</code><code class="descname">rf_voltage_generation</code><span class="sig-paren">(</span><em>n_points</em>, <em>t_rev</em>, <em>voltage</em>, <em>harmonic_number</em>, <em>phi_offset</em>, <em>time_bounds=None</em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#rf_voltage_generation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.rf_voltage_generation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">blond_common.rf_functions.potential.</code><code class="sig-name descname">rf_voltage_generation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_points</span></em>, <em class="sig-param"><span class="n">t_rev</span></em>, <em class="sig-param"><span class="n">voltage</span></em>, <em class="sig-param"><span class="n">harmonic_number</span></em>, <em class="sig-param"><span class="n">phi_offset</span></em>, <em class="sig-param"><span class="n">time_bounds</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#rf_voltage_generation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.rf_voltage_generation" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
+<dt id="blond_common.rf_functions.potential.single_h_tune_analytical">
+<code class="sig-prename descclassname">blond_common.rf_functions.potential.</code><code class="sig-name descname">single_h_tune_analytical</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">energy</span></em>, <em class="sig-param"><span class="n">beta</span></em>, <em class="sig-param"><span class="n">delta_E</span></em>, <em class="sig-param"><span class="n">eta</span></em>, <em class="sig-param"><span class="n">charge</span></em>, <em class="sig-param"><span class="n">harmonic</span></em>, <em class="sig-param"><span class="n">voltage</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#single_h_tune_analytical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.single_h_tune_analytical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="blond_common.rf_functions.potential.sort_potential_wells">
+<code class="sig-prename descclassname">blond_common.rf_functions.potential.</code><code class="sig-name descname">sort_potential_wells</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time_list</span></em>, <em class="sig-param"><span class="n">well_list</span></em>, <em class="sig-param"><span class="n">by</span><span class="o">=</span><span class="default_value">'t_start'</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#sort_potential_wells"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.sort_potential_wells" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt id="blond_common.rf_functions.potential.synchrotron_frequency_cubic">
-<code class="descclassname">blond_common.rf_functions.potential.</code><code class="descname">synchrotron_frequency_cubic</code><span class="sig-paren">(</span><em>time_array</em>, <em>potential_array</em>, <em>eta_0</em>, <em>beta_rel</em>, <em>tot_energy</em>, <em>min_potential_well=None</em>, <em>inner_max_potential_well=None</em>, <em>n_points_reinterp=None</em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#synchrotron_frequency_cubic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.synchrotron_frequency_cubic" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">blond_common.rf_functions.potential.</code><code class="sig-name descname">synchrotron_frequency_cubic</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time_array</span></em>, <em class="sig-param"><span class="n">potential_array</span></em>, <em class="sig-param"><span class="n">eta_0</span></em>, <em class="sig-param"><span class="n">beta_rel</span></em>, <em class="sig-param"><span class="n">tot_energy</span></em>, <em class="sig-param"><span class="n">min_potential_well</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">inner_max_potential_well</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">min_n_points</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#synchrotron_frequency_cubic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.synchrotron_frequency_cubic" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
+<dt id="blond_common.rf_functions.potential.synchrotron_frequency_hybrid">
+<code class="sig-prename descclassname">blond_common.rf_functions.potential.</code><code class="sig-name descname">synchrotron_frequency_hybrid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time_array</span></em>, <em class="sig-param"><span class="n">potential_array</span></em>, <em class="sig-param"><span class="n">eta_0</span></em>, <em class="sig-param"><span class="n">beta_rel</span></em>, <em class="sig-param"><span class="n">tot_energy</span></em>, <em class="sig-param"><span class="n">min_potential_well</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">inner_max_potential_well</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">min_n_points</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">trapzThresh</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#synchrotron_frequency_hybrid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.synchrotron_frequency_hybrid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt id="blond_common.rf_functions.potential.trajectory_area_cubic">
-<code class="descclassname">blond_common.rf_functions.potential.</code><code class="descname">trajectory_area_cubic</code><span class="sig-paren">(</span><em>time_array</em>, <em>potential_array</em>, <em>eta_0</em>, <em>beta_rel</em>, <em>tot_energy</em>, <em>min_potential_well=None</em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#trajectory_area_cubic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.trajectory_area_cubic" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">blond_common.rf_functions.potential.</code><code class="sig-name descname">trajectory_area_cubic</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time_array</span></em>, <em class="sig-param"><span class="n">potential_array</span></em>, <em class="sig-param"><span class="n">eta_0</span></em>, <em class="sig-param"><span class="n">beta_rel</span></em>, <em class="sig-param"><span class="n">tot_energy</span></em>, <em class="sig-param"><span class="n">min_potential_well</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#trajectory_area_cubic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.trajectory_area_cubic" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="blond_common.rf_functions.potential.trajectory_area_trapz">
+<code class="sig-prename descclassname">blond_common.rf_functions.potential.</code><code class="sig-name descname">trajectory_area_trapz</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time_array</span></em>, <em class="sig-param"><span class="n">potential_array</span></em>, <em class="sig-param"><span class="n">eta_0</span></em>, <em class="sig-param"><span class="n">beta_rel</span></em>, <em class="sig-param"><span class="n">tot_energy</span></em>, <em class="sig-param"><span class="n">min_potential_well</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#trajectory_area_trapz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.trajectory_area_trapz" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="blond_common.rf_functions.potential.voltage_from_single_h_tune">
+<code class="sig-prename descclassname">blond_common.rf_functions.potential.</code><code class="sig-name descname">voltage_from_single_h_tune</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">energy</span></em>, <em class="sig-param"><span class="n">beta</span></em>, <em class="sig-param"><span class="n">delta_E</span></em>, <em class="sig-param"><span class="n">eta</span></em>, <em class="sig-param"><span class="n">charge</span></em>, <em class="sig-param"><span class="n">harmonic</span></em>, <em class="sig-param"><span class="n">tune</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/rf_functions/potential.html#voltage_from_single_h_tune"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.rf_functions.potential.voltage_from_single_h_tune" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>

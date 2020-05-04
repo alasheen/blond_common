@@ -1,0 +1,495 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>blond_common.interfaces.input_parameters.ring_section &mdash; BLonD Common  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> BLonD Common
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../interfaces.html">interfaces package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../interfaces.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../interfaces.input_parameters.html">interfaces.input_parameters package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../interfaces.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../fitting.html">fitting package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../fitting.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../fitting.profile.html">fitting.profile module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../fitting.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../maths.html">maths package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../maths.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../maths.calculus.html">maths.calculus module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../maths.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rf_functions.html">rf_functions package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../rf_functions.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../rf_functions.potential.html">rf_functions.potential module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rf_functions.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">BLonD Common</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>blond_common.interfaces.input_parameters.ring_section</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for blond_common.interfaces.input_parameters.ring_section</h1><div class="highlight"><pre>
+<span></span><span class="c1"># coding: utf8</span>
+<span class="c1"># Copyright 2014-2020 CERN. This software is distributed under the</span>
+<span class="c1"># terms of the GNU General Public Licence version 3 (GPL Version 3),</span>
+<span class="c1"># copied verbatim in the file LICENCE.md.</span>
+<span class="c1"># In applying this licence, CERN does not waive the privileges and immunities</span>
+<span class="c1"># granted to it by virtue of its status as an Intergovernmental Organization or</span>
+<span class="c1"># submit itself to any jurisdiction.</span>
+<span class="c1"># Project website: http://blond.web.cern.ch/</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">**Module gathering all general input parameters used for the simulation.**</span>
+<span class="sd">    :Authors: **Simon Albright**, **Alexandre Lasheen**</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1"># General imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="c1"># BLonD_Common imports</span>
+<span class="kn">from</span> <span class="nn">...datatypes</span> <span class="kn">import</span> <span class="n">datatypes</span> <span class="k">as</span> <span class="n">dTypes</span>
+<span class="kn">from</span> <span class="nn">...datatypes.blond_function</span> <span class="kn">import</span> <span class="n">machine_program</span>
+<span class="kn">from</span> <span class="nn">...devtools</span> <span class="kn">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">excpt</span>
+<span class="kn">from</span> <span class="nn">...devtools</span> <span class="kn">import</span> <span class="n">assertions</span> <span class="k">as</span> <span class="n">assrt</span>
+
+
+<div class="viewcode-block" id="Section"><a class="viewcode-back" href="../../../interfaces.input_parameters.html#blond_common.interfaces.input_parameters.ring_section.Section">[docs]</a><span class="k">class</span> <span class="nc">Section</span><span class="p">:</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot; Class containing the general properties of a section of the</span>
+<span class="sd">    accelerator that are independent of the RF system or the beam.</span>
+
+<span class="sd">    The user has to input the synchronous data with at least but no more</span>
+<span class="sd">    than one of the following: momentum, kin_energy, energy, bending_field.</span>
+
+<span class="sd">    If bending_field is passed, bending_radius should be passed as well.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    section_length : float (opt: list or np.ndarray)</span>
+<span class="sd">        Length [m] accelerator section;</span>
+<span class="sd">        can be input as single float or as a program (1D array is a</span>
+<span class="sd">        turn-by-turn program and 2D array is a time dependent program).</span>
+<span class="sd">        If a turn-by-turn program is passed, should be of the same size</span>
+<span class="sd">        as the synchronous data.</span>
+<span class="sd">    alpha_0 : float (opt: list or np.ndarray)</span>
+<span class="sd">        Momentum compaction factor of zeroth order :math:`\alpha_{0}`;</span>
+<span class="sd">        can be input as single float or as a program (1D array is a</span>
+<span class="sd">        turn-by-turn program and 2D array is a time dependent program).</span>
+<span class="sd">        If a turn-by-turn program is passed, should be of the same size</span>
+<span class="sd">        as the synchronous data.</span>
+<span class="sd">    momentum : float (opt: list or np.ndarray)</span>
+<span class="sd">        Design particle momentum [eV]</span>
+<span class="sd">        on the design orbit :math:`p_{s}`;</span>
+<span class="sd">        can be input as single float or as a program (1D array is a</span>
+<span class="sd">        turn-by-turn program and 2D array is a time dependent program).</span>
+<span class="sd">    kin_energy : float (opt: list or np.ndarray)</span>
+<span class="sd">        Design particle kinetic energy [eV]</span>
+<span class="sd">        on the design orbit :math:`E_{k,s}`;</span>
+<span class="sd">        can be input as single float or as a program (1D array is a</span>
+<span class="sd">        turn-by-turn program and 2D array is a time dependent program).</span>
+<span class="sd">    energy : float (opt: list or np.ndarray)</span>
+<span class="sd">        Design particle total energy [eV]</span>
+<span class="sd">        on the design orbit :math:`E_{s}`;</span>
+<span class="sd">        can be input as single float or as a program (1D array is a</span>
+<span class="sd">        turn-by-turn program and 2D array is a time dependent program).</span>
+<span class="sd">    bending_field : float (opt: list or np.ndarray)</span>
+<span class="sd">        Design bending field [T] on the design orbit :math:`B_{s}`,</span>
+<span class="sd">        this is used to defined the design particle momentum;</span>
+<span class="sd">        can be input as single float or as a program (1D array is a</span>
+<span class="sd">        turn-by-turn program and 2D array is a time dependent program).</span>
+<span class="sd">    bending_radius : float</span>
+<span class="sd">        Optional: Radius [m] of the bending magnets,</span>
+<span class="sd">        required if &#39;bending field&#39; is set for the synchronous_data_type</span>
+<span class="sd">    alpha_1 : float (opt: list or np.ndarray)</span>
+<span class="sd">        Optional : Momentum compaction factor of first order</span>
+<span class="sd">        :math:`\alpha_{1}`;</span>
+<span class="sd">        can be input as single float or as a program (1D array is a</span>
+<span class="sd">        turn-by-turn program and 2D array is a time dependent program).</span>
+<span class="sd">        If a turn-by-turn program is passed, should be of the same size</span>
+<span class="sd">        as the synchronous data.</span>
+<span class="sd">    alpha_2 : float (opt: list or np.ndarray)</span>
+<span class="sd">        Optional : Momentum compaction factor of second order</span>
+<span class="sd">        :math:`\alpha_{2}`;</span>
+<span class="sd">        can be input as single float or as a program (1D array is a</span>
+<span class="sd">        turn-by-turn program and 2D array is a time dependent program).</span>
+<span class="sd">        If a turn-by-turn program is passed, should be of the same size</span>
+<span class="sd">        as the synchronous data.</span>
+<span class="sd">    alpha_n : float (opt: list or np.ndarray)</span>
+<span class="sd">        Optional : Higher order momentum compaction can also be passed through</span>
+<span class="sd">        extra keyword arguments;</span>
+<span class="sd">        can be input as single float or as a program (1D array is a</span>
+<span class="sd">        turn-by-turn program and 2D array is a time dependent program).</span>
+<span class="sd">        If a turn-by-turn program is passed, should be of the same size</span>
+<span class="sd">        as the synchronous data.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    section_length : datatype._ring_function</span>
+<span class="sd">        Length of the section [m]</span>
+<span class="sd">    synchronous_data : datatype._ring_program</span>
+<span class="sd">        The user input synchronous data, with no conversion applied.</span>
+<span class="sd">        The datatype depends on the user input and can be</span>
+<span class="sd">        momentum_program, kinetic_energy_program, total_energy_program,</span>
+<span class="sd">        bending_field_program</span>
+<span class="sd">    bending_radius : float (or None)</span>
+<span class="sd">        Bending radius in dipole magnets, :math:`\rho` [m]</span>
+<span class="sd">    alpha_0 : datatype.momentum_compaction</span>
+<span class="sd">        Momentum compaction factor of zeroth order</span>
+<span class="sd">    alpha_1 : datatype.momentum_compaction (or None)</span>
+<span class="sd">        Momentum compaction factor of first order</span>
+<span class="sd">    alpha_2 : datatype.momentum_compaction (or None)</span>
+<span class="sd">        Momentum compaction factor of second order</span>
+<span class="sd">    alpha_n : datatype.momentum_compaction (or undefined)</span>
+<span class="sd">        Momentum compaction factor of higer orders</span>
+<span class="sd">    alpha_order : int</span>
+<span class="sd">        Maximum order of momentum compaction</span>
+<span class="sd">    alpha_orders_defined : int</span>
+<span class="sd">        Orders of momentum compaction defined by the user</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; # To declare a section of a synchrotron with very simple</span>
+<span class="sd">    &gt;&gt;&gt; # parameters</span>
+<span class="sd">    &gt;&gt;&gt; from blond_common.interfaces.input_parameters.ring_section import \</span>
+<span class="sd">    &gt;&gt;&gt;     Section</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; section_length = 300</span>
+<span class="sd">    &gt;&gt;&gt; alpha_0 = 1e-3</span>
+<span class="sd">    &gt;&gt;&gt; momentum = 26e9</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; section = Section(section_length, alpha_0, momentum)</span>
+
+<span class="sd">    &gt;&gt;&gt; # To declare a section of a synchrotron with very complex</span>
+<span class="sd">    &gt;&gt;&gt; # parameters and programs</span>
+<span class="sd">    &gt;&gt;&gt; from blond_common.interfaces.input_parameters.ring_section import \</span>
+<span class="sd">    &gt;&gt;&gt;     Section</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; section_length = 300</span>
+<span class="sd">    &gt;&gt;&gt; alpha_0 = 1e-3</span>
+<span class="sd">    &gt;&gt;&gt; alpha_1 = 1e-4</span>
+<span class="sd">    &gt;&gt;&gt; alpha_2 = 1e-5</span>
+<span class="sd">    &gt;&gt;&gt; alpha_5 = 1e-9</span>
+<span class="sd">    &gt;&gt;&gt; energy = machine_program([[0, 1, 2],</span>
+<span class="sd">    &gt;&gt;&gt;                           [26e9, 27e9, 28e9]])</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; section = Section(section_length, alpha_0, energy=energy,</span>
+<span class="sd">    &gt;&gt;&gt;                   alpha_1=alpha_1, alpha_2=alpha_2, alpha_5=alpha_5)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section_length</span><span class="p">,</span> <span class="n">alpha_0</span><span class="p">,</span>
+                 <span class="n">momentum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kin_energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">bending_field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bending_radius</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">alpha_1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha_2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="c1"># Setting section length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">section_length</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">_ring_function</span><span class="p">(</span><span class="n">section_length</span><span class="p">)</span>
+
+        <span class="c1"># Checking that at least one synchronous data input is passed</span>
+        <span class="n">syncDataTypes</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;momentum&#39;</span><span class="p">,</span> <span class="s1">&#39;kin_energy&#39;</span><span class="p">,</span> <span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="s1">&#39;B_field&#39;</span><span class="p">)</span>
+        <span class="n">syncDataInput</span> <span class="o">=</span> <span class="p">(</span><span class="n">momentum</span><span class="p">,</span> <span class="n">kin_energy</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">bending_field</span><span class="p">)</span>
+        <span class="n">assrt</span><span class="o">.</span><span class="n">single_not_none</span><span class="p">(</span><span class="o">*</span><span class="n">syncDataInput</span><span class="p">,</span>
+                              <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Exactly one of &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">syncDataTypes</span><span class="p">)</span> <span class="o">+</span>
+                              <span class="s1">&#39; must be declared&#39;</span><span class="p">,</span>
+                              <span class="n">exception</span><span class="o">=</span><span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">)</span>
+
+        <span class="c1"># Checking that the bending_radius is passed with the bending_field</span>
+        <span class="c1"># and setting the bending_radius if defined</span>
+        <span class="k">if</span> <span class="n">bending_field</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">bending_radius</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;If bending_field is used, &quot;</span> <span class="o">+</span>
+                                   <span class="s2">&quot;bending_radius must be defined.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bending_radius</span> <span class="o">=</span> <span class="n">bending_radius</span>
+
+        <span class="c1"># Taking the first synchronous_data input not declared as None</span>
+        <span class="c1"># The assertion above ensures that only one is declared</span>
+        <span class="k">for</span> <span class="n">func_type</span><span class="p">,</span> <span class="n">synchronous_data</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">syncDataTypes</span><span class="p">,</span> <span class="n">syncDataInput</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">synchronous_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">break</span>
+
+        <span class="c1"># Reshaping the input synchronous data to the adequate format and</span>
+        <span class="c1"># get back the momentum program</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">synchronous_data</span><span class="p">,</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">_ring_program</span><span class="p">):</span>
+            <span class="n">synchronous_data</span> \
+                <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">_ring_program</span><span class="o">.</span><span class="n">conversions</span><span class="p">[</span><span class="n">func_type</span><span class="p">](</span><span class="n">synchronous_data</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">synchronous_data</span> <span class="o">=</span> <span class="n">synchronous_data</span>
+
+        <span class="c1"># Setting the linear momentum compaction factor</span>
+        <span class="c1"># Checking that the synchronous data and the momentum compaction</span>
+        <span class="c1"># have the same length if defined turn-by-turn, raise a warning if one</span>
+        <span class="c1"># is defined by turn and the other time based</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">alpha_0</span><span class="p">,</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">momentum_compaction</span><span class="p">):</span>
+            <span class="n">alpha_0</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">momentum_compaction</span><span class="p">(</span><span class="n">alpha_0</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">alpha_0</span><span class="o">.</span><span class="n">order</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span>
+                    <span class="s2">&quot;The order of the datatype passed as keyword &quot;</span> <span class="o">+</span>
+                    <span class="s2">&quot;argument alpha_</span><span class="si">%s</span><span class="s2"> do not match&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_and_set_momentum_compaction</span><span class="p">(</span><span class="n">alpha_0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Treating non-linear momentum compaction factor if declared</span>
+        <span class="c1"># Listing all the declared alpha first</span>
+        <span class="n">alpha_n</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="n">alpha_1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="n">alpha_2</span><span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">alpha_1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">alpha_2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span> <span class="o">=</span> <span class="mi">2</span>
+
+        <span class="k">for</span> <span class="n">argument</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;alpha&#39;</span> <span class="ow">in</span> <span class="n">argument</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">order</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">argument</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span><span class="p">,</span> <span class="n">order</span><span class="p">])</span>
+                    <span class="n">alpha_n</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">argument</span><span class="p">]</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span>
+                        <span class="s1">&#39;The keyword argument &#39;</span><span class="o">+</span><span class="n">argument</span><span class="o">+</span><span class="s1">&#39; was interpreted &#39;</span> <span class="o">+</span>
+                        <span class="s1">&#39;as non-linear momentum compaction factor. &#39;</span> <span class="o">+</span>
+                        <span class="s1">&#39;The correct syntax is alpha_n.&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Setting all the valid non-linear alpha and replacing</span>
+        <span class="c1"># undeclared orders with zeros</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders_defined</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha_n</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">alpha</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">alpha</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="c1"># This condition can be replaced by &#39;continue&#39; to avoid</span>
+                <span class="c1"># populating the object with 0 programs</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders_defined</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">momentum_compaction</span><span class="p">):</span>
+                <span class="n">alpha</span> <span class="o">=</span> <span class="n">dTypes</span><span class="o">.</span><span class="n">momentum_compaction</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">alpha</span><span class="o">.</span><span class="n">order</span> <span class="o">!=</span> <span class="n">order</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span>
+                        <span class="s2">&quot;The order of the datatype passed as keyword &quot;</span> <span class="o">+</span>
+                        <span class="s2">&quot;argument alpha_</span><span class="si">%s</span><span class="s2"> do not match&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">order</span><span class="p">))</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_and_set_momentum_compaction</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_check_and_set_momentum_compaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">order</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Internal function to check that the input momentum compaction is</span>
+<span class="sd">        coherent with the synchronous data. If the synchronous data is turn</span>
+<span class="sd">        based, the momentum compaction should have the same length. If the</span>
+<span class="sd">        synchronous is time based while the momentum compaction is turn based,</span>
+<span class="sd">        raises a warning.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;alpha_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">order</span><span class="p">),</span> <span class="n">alpha</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synchronous_data</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_turn&#39;</span><span class="p">)</span> <span class="ow">and</span> \
+                <span class="p">(</span><span class="n">alpha</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_turn&#39;</span><span class="p">):</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">alpha</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> \
+                    <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synchronous_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">alpha</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+
+                <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span>
+                            <span class="s1">&#39;The momentum compaction alpha_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">order</span><span class="p">)</span> <span class="o">+</span>
+                            <span class="s1">&#39; was passed as a turn based program but with &#39;</span> <span class="o">+</span>
+                            <span class="s1">&#39;different length than the synchronous data. &#39;</span> <span class="o">+</span>
+                            <span class="s1">&#39;Turn based programs should have the same length.&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synchronous_data</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">)</span> <span class="ow">and</span> \
+                <span class="p">(</span><span class="n">alpha</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_turn&#39;</span><span class="p">):</span>
+
+            <span class="n">warn_message</span> <span class="o">=</span> <span class="s1">&#39;The synchronous data was defined time based while the &#39;</span> <span class="o">+</span> \
+                <span class="s1">&#39;momentum compaction was defined turn base, this may&#39;</span> <span class="o">+</span> \
+                <span class="s1">&#39;lead to errors in the Ring object after interpolation&#39;</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">warn_message</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, BLonD-admin
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
