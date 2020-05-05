@@ -368,6 +368,20 @@
                  <span class="n">bending_field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bending_radius</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">from_original_input</span><span class="p">(</span><span class="n">ring_length</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">Particle</span><span class="p">,</span>
+                                 <span class="n">momentum</span><span class="p">,</span> <span class="n">kin_energy</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span>
+                                 <span class="n">bending_field</span><span class="p">,</span> <span class="n">bending_radius</span><span class="p">,</span>
+                                 <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Slippage factor derived from alpha, beta, gamma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eta_generation</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Ring.from_original_input"><a class="viewcode-back" href="../../../interfaces.input_parameters.html#blond_common.interfaces.input_parameters.ring.Ring.from_original_input">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_original_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ring_length</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">Particle</span><span class="p">,</span>
+                            <span class="n">momentum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kin_energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                            <span class="n">bending_field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bending_radius</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                            <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
         <span class="c1"># Checking that at least one synchronous data input is passed</span>
         <span class="n">syncDataTypes</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;momentum&#39;</span><span class="p">,</span> <span class="s1">&#39;kin_energy&#39;</span><span class="p">,</span> <span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="s1">&#39;B_field&#39;</span><span class="p">)</span>
         <span class="n">syncDataInput</span> <span class="o">=</span> <span class="p">(</span><span class="n">momentum</span><span class="p">,</span> <span class="n">kin_energy</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">bending_field</span><span class="p">)</span>
@@ -506,10 +520,7 @@
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;alpha_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span>
                                                          <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span><span class="p">)]))</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;eta_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span>
-                                                       <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span><span class="p">)]))</span>
-
-        <span class="c1"># Slippage factor derived from alpha, beta, gamma</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">eta_generation</span><span class="p">()</span>
+                                                       <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span><span class="p">)]))</span></div>
 
     <span class="c1"># TODO: different interpollation for different components</span>
     <span class="c1"># (e.g. alpha and momentum)</span>
