@@ -377,10 +377,8 @@
                 <span class="n">bending_field</span><span class="p">,</span> <span class="n">bending_radius</span><span class="p">,</span>
                 <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">call_init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">attribute</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">Ring</span><span class="o">.</span><span class="n">_input_buffer</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">attribute</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;_&#39;</span><span class="p">:</span>
-                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span>
-                        <span class="nb">getattr</span><span class="p">(</span><span class="n">Ring</span><span class="o">.</span><span class="n">_input_buffer</span><span class="p">,</span> <span class="n">attribute</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">Ring</span><span class="o">.</span><span class="n">_input_buffer</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">Ring</span><span class="o">.</span><span class="n">_input_buffer</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
         <span class="k">del</span><span class="p">(</span><span class="n">Ring</span><span class="o">.</span><span class="n">_input_buffer</span><span class="p">)</span>
 
         <span class="c1"># Setting ring circumerence and radius</span>
@@ -459,8 +457,7 @@
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="c1"># Creating a buffer</span>
-        <span class="k">def</span> <span class="nf">buffer</span><span class="p">():</span>
-            <span class="kc">None</span>
+        <span class="n">buffer</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">_input_buffer</span> <span class="o">=</span> <span class="n">buffer</span>
 
         <span class="c1"># Generating a single Section and adding it to the list of sections</span>
@@ -468,37 +465,37 @@
         <span class="n">section</span> <span class="o">=</span> <span class="n">Section</span><span class="p">(</span>
             <span class="n">circumference</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span>
             <span class="n">momentum</span><span class="o">=</span><span class="n">momentum</span><span class="p">,</span> <span class="n">kin_energy</span><span class="o">=</span><span class="n">kin_energy</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="n">energy</span><span class="p">,</span>
-            <span class="n">ng_field</span><span class="o">=</span><span class="n">bending_field</span><span class="p">,</span> <span class="n">bending_radius</span><span class="o">=</span><span class="n">bending_radius</span><span class="p">,</span>
+            <span class="n">bending_field</span><span class="o">=</span><span class="n">bending_field</span><span class="p">,</span> <span class="n">bending_radius</span><span class="o">=</span><span class="n">bending_radius</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="n">buffer</span><span class="o">.</span><span class="n">section_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">section</span><span class="p">]</span>
-        <span class="n">buffer</span><span class="o">.</span><span class="n">n_sections</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">buffer</span><span class="p">[</span><span class="s1">&#39;section_list&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">section</span><span class="p">]</span>
+        <span class="n">buffer</span><span class="p">[</span><span class="s1">&#39;n_sections&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
         <span class="c1"># Primary particle mass and charge used for energy calculations</span>
         <span class="c1"># If a string is passed, will generate the relevant Particle object</span>
         <span class="c1"># based on the name</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Particle</span><span class="p">,</span> <span class="n">beam</span><span class="o">.</span><span class="n">Particle</span><span class="p">):</span>
-            <span class="n">buffer</span><span class="o">.</span><span class="n">Particle</span> <span class="o">=</span> <span class="n">Particle</span>
+            <span class="n">buffer</span><span class="p">[</span><span class="s1">&#39;Particle&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Particle</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">buffer</span><span class="o">.</span><span class="n">Particle</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">make_particle</span><span class="p">(</span><span class="n">Particle</span><span class="p">)</span>
+            <span class="n">buffer</span><span class="p">[</span><span class="s1">&#39;Particle&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">beam</span><span class="o">.</span><span class="n">make_particle</span><span class="p">(</span><span class="n">Particle</span><span class="p">)</span>
 
         <span class="c1"># Setting ring length and bending radius</span>
-        <span class="n">buffer</span><span class="o">.</span><span class="n">ring_length</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">section_length</span><span class="p">,</span> <span class="n">ndmin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                                      <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-        <span class="n">buffer</span><span class="o">.</span><span class="n">bending_radius</span> <span class="o">=</span> <span class="n">section</span><span class="o">.</span><span class="n">bending_radius</span>
+        <span class="n">buffer</span><span class="p">[</span><span class="s1">&#39;ring_length&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">section_length</span><span class="p">,</span> <span class="n">ndmin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                         <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">buffer</span><span class="p">[</span><span class="s1">&#39;bending_radius&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">section</span><span class="o">.</span><span class="n">bending_radius</span>
 
         <span class="c1"># Setting the momentum compaction</span>
-        <span class="n">buffer</span><span class="o">.</span><span class="n">alpha_order</span> <span class="o">=</span> <span class="n">section</span><span class="o">.</span><span class="n">alpha_order</span>
-        <span class="n">buffer</span><span class="o">.</span><span class="n">alpha_orders_defined</span> <span class="o">=</span> <span class="n">section</span><span class="o">.</span><span class="n">alpha_orders_defined</span>
-        <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">buffer</span><span class="o">.</span><span class="n">alpha_order</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])):</span>
+        <span class="n">buffer</span><span class="p">[</span><span class="s1">&#39;alpha_order&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">section</span><span class="o">.</span><span class="n">alpha_order</span>
+        <span class="n">buffer</span><span class="p">[</span><span class="s1">&#39;alpha_orders_defined&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">section</span><span class="o">.</span><span class="n">alpha_orders_defined</span>
+        <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">buffer</span><span class="p">[</span><span class="s1">&#39;alpha_order&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])):</span>
             <span class="n">alpha_attr</span> <span class="o">=</span> <span class="s1">&#39;alpha_</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">order</span><span class="p">)</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">alpha_attr</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">alpha_attr</span><span class="p">))</span>
+            <span class="n">buffer</span><span class="p">[</span><span class="n">alpha_attr</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">alpha_attr</span><span class="p">)</span>
 
         <span class="c1"># Getting the synchronous data and converting to momentum</span>
-        <span class="n">buffer</span><span class="o">.</span><span class="n">synchronous_data</span> <span class="o">=</span> <span class="n">section</span><span class="o">.</span><span class="n">synchronous_data</span>
-        <span class="n">buffer</span><span class="o">.</span><span class="n">synchronous_data</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="p">,</span>
-                                        <span class="n">buffer</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">charge</span><span class="p">,</span>
-                                        <span class="n">buffer</span><span class="o">.</span><span class="n">bending_radius</span><span class="p">)</span>
+        <span class="n">buffer</span><span class="p">[</span><span class="s1">&#39;synchronous_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">section</span><span class="o">.</span><span class="n">synchronous_data</span>
+        <span class="n">buffer</span><span class="p">[</span><span class="s1">&#39;synchronous_data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">buffer</span><span class="p">[</span><span class="s1">&#39;Particle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mass</span><span class="p">,</span>
+                                           <span class="n">buffer</span><span class="p">[</span><span class="s1">&#39;Particle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">charge</span><span class="p">,</span>
+                                           <span class="n">buffer</span><span class="p">[</span><span class="s1">&#39;bending_radius&#39;</span><span class="p">])</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;call_init&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
                 <span class="p">(</span><span class="s1">&#39;call_init&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">)</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;call_init&#39;</span><span class="p">]):</span>
