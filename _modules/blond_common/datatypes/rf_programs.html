@@ -1,0 +1,732 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>blond_common.datatypes.rf_programs &mdash; BLonD Common  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> BLonD Common
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfaces.html">interfaces package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../interfaces.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interfaces.input_parameters.html">interfaces.input_parameters package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interfaces.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../fitting.html">fitting package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../fitting.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../fitting.profile.html">fitting.profile module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../fitting.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../maths.html">maths package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../maths.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../maths.calculus.html">maths.calculus module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../maths.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rf_functions.html">rf_functions package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../rf_functions.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../rf_functions.potential.html">rf_functions.potential module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../rf_functions.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../datatypes.html">datatypes package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../datatypes.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes._core.html">datatypes._core module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes.ring_programs.html">datatypes.ring_programs module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes.rf_programs.html">datatypes.rf_programs module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes.beam_data.html">datatypes.beam_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes.functions.html">datatypes.functions module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../datatypes.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../datatypes_advanced.html">datatypes_advanced package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../datatypes_advanced.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes_advanced._core.html">datatypes_advanced._core module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes_advanced.ring_programs.html">datatypes_advanced.ring_programs module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes_advanced.rf_programs.html">datatypes_advanced.rf_programs module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes_advanced.beam_data.html">datatypes_advanced.beam_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes_advanced.functions.html">datatypes_advanced.functions module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../datatypes_advanced.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">BLonD Common</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>blond_common.datatypes.rf_programs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for blond_common.datatypes.rf_programs</h1><div class="highlight"><pre>
+<span></span><span class="c1">#General imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">scipy.constants</span> <span class="k">as</span> <span class="nn">cont</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1">#Common imports</span>
+<span class="kn">from</span> <span class="nn">..devtools</span> <span class="kn">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">excpt</span>
+<span class="kn">from</span> <span class="nn">..devtools</span> <span class="kn">import</span> <span class="n">assertions</span> <span class="k">as</span> <span class="n">assrt</span>
+<span class="kn">from</span> <span class="nn">..utilities</span> <span class="kn">import</span> <span class="n">rel_transforms</span> <span class="k">as</span> <span class="n">rt</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">blond_function</span> <span class="k">as</span> <span class="n">bf</span>
+<span class="kn">from</span> <span class="nn">._core</span> <span class="kn">import</span> <span class="n">_function</span><span class="p">,</span> <span class="n">_expand_function</span><span class="p">,</span> <span class="n">_check_time_turns</span><span class="p">,</span>\
+                   <span class="n">_get_dats_types</span><span class="p">,</span> <span class="n">_check_data_types</span><span class="p">,</span> <span class="n">_expand_singletons</span><span class="p">,</span>\
+                   <span class="n">_check_turn_numbers</span><span class="p">,</span> <span class="n">_interpolate_input</span>
+
+
+<div class="viewcode-block" id="_RF_function"><a class="viewcode-back" href="../../datatypes_advanced.rf_programs.html#blond_common.datatypes.rf_programs._RF_function">[docs]</a><span class="k">class</span> <span class="nc">_RF_function</span><span class="p">(</span><span class="n">_function</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for defining functions used for the RFStation</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    *args : float, 1D iterable of floats, 2D iterable of floats</span>
+<span class="sd">        The data defining the programs.</span>
+<span class="sd">    harmonics : iterable of ints</span>
+<span class="sd">        The harmonics covered by the data.</span>
+<span class="sd">    time : iterable of floats</span>
+<span class="sd">        The time array to be used for the data, to be used if the time </span>
+<span class="sd">        dependent data is not given as 2D array.</span>
+<span class="sd">    n_turns : int</span>
+<span class="sd">        The number of turns to be used, if a single value is given it will be</span>
+<span class="sd">        extended to n_turns length.</span>
+<span class="sd">    interpolation : str</span>
+<span class="sd">        The type of interpolation to be used.</span>
+<span class="sd">    **kwargs : keyword arguments</span>
+<span class="sd">        Additional kwargs used to define the data_type dict.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_type : dict</span>
+<span class="sd">        Dictionary containing relevant information to define the datatype</span>
+<span class="sd">    timebase : str</span>
+<span class="sd">        Either &#39;single&#39;, &#39;by_turn&#39;, or &#39;by_time&#39; depending on the definition</span>
+<span class="sd">        of the datatype.  As a string it is used as a key for the data_type </span>
+<span class="sd">        dict</span>
+<span class="sd">    interpolation : str</span>
+<span class="sd">        Identifier of the type of interpolation to be used when reshaping</span>
+<span class="sd">        the array, currently only &#39;linear&#39; has been implemented</span>
+<span class="sd">    harmonics : iterable of ints</span>
+<span class="sd">        The harmonics covered by the function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">harmonics</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> \
+                <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">allow_single</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="n">args</span> <span class="o">=</span> <span class="n">_expand_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+        <span class="n">_check_time_turns</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">n_turns</span><span class="p">)</span>
+        
+        <span class="n">data_points</span><span class="p">,</span> <span class="n">data_types</span> <span class="o">=</span> <span class="n">_get_dats_types</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">time</span><span class="p">,</span> \
+                                                  <span class="n">n_turns</span> <span class="o">=</span> <span class="n">n_turns</span><span class="p">)</span>
+        
+        <span class="n">_check_data_types</span><span class="p">(</span><span class="n">data_types</span><span class="p">,</span> <span class="n">allow_single</span> <span class="o">=</span> <span class="n">allow_single</span><span class="p">)</span>
+
+        <span class="n">data_types</span><span class="p">,</span> <span class="n">data_points</span> <span class="o">=</span> <span class="n">_expand_singletons</span><span class="p">(</span><span class="n">data_types</span><span class="p">,</span> <span class="n">data_points</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">iter</span><span class="p">(</span><span class="n">harmonics</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="n">harmonics</span> <span class="o">=</span> <span class="p">(</span><span class="n">harmonics</span><span class="p">,)</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_points</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">harmonics</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;Number of functions does not match &quot;</span> \
+                                        <span class="o">+</span> <span class="s2">&quot;number of harmonics&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="s1">&#39;by_turn&#39;</span> <span class="ow">in</span> <span class="n">data_types</span><span class="p">:</span>
+            <span class="n">data_points</span> <span class="o">=</span> <span class="n">_interpolate_input</span><span class="p">(</span><span class="n">data_points</span><span class="p">,</span> <span class="n">data_types</span><span class="p">,</span> 
+                                            <span class="n">interpolation</span><span class="p">)</span>
+                
+        <span class="n">data_type</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;timebase&#39;</span><span class="p">:</span> <span class="n">data_types</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;harmonics&#39;</span><span class="p">:</span> <span class="n">harmonics</span><span class="p">,</span> 
+                     <span class="o">**</span><span class="n">kwargs</span><span class="p">}</span>
+        
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_points</span><span class="p">,</span> <span class="n">data_type</span><span class="p">,</span> 
+                               <span class="n">interpolation</span><span class="p">)</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">harmonics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get or set the harmonics attribute.  Setting the harmonics will also</span>
+<span class="sd">        update the data_type dict.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_harmonics</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="nd">@harmonics</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">harmonics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_data_type</span><span class="p">(</span><span class="s1">&#39;harmonics&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_harmonics</span> <span class="o">=</span> <span class="n">value</span>
+
+
+    <span class="c1">#TODO: Safe treatment of use_turns &gt; n_turns</span>
+<div class="viewcode-block" id="_RF_function.reshape"><a class="viewcode-back" href="../../datatypes_advanced.rf_programs.html#blond_common.datatypes.rf_programs._RF_function.reshape">[docs]</a>    <span class="k">def</span> <span class="nf">reshape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">harmonics</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reshape the datatype array to the given number of sections and either</span>
+<span class="sd">        the given use_time or given use_turns.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        harmonics : iterable of ints, optional</span>
+<span class="sd">            The harmonics to be returned in the new array.  If none all </span>
+<span class="sd">            defined harmonics will be returned.  All specified harmonics will</span>
+<span class="sd">            be returned, if not defined in the function they will be 0.</span>
+<span class="sd">            The default is None.</span>
+<span class="sd">        use_time : iterable of floats, optional</span>
+<span class="sd">            The times that the array will be interpolated on to.</span>
+<span class="sd">            The default is None.</span>
+<span class="sd">        use_turns : iterable of ints, optional</span>
+<span class="sd">            The turn numbers to be used for the new array. The default is None.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        datatype</span>
+<span class="sd">            The newly interpolated array.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">harmonics</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">harmonics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">harmonics</span>
+
+        <span class="k">if</span> <span class="n">use_turns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">use_turns</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">turn</span><span class="p">)</span> <span class="k">for</span> <span class="n">turn</span> <span class="ow">in</span> <span class="n">use_turns</span><span class="p">]</span>
+
+        <span class="n">newArray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prep_reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">harmonics</span><span class="p">),</span> 
+                                      <span class="n">use_time</span> <span class="o">=</span> <span class="n">use_time</span><span class="p">,</span> 
+                                      <span class="n">use_turns</span> <span class="o">=</span> <span class="n">use_turns</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">harmonics</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">harmonics</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">h</span> <span class="o">==</span> <span class="n">s</span><span class="p">:</span>
+                    <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">continue</span>
+            
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;single&#39;</span><span class="p">:</span>
+                <span class="n">newArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_turn&#39;</span><span class="p">:</span>
+                <span class="n">newArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">]</span>
+            
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
+                <span class="n">newArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interpolate</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">use_time</span><span class="p">)</span>
+        
+        <span class="n">newArray</span> <span class="o">=</span> <span class="n">newArray</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+
+        <span class="n">newArray</span><span class="o">.</span><span class="n">data_type</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;timebase&#39;</span><span class="p">:</span>  <span class="s1">&#39;interpolated&#39;</span><span class="p">,</span>
+                              <span class="s1">&#39;harmonics&#39;</span><span class="p">:</span> <span class="n">harmonics</span><span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">newArray</span></div></div>
+
+
+<div class="viewcode-block" id="voltage_program"><a class="viewcode-back" href="../../datatypes_advanced.rf_programs.html#blond_common.datatypes.rf_programs.voltage_program">[docs]</a><span class="k">class</span> <span class="nc">voltage_program</span><span class="p">(</span><span class="n">_RF_function</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for defining voltage functions.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    *args : float, 1D iterable of floats, 2D iterable of floats</span>
+<span class="sd">        The data defining the programs.</span>
+<span class="sd">    harmonics : iterable of ints</span>
+<span class="sd">        The harmonics covered by the data.</span>
+<span class="sd">    time : iterable of floats</span>
+<span class="sd">        The time array to be used for the data, to be used if the time </span>
+<span class="sd">        dependent data is not given as 2D array.</span>
+<span class="sd">    n_turns : int</span>
+<span class="sd">        The number of turns to be used, if a single value is given it will be</span>
+<span class="sd">        extended to n_turns length.</span>
+<span class="sd">    interpolation : str</span>
+<span class="sd">        The type of interpolation to be used.</span>
+<span class="sd">    **kwargs : keyword arguments</span>
+<span class="sd">        Additional kwargs used to define the data_type dict.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_type : dict</span>
+<span class="sd">        Dictionary containing relevant information to define the datatype</span>
+<span class="sd">    timebase : str</span>
+<span class="sd">        Either &#39;single&#39;, &#39;by_turn&#39;, or &#39;by_time&#39; depending on the definition</span>
+<span class="sd">        of the datatype.  As a string it is used as a key for the data_type </span>
+<span class="sd">        dict</span>
+<span class="sd">    interpolation : str</span>
+<span class="sd">        Identifier of the type of interpolation to be used when reshaping</span>
+<span class="sd">        the array, currently only &#39;linear&#39; has been implemented</span>
+<span class="sd">    harmonics : iterable of ints</span>
+<span class="sd">        The harmonics covered by the function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="phase_program"><a class="viewcode-back" href="../../datatypes_advanced.rf_programs.html#blond_common.datatypes.rf_programs.phase_program">[docs]</a><span class="k">class</span> <span class="nc">phase_program</span><span class="p">(</span><span class="n">_RF_function</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for defining phase functions.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    *args : float, 1D iterable of floats, 2D iterable of floats</span>
+<span class="sd">        The data defining the programs.</span>
+<span class="sd">    harmonics : iterable of ints</span>
+<span class="sd">        The harmonics covered by the data.</span>
+<span class="sd">    time : iterable of floats</span>
+<span class="sd">        The time array to be used for the data, to be used if the time </span>
+<span class="sd">        dependent data is not given as 2D array.</span>
+<span class="sd">    n_turns : int</span>
+<span class="sd">        The number of turns to be used, if a single value is given it will be</span>
+<span class="sd">        extended to n_turns length.</span>
+<span class="sd">    interpolation : str</span>
+<span class="sd">        The type of interpolation to be used.</span>
+<span class="sd">    **kwargs : keyword arguments</span>
+<span class="sd">        Additional kwargs used to define the data_type dict.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_type : dict</span>
+<span class="sd">        Dictionary containing relevant information to define the datatype</span>
+<span class="sd">    timebase : str</span>
+<span class="sd">        Either &#39;single&#39;, &#39;by_turn&#39;, or &#39;by_time&#39; depending on the definition</span>
+<span class="sd">        of the datatype.  As a string it is used as a key for the data_type </span>
+<span class="sd">        dict</span>
+<span class="sd">    interpolation : str</span>
+<span class="sd">        Identifier of the type of interpolation to be used when reshaping</span>
+<span class="sd">        the array, currently only &#39;linear&#39; has been implemented</span>
+<span class="sd">    harmonics : iterable of ints</span>
+<span class="sd">        The harmonics covered by the function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="_freq_phase_off"><a class="viewcode-back" href="../../datatypes_advanced.rf_programs.html#blond_common.datatypes.rf_programs._freq_phase_off">[docs]</a><span class="k">class</span> <span class="nc">_freq_phase_off</span><span class="p">(</span><span class="n">_RF_function</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for defining offsets to the design RF phase and frequency.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    *args : float, 1D iterable of floats, 2D iterable of floats</span>
+<span class="sd">        The data defining the programs.</span>
+<span class="sd">    harmonics : iterable of ints</span>
+<span class="sd">        The harmonics covered by the data.</span>
+<span class="sd">    time : iterable of floats</span>
+<span class="sd">        The time array to be used for the data, to be used if the time </span>
+<span class="sd">        dependent data is not given as 2D array.</span>
+<span class="sd">    n_turns : int</span>
+<span class="sd">        The number of turns to be used, if a single value is given it will be</span>
+<span class="sd">        extended to n_turns length.</span>
+<span class="sd">    interpolation : str</span>
+<span class="sd">        The type of interpolation to be used.</span>
+<span class="sd">    **kwargs : keyword arguments</span>
+<span class="sd">        Additional kwargs used to define the data_type dict.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_type : dict</span>
+<span class="sd">        Dictionary containing relevant information to define the datatype</span>
+<span class="sd">    timebase : str</span>
+<span class="sd">        Either &#39;single&#39;, &#39;by_turn&#39;, or &#39;by_time&#39; depending on the definition</span>
+<span class="sd">        of the datatype.  As a string it is used as a key for the data_type </span>
+<span class="sd">        dict</span>
+<span class="sd">    interpolation : str</span>
+<span class="sd">        Identifier of the type of interpolation to be used when reshaping</span>
+<span class="sd">        the array, currently only &#39;linear&#39; has been implemented</span>
+<span class="sd">    harmonics : iterable of ints</span>
+<span class="sd">        The harmonics covered by the function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="_freq_phase_off.calc_delta_omega"><a class="viewcode-back" href="../../datatypes_advanced.rf_programs.html#blond_common.datatypes.rf_programs._freq_phase_off.calc_delta_omega">[docs]</a>    <span class="k">def</span> <span class="nf">calc_delta_omega</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">design_omega_rev</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculare the change in $\Omega_{RF}$ required to give a given phase</span>
+<span class="sd">        offset.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        design_omega_rev : 1D or 2D array.</span>
+<span class="sd">            The design $\Omega_{0}$ used to compute the $\Delta\Omega_{RF}$.  </span>
+<span class="sd">            Taken as turn dependent if 1D or time dependent if 2D.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        RuntimeError</span>
+<span class="sd">            If this function is called with an omega_offset function a </span>
+<span class="sd">            RuntimeError is raised.</span>
+<span class="sd">            If timebase == &#39;by_turn&#39; (&#39;by_time&#39;) and design_omega_rev is a </span>
+<span class="sd">            time based (turn based) function a RuntimeError is raised.</span>
+<span class="sd">        excpt.InputError</span>
+<span class="sd">            If the shape of the data and the design_omega_rev are mismatched</span>
+<span class="sd">            and InputError is raised.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        delta_omega : omega_offset</span>
+<span class="sd">            The $\Delta\Omega_{RF}$ at each defined harmonic.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phase_offset</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;calc_delta_omega can only be used with a &quot;</span>
+                                <span class="o">+</span> <span class="s2">&quot;phase modulation function&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">design_omega_rev</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;by_time&#39;</span><span class="p">,</span> <span class="s1">&#39;interpolated&#39;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Time dependent design frequency requires&quot;</span> 
+                                    <span class="o">+</span> <span class="s2">&quot; time dependent offset frequency&quot;</span>
+                                    <span class="o">+</span> <span class="s2">&quot;or interpolated&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
+                <span class="n">delta_phase</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">use_time</span> <span class="o">=</span> <span class="n">design_omega_rev</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">delta_phase</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;by_turn&#39;</span><span class="p">,</span> <span class="s1">&#39;interpolated&#39;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Turn dependent design frequency requires&quot;</span> 
+                                    <span class="o">+</span> <span class="s2">&quot; turn dependent offset frequency&quot;</span> 
+                                    <span class="o">+</span> <span class="s2">&quot;or interpolated&quot;</span><span class="p">)</span>
+            <span class="n">delta_phase</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">delta_phase</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">design_omega_rev</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;design_omega_rev shape not correct&quot;</span><span class="p">)</span>
+        
+        
+        <span class="n">delta_omega</span> <span class="o">=</span> <span class="n">omega_offset</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">delta_phase</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_type</span><span class="p">)</span>
+        <span class="n">delta_omega</span><span class="o">.</span><span class="n">timebase</span> <span class="o">=</span> <span class="s1">&#39;interpolated&#39;</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">harmonics</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;by_turn&#39;</span><span class="p">,</span> <span class="s1">&#39;interpolated&#39;</span><span class="p">):</span>
+                <span class="n">delta_omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">design_omega_rev</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> \
+                                    <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">delta_phase</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">delta_omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">design_omega_rev</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> \
+                                    <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">delta_phase</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>\
+                                        <span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">design_omega_rev</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        
+        <span class="k">return</span> <span class="n">delta_omega</span></div>
+    
+    
+<div class="viewcode-block" id="_freq_phase_off.calc_delta_phase"><a class="viewcode-back" href="../../datatypes_advanced.rf_programs.html#blond_common.datatypes.rf_programs._freq_phase_off.calc_delta_phase">[docs]</a>    <span class="k">def</span> <span class="nf">calc_delta_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">design_omega_rev</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculare the change in $\Omega_{RF}$ required to give a given phase</span>
+<span class="sd">        offset.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        design_omega_rev : 1D or 2D array.</span>
+<span class="sd">            The design $\Omega_{0}$ used to compute the $\Delta\varphi_{RF}$.  </span>
+<span class="sd">            Taken as turn dependent if 1D or time dependent if 2D.</span>
+<span class="sd">        wrap : bool</span>
+<span class="sd">            WIP:  To be used to flag the modulus of the phase offset</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        RuntimeError</span>
+<span class="sd">            If this function is called with an omega_offset function a </span>
+<span class="sd">            RuntimeError is raised.</span>
+<span class="sd">            If timebase == &#39;by_turn&#39; (&#39;by_time&#39;) and design_omega_rev is a </span>
+<span class="sd">            time based (turn based) function a RuntimeError is raised.</span>
+<span class="sd">        excpt.InputError</span>
+<span class="sd">            If the shape of the data and the design_omega_rev are mismatched</span>
+<span class="sd">            and InputError is raised.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        delta_phase : phase_offset</span>
+<span class="sd">            The $\Delta\varphi_{RF}$ at each defined harmonic.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">omega_offset</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;calc_delta_omega can only be used with a &quot;</span>
+                               <span class="o">+</span> <span class="s2">&quot;phase modulation function&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">design_omega_rev</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;by_time&#39;</span><span class="p">,</span> <span class="s1">&#39;interpolated&#39;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Time dependent design frequency requires&quot;</span> 
+                                    <span class="o">+</span> <span class="s2">&quot; time dependent offset frequency&quot;</span>
+                                    <span class="o">+</span> <span class="s2">&quot;or interpolated&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
+                <span class="n">delta_omega</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">use_time</span> <span class="o">=</span> <span class="n">design_omega_rev</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">delta_omega</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;by_turn&#39;</span><span class="p">,</span> <span class="s1">&#39;interpolated&#39;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Turn dependent design frequency requires&quot;</span> 
+                                    <span class="o">+</span> <span class="s2">&quot; turn dependent offset frequency&quot;</span> 
+                                    <span class="o">+</span> <span class="s2">&quot;or interpolated&quot;</span><span class="p">)</span>
+            <span class="n">delta_omega</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">delta_omega</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">design_omega_rev</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;design_omega_rev shape not correct&quot;</span><span class="p">)</span>
+
+        <span class="n">delta_phase</span> <span class="o">=</span> <span class="n">phase_offset</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">delta_omega</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_type</span><span class="p">)</span>
+        <span class="n">delta_phase</span><span class="o">.</span><span class="n">timebase</span> <span class="o">=</span> <span class="s1">&#39;interpolated&#39;</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">harmonics</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;by_turn&#39;</span><span class="p">,</span> <span class="s1">&#39;interpolated&#39;</span><span class="p">):</span>
+                <span class="n">delta_phase</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>\
+                                           <span class="o">*</span><span class="p">(</span><span class="n">delta_omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>\
+                                             <span class="o">/</span><span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="n">design_omega_rev</span><span class="p">)))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">delta_phase</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>\
+                                               <span class="o">*</span><span class="p">(</span><span class="n">delta_omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>\
+                                                 <span class="o">/</span><span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="n">design_omega_rev</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span> \
+                                    <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">design_omega_rev</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            
+        <span class="k">return</span> <span class="n">delta_phase</span></div></div>
+
+
+<div class="viewcode-block" id="phase_offset"><a class="viewcode-back" href="../../datatypes_advanced.rf_programs.html#blond_common.datatypes.rf_programs.phase_offset">[docs]</a><span class="k">class</span> <span class="nc">phase_offset</span><span class="p">(</span><span class="n">_freq_phase_off</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for defining phase offset functions used for the RFStation</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    *args : float, 1D iterable of floats, 2D iterable of floats</span>
+<span class="sd">        The data defining the programs.</span>
+<span class="sd">    harmonics : iterable of ints</span>
+<span class="sd">        The harmonics covered by the data.</span>
+<span class="sd">    time : iterable of floats</span>
+<span class="sd">        The time array to be used for the data, to be used if the time </span>
+<span class="sd">        dependent data is not given as 2D array.</span>
+<span class="sd">    n_turns : int</span>
+<span class="sd">        The number of turns to be used, if a single value is given it will be</span>
+<span class="sd">        extended to n_turns length.</span>
+<span class="sd">    interpolation : str</span>
+<span class="sd">        The type of interpolation to be used.</span>
+<span class="sd">    **kwargs : keyword arguments</span>
+<span class="sd">        Additional kwargs used to define the data_type dict.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_type : dict</span>
+<span class="sd">        Dictionary containing relevant information to define the datatype</span>
+<span class="sd">    timebase : str</span>
+<span class="sd">        Either &#39;single&#39;, &#39;by_turn&#39;, or &#39;by_time&#39; depending on the definition</span>
+<span class="sd">        of the datatype.  As a string it is used as a key for the data_type </span>
+<span class="sd">        dict</span>
+<span class="sd">    interpolation : str</span>
+<span class="sd">        Identifier of the type of interpolation to be used when reshaping</span>
+<span class="sd">        the array, currently only &#39;linear&#39; has been implemented</span>
+<span class="sd">    harmonics : iterable of ints</span>
+<span class="sd">        The harmonics covered by the function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="omega_offset"><a class="viewcode-back" href="../../datatypes_advanced.rf_programs.html#blond_common.datatypes.rf_programs.omega_offset">[docs]</a><span class="k">class</span> <span class="nc">omega_offset</span><span class="p">(</span><span class="n">_freq_phase_off</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for defining phase offset functions used for the RFStation</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    *args : float, 1D iterable of floats, 2D iterable of floats</span>
+<span class="sd">        The data defining the programs.</span>
+<span class="sd">    harmonics : iterable of ints</span>
+<span class="sd">        The harmonics covered by the data.</span>
+<span class="sd">    time : iterable of floats</span>
+<span class="sd">        The time array to be used for the data, to be used if the time </span>
+<span class="sd">        dependent data is not given as 2D array.</span>
+<span class="sd">    n_turns : int</span>
+<span class="sd">        The number of turns to be used, if a single value is given it will be</span>
+<span class="sd">        extended to n_turns length.</span>
+<span class="sd">    interpolation : str</span>
+<span class="sd">        The type of interpolation to be used.</span>
+<span class="sd">    **kwargs : keyword arguments</span>
+<span class="sd">        Additional kwargs used to define the data_type dict.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_type : dict</span>
+<span class="sd">        Dictionary containing relevant information to define the datatype</span>
+<span class="sd">    timebase : str</span>
+<span class="sd">        Either &#39;single&#39;, &#39;by_turn&#39;, or &#39;by_time&#39; depending on the definition</span>
+<span class="sd">        of the datatype.  As a string it is used as a key for the data_type </span>
+<span class="sd">        dict</span>
+<span class="sd">    interpolation : str</span>
+<span class="sd">        Identifier of the type of interpolation to be used when reshaping</span>
+<span class="sd">        the array, currently only &#39;linear&#39; has been implemented</span>
+<span class="sd">    harmonics : iterable of ints</span>
+<span class="sd">        The harmonics covered by the function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, BLonD-admin
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

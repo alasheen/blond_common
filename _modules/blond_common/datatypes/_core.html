@@ -1,0 +1,977 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>blond_common.datatypes._core &mdash; BLonD Common  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> BLonD Common
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfaces.html">interfaces package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../interfaces.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../interfaces.input_parameters.html">interfaces.input_parameters package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interfaces.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../fitting.html">fitting package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../fitting.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../fitting.profile.html">fitting.profile module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../fitting.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../maths.html">maths package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../maths.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../maths.calculus.html">maths.calculus module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../maths.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rf_functions.html">rf_functions package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../rf_functions.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../rf_functions.potential.html">rf_functions.potential module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../rf_functions.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../datatypes.html">datatypes package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../datatypes.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes._core.html">datatypes._core module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes.ring_programs.html">datatypes.ring_programs module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes.rf_programs.html">datatypes.rf_programs module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes.beam_data.html">datatypes.beam_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes.functions.html">datatypes.functions module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../datatypes.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../datatypes_advanced.html">datatypes_advanced package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../datatypes_advanced.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes_advanced._core.html">datatypes_advanced._core module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes_advanced.ring_programs.html">datatypes_advanced.ring_programs module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes_advanced.rf_programs.html">datatypes_advanced.rf_programs module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes_advanced.beam_data.html">datatypes_advanced.beam_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datatypes_advanced.functions.html">datatypes_advanced.functions module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../datatypes_advanced.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">BLonD Common</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>blond_common.datatypes._core</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for blond_common.datatypes._core</h1><div class="highlight"><pre>
+<span></span><span class="c1"># General imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">scipy.constants</span> <span class="k">as</span> <span class="nn">cont</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1">#Common imports</span>
+<span class="kn">from</span> <span class="nn">..devtools</span> <span class="kn">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">excpt</span>
+<span class="kn">from</span> <span class="nn">..devtools</span> <span class="kn">import</span> <span class="n">assertions</span> <span class="k">as</span> <span class="n">assrt</span>
+<span class="kn">from</span> <span class="nn">..utilities</span> <span class="kn">import</span> <span class="n">rel_transforms</span> <span class="k">as</span> <span class="n">rt</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">blond_function</span> <span class="k">as</span> <span class="n">bf</span>
+
+<span class="c1">#TODO: Overwrite some np funcs (e.g. __iadd__) where necessary</span>
+<span class="c1">#TODO: In derived classes handle passing datatype as input</span>
+<span class="c1">#TODO: Check for ragged array</span>
+<div class="viewcode-block" id="_function"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._function">[docs]</a><span class="k">class</span> <span class="nc">_function</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class defining the functionality common to all datatypes objects.  </span>
+<span class="sd">    Inherits from np.ndarray.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    input_array : float, list, list of lists</span>
+<span class="sd">        Data to be cast as a numpy array</span>
+<span class="sd">    data_type : dict</span>
+<span class="sd">        Dictionary of relevant information to define the content of the </span>
+<span class="sd">        datatype object, always includes &#39;timebase&#39; key as well as those</span>
+<span class="sd">        needed by different subclasses</span>
+<span class="sd">    interpolation : str</span>
+<span class="sd">        Identifier of the type of interpolation to be used when reshaping</span>
+<span class="sd">        the array, currently only &#39;linear&#39; has been implemented</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_type : dict</span>
+<span class="sd">        Dictionary containing relevant information to define the datatype</span>
+<span class="sd">    timebase : str</span>
+<span class="sd">        Either &#39;single&#39;, &#39;by_turn&#39;, or &#39;by_time&#39; depending on the definition</span>
+<span class="sd">        of the datatype.  As a string it is used as a key for the data_type </span>
+<span class="sd">        dict</span>
+<span class="sd">    interpolation : str</span>
+<span class="sd">        Identifier of the type of interpolation to be used when reshaping</span>
+<span class="sd">        the array, currently only &#39;linear&#39; has been implemented</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">input_array</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        
+        <span class="k">if</span> <span class="n">data_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;data_type must be specified&quot;</span><span class="p">)</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">input_array</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;Function components could not be &quot;</span> \
+                                        <span class="o">+</span> <span class="s2">&quot;correctly coerced into ndarray, &quot;</span> \
+                                        <span class="o">+</span> <span class="s2">&quot;check input dimensionality&quot;</span><span class="p">)</span>
+        
+        <span class="n">obj</span><span class="o">.</span><span class="n">data_type</span> <span class="o">=</span> <span class="n">data_type</span>
+        
+        <span class="n">obj</span><span class="o">.</span><span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span>
+        
+        <span class="k">return</span> <span class="n">obj</span>
+    
+    <span class="k">def</span> <span class="nf">__array_finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        obj : datatype</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_type</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;data_type&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="_function.zeros"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._function.zeros">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">zeros</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">data_type</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create an empty array of given shape, with required data_type dict.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shape : iterable </span>
+<span class="sd">            The shape of the new array</span>
+<span class="sd">        data_type : dict, optional</span>
+<span class="sd">            The dict defining the data_type attribute of the new array.</span>
+<span class="sd">            The default is None.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        newArray : datatype</span>
+<span class="sd">            The new datatype array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">newArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="n">newArray</span><span class="o">.</span><span class="n">data_type</span> <span class="o">=</span> <span class="n">data_type</span>
+        <span class="k">return</span> <span class="n">newArray</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">data_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get or set the data_type.  Setting the data_type will update all</span>
+<span class="sd">        attributes of the object identified in the dict.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_type</span>
+
+    <span class="nd">@data_type</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">data_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data_type</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_type</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_type</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+                    <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">value</span><span class="p">[</span><span class="n">d</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputDataError</span><span class="p">(</span><span class="s2">&quot;data_type has &quot;</span>
+                                                    <span class="o">+</span> <span class="s2">&quot;unrecognised option &#39;&quot;</span>
+                                                    <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">timebase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get or set the timebase.  Setting the timebase will update the</span>
+<span class="sd">        data_type dict.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timebase</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="nd">@timebase</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">timebase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_data_type</span><span class="p">(</span><span class="s1">&#39;timebase&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timebase</span> <span class="o">=</span> <span class="n">value</span>
+
+
+<div class="viewcode-block" id="_function._check_data_type"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._function._check_data_type">[docs]</a>    <span class="k">def</span> <span class="nf">_check_data_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Attempt to assign a value to the data_type dict</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        element : str</span>
+<span class="sd">            str identifying the element of the data_type dict to be updated.</span>
+<span class="sd">        value : any</span>
+<span class="sd">            The new element to be added to the data_type dict.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_type</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="_function._prep_reshape"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._function._prep_reshape">[docs]</a>    <span class="k">def</span> <span class="nf">_prep_reshape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_sections</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">use_time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Construct an empty numpy array of the required shape for the reshaped</span>
+<span class="sd">        array to populate</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_sections : int, optional</span>
+<span class="sd">            The number of sections described by the array. The default is 1.</span>
+<span class="sd">        use_time : iterable of float, optional</span>
+<span class="sd">            The times that the array will be interpolated onto.</span>
+<span class="sd">            The default is None.</span>
+<span class="sd">        use_turns : iterable of int, optional</span>
+<span class="sd">            The turn numberss to be extracted from the array. </span>
+<span class="sd">            The default is None.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        excpt.InputError</span>
+<span class="sd">            If neither use_turns nor use_time is defined an exception is</span>
+<span class="sd">            raised.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray</span>
+<span class="sd">            The new array to be populated when reshaping the data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">use_turns</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">use_time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;At least one of use_turns and &quot;</span>
+                                        <span class="o">+</span> <span class="s2">&quot;use_time should be defined&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">use_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">nPts</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">use_time</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">nPts</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">use_turns</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_turn&#39;</span> <span class="ow">and</span> <span class="n">use_turns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;If function is defined by_turn &quot;</span>
+                                        <span class="o">+</span> <span class="s2">&quot;use_turns must be given&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span> <span class="ow">and</span> <span class="n">use_time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;If function is defined by_time &quot;</span>
+                                        <span class="o">+</span> <span class="s2">&quot;use_time must be given&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">n_sections</span><span class="p">,</span> <span class="n">nPts</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="_function._comp_definition_reshape"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._function._comp_definition_reshape">[docs]</a>    <span class="k">def</span> <span class="nf">_comp_definition_reshape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_sections</span><span class="p">,</span> <span class="n">use_time</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compare the required reshaping data with the contents of the datatype</span>
+<span class="sd">        to confirm it is suitable.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_sections : int</span>
+<span class="sd">            Number of sections required for the new array.</span>
+<span class="sd">        use_time : iterable of floats</span>
+<span class="sd">            Times to be used for the interpolation.</span>
+<span class="sd">        use_turns : iterable of ints</span>
+<span class="sd">            Turn numbers to be used for new array.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        excpt.DataDefinitionError</span>
+<span class="sd">            If a function self has multiple sections and n_sections does not</span>
+<span class="sd">            match the number of sections a DataDefintionError is raised.</span>
+<span class="sd">            If a function is defined by_time (by_turn) and the reshaping </span>
+<span class="sd">            requires by_turn (by_time) a DataDefinitionError is raised.</span>
+<span class="sd">            If the funtion has fewer turns of data available than required</span>
+<span class="sd">            for the use_turns bassed, a DataDefinitionError is raised.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">n_sections</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;multi-section required, but &quot;</span>
+                          <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; function is single&quot;</span>
+                          <span class="o">+</span> <span class="s2">&quot; section, expanding to match n_sections&quot;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">n_sections</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">DataDefinitionError</span><span class="p">(</span><span class="s2">&quot;n_sections (&quot;</span> \
+                                                 <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n_sections</span><span class="p">)</span> \
+                                                 <span class="o">+</span> <span class="s2">&quot;) does not match function &quot;</span>
+                                                 <span class="o">+</span> <span class="s2">&quot;definition (&quot;</span>\
+                                                 <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+    
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">use_time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">DataDefinitionError</span><span class="p">(</span><span class="s2">&quot;Function is defined by &quot;</span>
+                                                     <span class="o">+</span> <span class="s2">&quot;time but use_time has&quot;</span>
+                                                     <span class="o">+</span> <span class="s2">&quot; not been given&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">use_time</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;use_time extends beyond function definition, &quot;</span>
+                              <span class="o">+</span> <span class="s2">&quot;interpolation will assume fixed value&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">use_time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;use_time starts before function definition, &quot;</span>
+                              <span class="o">+</span> <span class="s2">&quot;interpolation will assume fixed value&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_turn&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">use_turns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">DataDefinitionError</span><span class="p">(</span><span class="s2">&quot;Function is defined by &quot;</span>
+                                                     <span class="o">+</span> <span class="s2">&quot;turn but use_turns has&quot;</span>
+                                                     <span class="o">+</span> <span class="s2">&quot; not been given&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">use_turns</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">DataDefinitionError</span><span class="p">(</span><span class="s2">&quot;Function does not have &quot;</span>
+                                                     <span class="o">+</span> <span class="s2">&quot;enough turns defined &quot;</span>
+                                                     <span class="o">+</span> <span class="s2">&quot;for maximum requested &quot;</span>
+                                                     <span class="o">+</span> <span class="s2">&quot;turn number&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="_function._interpolate"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._function._interpolate">[docs]</a>    <span class="k">def</span> <span class="nf">_interpolate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">use_time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Control the interpolation of the data</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        section : int</span>
+<span class="sd">            Section number to be interpolated.</span>
+<span class="sd">        use_time : iterable of floats</span>
+<span class="sd">            The times the array will be interpolated onto.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        excpt.InputDataError</span>
+<span class="sd">            If use_time is not monotonically increase an InputDataError is</span>
+<span class="sd">            raised.</span>
+<span class="sd">        RuntimeError</span>
+<span class="sd">            At present only linear interpolation is available, if another</span>
+<span class="sd">            type is requested a RuntimeError is raised.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray</span>
+<span class="sd">            The interpolated array.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">use_time</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputDataError</span><span class="p">(</span><span class="s2">&quot;use_time is not monotonically &quot;</span>
+                                            <span class="o">+</span> <span class="s2">&quot;increasing&quot;</span><span class="p">)</span>
+            
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpolation</span> <span class="o">==</span> <span class="s1">&#39;linear&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interpolate_linear</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">use_time</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Invalid interpolation requested&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="_function._interpolate_linear"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._function._interpolate_linear">[docs]</a>    <span class="k">def</span> <span class="nf">_interpolate_linear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">use_time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make a linear interpolation</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        section : int</span>
+<span class="sd">            Section number to be interpolated.</span>
+<span class="sd">        use_time : iterable of floats</span>
+<span class="sd">            The times the array will be interpolated onto.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray</span>
+<span class="sd">            The newly interpolated array.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">use_time</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">use_time</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="n">section</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="p">[</span><span class="n">section</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="_function.reshape"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._function.reshape">[docs]</a>    <span class="k">def</span> <span class="nf">reshape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_sections</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">use_time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reshape the datatype array to the given number of sections and either</span>
+<span class="sd">        the given use_time or given use_turns.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_sections : int, optional</span>
+<span class="sd">            The number of sections required for the new array.</span>
+<span class="sd">            The default is 1.</span>
+<span class="sd">        use_time : iterable of floats, optional</span>
+<span class="sd">            The times that the array will be interpolated on to.</span>
+<span class="sd">            The default is None.</span>
+<span class="sd">        use_turns : iterable of ints, optional</span>
+<span class="sd">            The turn numbers to be used for the new array. The default is None.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        datatype</span>
+<span class="sd">            The newly interpolated array.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_comp_definition_reshape</span><span class="p">(</span><span class="n">n_sections</span><span class="p">,</span> <span class="n">use_time</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">)</span>        
+        <span class="n">newArray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prep_reshape</span><span class="p">(</span><span class="n">n_sections</span><span class="p">,</span> <span class="n">use_time</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_sections</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;single&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_turn&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">]</span>
+
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
+                    <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interpolate</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">use_time</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">newArray</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span></div></div>
+
+
+<span class="c1">###############################################</span>
+<span class="c1">####FUNCTIONS TO HELP IN DATA TYPE CREATION####</span>
+<span class="c1">###############################################</span>
+
+<div class="viewcode-block" id="_expand_singletons"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._expand_singletons">[docs]</a><span class="k">def</span> <span class="nf">_expand_singletons</span><span class="p">(</span><span class="n">data_types</span><span class="p">,</span> <span class="n">data_points</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to expand single points of data to the required shape for the</span>
+<span class="sd">    new array.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_types : list of str</span>
+<span class="sd">        The preliminary data_type for each data_point.</span>
+<span class="sd">    data_points : list of floats and/or iterables</span>
+<span class="sd">        The data to be checked for compatability.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data_types : list of str</span>
+<span class="sd">        The updated data_types.</span>
+<span class="sd">    data_points : </span>
+<span class="sd">        The updated data_points.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="s1">&#39;by_turn&#39;</span> <span class="ow">in</span> <span class="n">data_types</span><span class="p">:</span>
+        <span class="n">n_turns</span> <span class="o">=</span> <span class="n">_check_turn_numbers</span><span class="p">(</span><span class="n">data_points</span><span class="p">,</span> <span class="n">data_types</span><span class="p">,</span> \
+                                      <span class="n">allow_single</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s1">&#39;single&#39;</span> <span class="ow">in</span> <span class="n">data_types</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_types</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="s1">&#39;single&#39;</span><span class="p">:</span>
+                    <span class="n">data_types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;by_turn&#39;</span>
+                    <span class="n">data_points</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_points</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">*</span><span class="n">n_turns</span>
+
+    <span class="k">if</span> <span class="s1">&#39;by_time&#39;</span> <span class="ow">in</span> <span class="n">data_types</span> <span class="ow">and</span> <span class="s1">&#39;single&#39;</span> <span class="ow">in</span> <span class="n">data_types</span><span class="p">:</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_types</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
+                <span class="n">useTime</span> <span class="o">=</span> <span class="n">data_points</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">break</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_types</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="s1">&#39;single&#39;</span><span class="p">:</span>
+                <span class="n">data_types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;by_time&#39;</span>
+                <span class="n">data_points</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">useTime</span><span class="p">,</span> \
+                                           <span class="p">[</span><span class="n">data_points</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">useTime</span><span class="p">)])</span>
+
+    <span class="k">return</span> <span class="n">data_types</span><span class="p">,</span> <span class="n">data_points</span></div>
+
+
+<div class="viewcode-block" id="_check_turn_numbers"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._check_turn_numbers">[docs]</a><span class="k">def</span> <span class="nf">_check_turn_numbers</span><span class="p">(</span><span class="n">data_points</span><span class="p">,</span> <span class="n">data_types</span><span class="p">,</span> <span class="n">allow_single</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to check that all given data covers the same number of turns</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_points : iterable</span>
+<span class="sd">        The data_points to be used in the datatype array.</span>
+<span class="sd">    data_types : iterable of str</span>
+<span class="sd">        The timebase for each member of data_points.</span>
+<span class="sd">    allow_single : bool, optional</span>
+<span class="sd">        Identify if single values are allowed. The default is False.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    excpt.InputError</span>
+<span class="sd">        If allow_single is False and both by_turn and single valued data is</span>
+<span class="sd">        given an InputError is raised.</span>
+<span class="sd">    except.DataDefinitionError</span>
+<span class="sd">        If the given arrays are not of equal length a DataDefintionError is</span>
+<span class="sd">        raised.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    int</span>
+<span class="sd">        The number of turns of data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lengths</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">datPt</span><span class="p">,</span> <span class="n">datType</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">data_points</span><span class="p">,</span> <span class="n">data_types</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">datType</span> <span class="o">==</span> <span class="s1">&#39;by_turn&#39;</span><span class="p">:</span>
+            <span class="n">lengths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">datPt</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">allow_single</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lengths</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_types</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;Functions with single and by_turn &quot;</span> \
+                                        <span class="o">+</span> <span class="s2">&quot;together not allowed&quot;</span><span class="p">)</span>
+            
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">length</span> <span class="o">==</span> <span class="n">lengths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">length</span> <span class="ow">in</span> <span class="n">lengths</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">DataDefinitionError</span><span class="p">(</span><span class="s2">&quot;Functions defined by &quot;</span> \
+                                            <span class="o">+</span> <span class="s2">&quot;turn with unequal &quot;</span> \
+                                            <span class="o">+</span> <span class="s2">&quot;numbers of turns&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">lengths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="_check_data_types"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._check_data_types">[docs]</a><span class="k">def</span> <span class="nf">_check_data_types</span><span class="p">(</span><span class="n">data_types</span><span class="p">,</span> <span class="n">allow_single</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to check that all data has the same type, allows singles if </span>
+<span class="sd">    flagged</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_types : iterable of str</span>
+<span class="sd">        The preliminary timebases for the data.</span>
+<span class="sd">    allow_single : bool, optional</span>
+<span class="sd">        Define if single valued data can be mixed with time dependent data.</span>
+<span class="sd">        The default is False.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    excpt.DataDefinitionError</span>
+<span class="sd">        If the input data is a mix of timebase conventions a</span>
+<span class="sd">        DataDefinitionError is raised.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">comparator</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">data_types</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="o">!=</span> <span class="s1">&#39;single&#39;</span><span class="p">:</span>
+            <span class="n">comparator</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+            <span class="k">break</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">comparator</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">comparator</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;single&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">allow_single</span> <span class="ow">and</span> <span class="s1">&#39;single&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">comparator</span><span class="p">:</span>
+        <span class="n">comparator</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;single&#39;</span><span class="p">)</span>
+
+    <span class="n">gen</span> <span class="o">=</span> <span class="p">(</span><span class="n">datType</span> <span class="ow">in</span> <span class="n">comparator</span> <span class="k">for</span> <span class="n">datType</span> <span class="ow">in</span> <span class="n">data_types</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">gen</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">DataDefinitionError</span><span class="p">(</span><span class="s2">&quot;Input programs &quot;</span> \
+                                     <span class="o">+</span> <span class="s2">&quot;follow different conventions&quot;</span><span class="p">)</span></div>
+
+
+<span class="c1">#TODO: Where used replace with SingleNotNone assertion</span>
+<div class="viewcode-block" id="_check_time_turns"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._check_time_turns">[docs]</a><span class="k">def</span> <span class="nf">_check_time_turns</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">n_turns</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to check if time and n_turns are both defined</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    time : iterable of float</span>
+<span class="sd">        The time for the data.</span>
+<span class="sd">    n_turns : int</span>
+<span class="sd">        The number of turns for the data.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    excpt.InputError</span>
+<span class="sd">        Raises an InputError if both time and n_turns are not None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">n_turns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;time and n_turns cannot both be &quot;</span>
+                                        <span class="o">+</span> <span class="s2">&quot;specified&quot;</span><span class="p">)</span></div>
+
+
+<span class="c1">#Loop over _check_dims for all *args and return corresponding data_points </span>
+<span class="c1">#and data_types</span>
+<div class="viewcode-block" id="_get_dats_types"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._get_dats_types">[docs]</a><span class="k">def</span> <span class="nf">_get_dats_types</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">n_turns</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to take the given arguments and compare their dimensions</span>
+<span class="sd">    with the given time and n_turns</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    *args : iterable of float and/or iterables</span>
+<span class="sd">        The data to be used to construct the new array.</span>
+<span class="sd">    time : iterable of float</span>
+<span class="sd">        The times used for the new array.</span>
+<span class="sd">    n_turns : int</span>
+<span class="sd">        The number of turns of data.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data_points : iterable of floats and/or iterables</span>
+<span class="sd">        The data to be used for the new array.</span>
+<span class="sd">    data_types : list</span>
+<span class="sd">        The preliminary timebases for the data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data_points</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">data_types</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="n">data_point</span><span class="p">,</span> <span class="n">data_type</span> <span class="o">=</span> <span class="n">_check_dims</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">n_turns</span><span class="p">)</span>
+        <span class="n">data_points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_point</span><span class="p">)</span>
+        <span class="n">data_types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_type</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">data_points</span><span class="p">,</span> <span class="n">data_types</span></div>
+
+
+<div class="viewcode-block" id="_check_dims"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._check_dims">[docs]</a><span class="k">def</span> <span class="nf">_check_dims</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to check the timebase of data</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : iterable or float</span>
+<span class="sd">        The data to be checked.</span>
+<span class="sd">    time : iterable of floats or None, optional</span>
+<span class="sd">        The time to be used for the array. The default is None.</span>
+<span class="sd">    n_turns : int or None, optional</span>
+<span class="sd">        The number of turns to be used for the array. The default is None.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    excpt.InputError</span>
+<span class="sd">        If the data appears to be turn based and the length does not match</span>
+<span class="sd">        n_turns an InputError is raised.</span>
+<span class="sd">        If the time parameter is passed and the data is a 2D array an</span>
+<span class="sd">        InputError is raised</span>
+<span class="sd">        If the time parameters is passed and the data is a 1D array of</span>
+<span class="sd">        different length an InputError is raised</span>
+<span class="sd">        If the functions reaches the end, the data is not understandable and</span>
+<span class="sd">        an InputError is raised</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float or iterable of floats</span>
+<span class="sd">        The data to be used for the new array.</span>
+<span class="sd">    str</span>
+<span class="sd">        The timebase of the data.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">#Check and handle single valued data</span>
+    <span class="c1">#if not single valued coerce to numpy array and continue</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">iter</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">n_turns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;single&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">data</span><span class="p">]</span><span class="o">*</span><span class="n">n_turns</span><span class="p">,</span> <span class="s1">&#39;by_turn&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1">#If n_turns specified and data is not single valued it should be </span>
+    <span class="c1">#of len(n_turns)</span>
+    <span class="k">if</span> <span class="n">n_turns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="n">n_turns</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;by_turn&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;Input length does not match n_turns&quot;</span><span class="p">)</span>
+    
+    <span class="k">elif</span> <span class="n">time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;Data has been passed with &quot;</span> \
+                                        <span class="o">+</span> <span class="s2">&quot;[time, value] format and time &quot;</span> \
+                                        <span class="o">+</span> <span class="s2">&quot;defined, only 1 should be given&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1">#If time is passed don&#39;t return, use test below avoids duplication</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">):</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">time</span><span class="p">,</span> <span class="n">data</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;time and data are of unequal&quot;</span> \
+                                            <span class="o">+</span> <span class="s2">&quot; length&quot;</span><span class="p">)</span>
+
+    <span class="c1">#If data has shape (2, n) data[0] is taken as time</span>
+    <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;by_time&#39;</span>
+    <span class="c1">#if data has shape (n,) data[0] is taken as momentum by turn</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;by_turn&#39;</span>
+
+    <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;Input data not understood&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="_interpolate_input"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._interpolate_input">[docs]</a><span class="k">def</span> <span class="nf">_interpolate_input</span><span class="p">(</span><span class="n">data_points</span><span class="p">,</span> <span class="n">data_types</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Interpolate time dependant data so all have the same number of points.</span>
+<span class="sd">    Currently only linear interpolation is available.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_points : float or iterable of floats</span>
+<span class="sd">        The data to be interpolated.</span>
+<span class="sd">    data_types : iterable of str</span>
+<span class="sd">        The str identifying the timebase of the data.</span>
+<span class="sd">    interpolation : str, optional</span>
+<span class="sd">        The interpolation style to be used. The default is &#39;linear&#39;.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    RuntimeError</span>
+<span class="sd">        If an interpolation other than linear is requested a RuntimeError is</span>
+<span class="sd">        raised.</span>
+<span class="sd">    DataDefinitionError</span>
+<span class="sd">        If data is passed with timebase other than &#39;by_time&#39; a </span>
+<span class="sd">        DataDefinitionError is raised.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data_points : List of arrays</span>
+<span class="sd">        The newly interpolated data.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">interpolation</span> <span class="o">!=</span> <span class="s1">&#39;linear&#39;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Only linear interpolation defined&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="s1">&#39;single&#39;</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">data_types</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">data_points</span>
+
+    <span class="k">if</span> <span class="n">data_types</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
+        <span class="n">excpt</span><span class="o">.</span><span class="n">DataDefinitionError</span><span class="p">(</span><span class="s2">&quot;Interpolation only possible if functions &quot;</span>
+                                       <span class="o">+</span> <span class="s2">&quot;are defined by time&quot;</span><span class="p">)</span>
+
+    <span class="n">input_times</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data_points</span><span class="p">:</span>
+        <span class="n">input_times</span> <span class="o">+=</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+    <span class="n">interp_times</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">input_times</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_points</span><span class="p">)):</span>
+         <span class="n">interp_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">interp_times</span><span class="p">,</span> <span class="n">data_points</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> \
+                                 <span class="n">data_points</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+         <span class="n">data_points</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">interp_times</span><span class="p">,</span> <span class="n">interp_data</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">data_points</span></div>
+
+
+<div class="viewcode-block" id="_from_function"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._from_function">[docs]</a><span class="k">def</span> <span class="nf">_from_function</span><span class="p">(</span><span class="n">inputArray</span><span class="p">,</span> <span class="n">targetClass</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    WIP</span>
+<span class="sd">    Function to construct a datatype array from an existing array.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    inputArray : Float or iterable</span>
+<span class="sd">        The data to be checked.</span>
+<span class="sd">    targetClass : class</span>
+<span class="sd">        The class to be compared with.</span>
+<span class="sd">    **kwargs : keyword arguments</span>
+<span class="sd">        .</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    inputArray : The newArray</span>
+<span class="sd">        DESCRIPTION.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inputArray</span><span class="p">,</span> <span class="n">targetClass</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">inputArray</span>
+    
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="_expand_function"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._expand_function">[docs]</a><span class="k">def</span> <span class="nf">_expand_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to expand input functions of the _function or machine_program</span>
+<span class="sd">    type to remove the extra dimension.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    *args : Tuple of functions</span>
+<span class="sd">        The functions to be checked for type and expanded if necessary.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple</span>
+<span class="sd">        Tuple of data to be used for the new datatype array.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">newArgs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">_function</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">bf</span><span class="o">.</span><span class="n">machine_program</span><span class="p">):</span>
+            <span class="n">newArgs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">newArgs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">newArgs</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, BLonD-admin
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
