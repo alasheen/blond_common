@@ -323,7 +323,7 @@
 
 <span class="c1"># Defining a routine to locate potential wells and inner separatrices</span>
 <div class="viewcode-block" id="find_potential_wells_cubic"><a class="viewcode-back" href="../../rf_functions.potential.html#blond_common.rf_functions.potential.find_potential_wells_cubic">[docs]</a><span class="k">def</span> <span class="nf">find_potential_wells_cubic</span><span class="p">(</span><span class="n">time_array_full</span><span class="p">,</span> <span class="n">potential_well_full</span><span class="p">,</span>
-                               <span class="n">relative_max_val_precision_limit</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span>
+                               <span class="n">relative_max_val_precision_limit</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span>
                                <span class="n">mest</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">edge_is_max</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 
@@ -346,6 +346,8 @@
     <span class="n">max_pos</span> <span class="o">=</span> <span class="n">min_max_results</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">min_val</span> <span class="o">=</span> <span class="n">min_max_results</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">max_val</span> <span class="o">=</span> <span class="n">min_max_results</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">deepest_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">min_val</span><span class="p">)</span>
 
     <span class="n">most_left_min_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">min_pos</span><span class="p">)</span>
     <span class="n">most_right_min_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">min_pos</span><span class="p">)</span>
@@ -416,7 +418,8 @@
             <span class="n">right_pos</span> <span class="o">=</span> <span class="n">present_max_pos</span>
             <span class="n">right_val</span> <span class="o">=</span> <span class="n">present_max_val</span>
 
-            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">left_max_val</span><span class="p">,</span> <span class="n">present_max_val</span><span class="p">,</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">left_max_val</span><span class="o">-</span><span class="n">deepest_min</span><span class="p">,</span>
+                          <span class="n">present_max_val</span><span class="o">-</span><span class="n">deepest_min</span><span class="p">,</span>
                           <span class="n">rtol</span><span class="o">=</span><span class="n">relative_max_val_precision_limit</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
                 <span class="c1"># The left max is identical to the present max, a pot. well</span>
                 <span class="c1"># is found</span>
@@ -563,7 +566,8 @@
             <span class="n">left_pos</span> <span class="o">=</span> <span class="n">present_max_pos</span>
             <span class="n">left_val</span> <span class="o">=</span> <span class="n">present_max_val</span>
 
-            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">right_max_val</span><span class="p">,</span> <span class="n">present_max_val</span><span class="p">,</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">right_max_val</span><span class="o">-</span><span class="n">deepest_min</span><span class="p">,</span>
+                          <span class="n">present_max_val</span><span class="o">-</span><span class="n">deepest_min</span><span class="p">,</span>
                           <span class="n">rtol</span><span class="o">=</span><span class="n">relative_max_val_precision_limit</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
                 <span class="c1"># The right max is identical to the present max, a pot.</span>
                 <span class="c1"># well is found</span>
