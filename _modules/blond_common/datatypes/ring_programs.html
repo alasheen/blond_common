@@ -1530,6 +1530,101 @@
     <span class="k">def</span> <span class="nf">order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_data_type</span><span class="p">(</span><span class="s1">&#39;order&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">=</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="length_function"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs.length_function">[docs]</a><span class="k">class</span> <span class="nc">length_function</span><span class="p">(</span><span class="n">_ring_function</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class defining section and ring lengths</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    *args : float, 1D iterable of floats, 2D iterable of floats</span>
+<span class="sd">        The data defining the programs</span>
+<span class="sd">    time : iterable of floats</span>
+<span class="sd">        The time array to be used for the data, to be used if the time</span>
+<span class="sd">        dependent data is not given as 2D array</span>
+<span class="sd">    n_turns : int</span>
+<span class="sd">        The number of turns to be used, if a single value is given it will be</span>
+<span class="sd">        extended to n_turns length</span>
+<span class="sd">    interpolation : str</span>
+<span class="sd">        The type of interpolation to be used</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_type : dict</span>
+<span class="sd">        Dictionary containing relevant information to define the datatype</span>
+<span class="sd">    timebase : str</span>
+<span class="sd">        Either &#39;single&#39;, &#39;by_turn&#39;, or &#39;by_time&#39; depending on the definition</span>
+<span class="sd">        of the datatype.  As a string it is used as a key for the data_type</span>
+<span class="sd">        dict</span>
+<span class="sd">    interpolation : str</span>
+<span class="sd">        Identifier of the type of interpolation to be used when reshaping</span>
+<span class="sd">        the array, currently only &#39;linear&#39; has been implemented</span>
+<span class="sd">    sectioning : str</span>
+<span class="sd">        identification of if the data defines a single machine section</span>
+<span class="sd">        or multiple machine sections</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span>
+                               <span class="n">n_turns</span><span class="o">=</span><span class="n">n_turns</span><span class="p">,</span> <span class="n">allow_single</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                               <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="length_function.combine_single_sections"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs.length_function.combine_single_sections">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">combine_single_sections</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Combine multiple single sections into a single array.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        cls : class</span>
+<span class="sd">            The class of the final datatype.</span>
+<span class="sd">        *args : datatypes</span>
+<span class="sd">            The datatype arrays to be combined.</span>
+<span class="sd">        interpolation : str, optional</span>
+<span class="sd">            The interpolation method to be used for time dependent data, only</span>
+<span class="sd">            used if not already defined in the data.  The default is None.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        excpt.InputError</span>
+<span class="sd">            If the passed data are not length_function type an InputError</span>
+<span class="sd">            is raised.</span>
+<span class="sd">            If the passed data do not all have the same order an InputError is</span>
+<span class="sd">            raised.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        newArray : datatype</span>
+<span class="sd">            The new array combining all of the passed sections.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">length_function</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;Only length_function objects can be &quot;</span>
+                                   <span class="o">+</span> <span class="s2">&quot;combined&quot;</span><span class="p">)</span>
+
+        <span class="n">newArray</span><span class="p">,</span> <span class="n">timeBases</span><span class="p">,</span> <span class="n">use_times</span><span class="p">,</span> <span class="n">use_turns</span> \
+            <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_combine_single_sections</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                                           <span class="n">interpolation</span><span class="o">=</span><span class="n">interpolation</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">timeBases</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;single&#39;</span><span class="p">:</span>
+                <span class="n">section</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">use_time</span><span class="o">=</span><span class="n">use_times</span><span class="p">,</span>
+                                    <span class="n">use_turns</span><span class="o">=</span><span class="n">use_turns</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">section</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">newArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">section</span>
+
+        <span class="n">newArray</span><span class="o">.</span><span class="n">timebase</span> <span class="o">=</span> <span class="n">timeBases</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">newArray</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">newArray</span><span class="o">.</span><span class="n">sectioning</span> <span class="o">=</span> <span class="s1">&#39;multi_section&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">newArray</span><span class="o">.</span><span class="n">sectioning</span> <span class="o">=</span> <span class="s1">&#39;single_section&#39;</span>
+
+        <span class="n">newArray</span><span class="o">.</span><span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span>
+
+        <span class="k">return</span> <span class="n">newArray</span></div></div>
 </pre></div>
 
            </div>
