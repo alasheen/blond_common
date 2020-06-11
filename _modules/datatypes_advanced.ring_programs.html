@@ -4404,8 +4404,8 @@ the data_type dict.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="blond_common.datatypes.ring_programs.orbit_length">
-<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.ring_programs.</code><code class="sig-name descname">orbit_length</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/ring_programs.html#orbit_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length" title="Permalink to this definition">¶</a></dt>
+<dt id="blond_common.datatypes.ring_programs.orbit_length_program">
+<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.ring_programs.</code><code class="sig-name descname">orbit_length_program</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/ring_programs.html#orbit_length_program"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length_program" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#blond_common.datatypes.ring_programs._ring_function" title="blond_common.datatypes.ring_programs._ring_function"><code class="xref py py-class docutils literal notranslate"><span class="pre">blond_common.datatypes.ring_programs._ring_function</span></code></a></p>
 <p>Class defining section and ring orbit lengths programs</p>
 <dl class="field-list simple">
@@ -4421,8 +4421,8 @@ extended to n_turns length</p></li>
 </dd>
 </dl>
 <dl class="py attribute">
-<dt id="blond_common.datatypes.ring_programs.orbit_length.data_type">
-<code class="sig-name descname">data_type</code><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length.data_type" title="Permalink to this definition">¶</a></dt>
+<dt id="blond_common.datatypes.ring_programs.orbit_length_program.data_type">
+<code class="sig-name descname">data_type</code><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length_program.data_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dictionary containing relevant information to define the datatype</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -4432,8 +4432,8 @@ extended to n_turns length</p></li>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="blond_common.datatypes.ring_programs.orbit_length.timebase">
-<code class="sig-name descname">timebase</code><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length.timebase" title="Permalink to this definition">¶</a></dt>
+<dt id="blond_common.datatypes.ring_programs.orbit_length_program.timebase">
+<code class="sig-name descname">timebase</code><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length_program.timebase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Either ‘single’, ‘by_turn’, or ‘by_time’ depending on the definition
 of the datatype.  As a string it is used as a key for the data_type
 dict</p>
@@ -4445,8 +4445,8 @@ dict</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="blond_common.datatypes.ring_programs.orbit_length.interpolation">
-<code class="sig-name descname">interpolation</code><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length.interpolation" title="Permalink to this definition">¶</a></dt>
+<dt id="blond_common.datatypes.ring_programs.orbit_length_program.interpolation">
+<code class="sig-name descname">interpolation</code><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length_program.interpolation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Identifier of the type of interpolation to be used when reshaping
 the array, currently only ‘linear’ has been implemented</p>
 <dl class="field-list simple">
@@ -4457,8 +4457,8 @@ the array, currently only ‘linear’ has been implemented</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="blond_common.datatypes.ring_programs.orbit_length.sectioning">
-<code class="sig-name descname">sectioning</code><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length.sectioning" title="Permalink to this definition">¶</a></dt>
+<dt id="blond_common.datatypes.ring_programs.orbit_length_program.sectioning">
+<code class="sig-name descname">sectioning</code><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length_program.sectioning" title="Permalink to this definition">¶</a></dt>
 <dd><p>identification of if the data defines a single machine section
 or multiple machine sections</p>
 <dl class="field-list simple">
@@ -4469,8 +4469,8 @@ or multiple machine sections</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="blond_common.datatypes.ring_programs.orbit_length._check_data_type">
-<code class="sig-name descname">_check_data_type</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length._check_data_type" title="Permalink to this definition">¶</a></dt>
+<dt id="blond_common.datatypes.ring_programs.orbit_length_program._check_data_type">
+<code class="sig-name descname">_check_data_type</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length_program._check_data_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attempt to assign a value to the data_type dict</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -4483,8 +4483,8 @@ or multiple machine sections</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="blond_common.datatypes.ring_programs.orbit_length._combine_single_sections">
-<em class="property">classmethod </em><code class="sig-name descname">_combine_single_sections</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length._combine_single_sections" title="Permalink to this definition">¶</a></dt>
+<dt id="blond_common.datatypes.ring_programs.orbit_length_program._combine_single_sections">
+<em class="property">classmethod </em><code class="sig-name descname">_combine_single_sections</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length_program._combine_single_sections" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prepare to combine multiple single sections datatype functions into a
 single array.</p>
 <dl class="field-list simple">
@@ -4522,8 +4522,8 @@ used if not already defined in the data.  The default is None.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="blond_common.datatypes.ring_programs.orbit_length._comp_definition_reshape">
-<code class="sig-name descname">_comp_definition_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span></em>, <em class="sig-param"><span class="n">use_time</span></em>, <em class="sig-param"><span class="n">use_turns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length._comp_definition_reshape" title="Permalink to this definition">¶</a></dt>
+<dt id="blond_common.datatypes.ring_programs.orbit_length_program._comp_definition_reshape">
+<code class="sig-name descname">_comp_definition_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span></em>, <em class="sig-param"><span class="n">use_time</span></em>, <em class="sig-param"><span class="n">use_turns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length_program._comp_definition_reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compare the required reshaping data with the contents of the datatype
 to confirm it is suitable.</p>
 <dl class="field-list simple">
@@ -4546,8 +4546,8 @@ to confirm it is suitable.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="blond_common.datatypes.ring_programs.orbit_length._interpolate">
-<code class="sig-name descname">_interpolate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section</span></em>, <em class="sig-param"><span class="n">use_time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length._interpolate" title="Permalink to this definition">¶</a></dt>
+<dt id="blond_common.datatypes.ring_programs.orbit_length_program._interpolate">
+<code class="sig-name descname">_interpolate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section</span></em>, <em class="sig-param"><span class="n">use_time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length_program._interpolate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Control the interpolation of the data</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -4574,8 +4574,8 @@ to confirm it is suitable.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="blond_common.datatypes.ring_programs.orbit_length._interpolate_linear">
-<code class="sig-name descname">_interpolate_linear</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section</span></em>, <em class="sig-param"><span class="n">use_time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length._interpolate_linear" title="Permalink to this definition">¶</a></dt>
+<dt id="blond_common.datatypes.ring_programs.orbit_length_program._interpolate_linear">
+<code class="sig-name descname">_interpolate_linear</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section</span></em>, <em class="sig-param"><span class="n">use_time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length_program._interpolate_linear" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a linear interpolation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -4594,8 +4594,8 @@ to confirm it is suitable.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="blond_common.datatypes.ring_programs.orbit_length._prep_reshape">
-<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length._prep_reshape" title="Permalink to this definition">¶</a></dt>
+<dt id="blond_common.datatypes.ring_programs.orbit_length_program._prep_reshape">
+<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length_program._prep_reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an empty numpy array of the required shape for the reshaped
 array to populate</p>
 <dl class="field-list simple">
@@ -4629,8 +4629,8 @@ attributes of the object identified in the dict.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="blond_common.datatypes.ring_programs.orbit_length.reshape">
-<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length.reshape" title="Permalink to this definition">¶</a></dt>
+<dt id="blond_common.datatypes.ring_programs.orbit_length_program.reshape">
+<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length_program.reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reshape the datatype array to the given number of sections and either
 the given use_time or given use_turns.</p>
 <dl class="field-list simple">
@@ -4667,8 +4667,8 @@ data_type dict.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="blond_common.datatypes.ring_programs.orbit_length.zeros">
-<em class="property">classmethod </em><code class="sig-name descname">zeros</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">shape</span></em>, <em class="sig-param"><span class="n">data_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length.zeros" title="Permalink to this definition">¶</a></dt>
+<dt id="blond_common.datatypes.ring_programs.orbit_length_program.zeros">
+<em class="property">classmethod </em><code class="sig-name descname">zeros</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">shape</span></em>, <em class="sig-param"><span class="n">data_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length_program.zeros" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an empty array of given shape, with required data_type dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -4688,8 +4688,8 @@ The default is None.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="blond_common.datatypes.ring_programs.orbit_length.combine_single_sections">
-<em class="property">classmethod </em><code class="sig-name descname">combine_single_sections</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/ring_programs.html#orbit_length.combine_single_sections"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length.combine_single_sections" title="Permalink to this definition">¶</a></dt>
+<dt id="blond_common.datatypes.ring_programs.orbit_length_program.combine_single_sections">
+<em class="property">classmethod </em><code class="sig-name descname">combine_single_sections</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/ring_programs.html#orbit_length_program.combine_single_sections"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.ring_programs.orbit_length_program.combine_single_sections" title="Permalink to this definition">¶</a></dt>
 <dd><p>Combine multiple single sections into a single array.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
