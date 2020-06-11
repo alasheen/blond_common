@@ -1606,8 +1606,8 @@
 <span class="sd">        newArray : datatype</span>
 <span class="sd">            The new array combining all of the passed sections.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">orbit_length</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;Only orbit_length objects can be &quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">orbit_length_program</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;Only orbit_length_program objects can be &quot;</span>
                                    <span class="o">+</span> <span class="s2">&quot;combined&quot;</span><span class="p">)</span>
 
         <span class="n">newArray</span><span class="p">,</span> <span class="n">timeBases</span><span class="p">,</span> <span class="n">use_times</span><span class="p">,</span> <span class="n">use_turns</span> \
