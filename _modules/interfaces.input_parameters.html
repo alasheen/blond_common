@@ -209,8 +209,318 @@
             
   <div class="section" id="interfaces-input-parameters-package">
 <h1>interfaces.input_parameters package<a class="headerlink" href="#interfaces-input-parameters-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="interfaces-input-parameters-ring-module">
-<h2>interfaces.input_parameters.ring module<a class="headerlink" href="#interfaces-input-parameters-ring-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-blond_common.interfaces.input_parameters.ring">
+<span id="interfaces-input-parameters-ring-module"></span><h2>interfaces.input_parameters.ring module<a class="headerlink" href="#module-blond_common.interfaces.input_parameters.ring" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt><strong>Module gathering all general input parameters used for the simulation.</strong></dt><dd><dl class="field-list simple">
+<dt class="field-odd">Authors</dt>
+<dd class="field-odd"><p><strong>Simon Albright</strong>, <strong>Alexandre Lasheen</strong>, <strong>Danilo Quartullo</strong>, <strong>Helga Timko</strong></p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py class">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring">
+<em class="property">class </em><code class="sig-prename descclassname">blond_common.interfaces.input_parameters.ring.</code><code class="sig-name descname">Ring</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Particle</span></em>, <em class="sig-param"><span class="n">Section_list</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/interfaces/input_parameters/ring.html#Ring"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class containing the general properties of the synchrotron that are
+independent of the RF system or the beam.</p>
+<p>The index <span class="math notranslate nohighlight">\(n\)</span> denotes time steps, <span class="math notranslate nohighlight">\(k\)</span> ring segments/sections
+and <span class="math notranslate nohighlight">\(i\)</span> momentum compaction orders.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Particle</strong> (<em>class</em>) – A Particle-based class defining the primary, synchronous particle (mass
+and charge) that is reference for the momentum/energy in the ring.</p></li>
+<li><p><strong>Section_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – The list of all the sections to build the Ring.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.circumference">
+<code class="sig-name descname">circumference</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.circumference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Circumference of the synchrotron. Sum of ring segment lengths,
+<span class="math notranslate nohighlight">\(C = \sum_k L_k\)</span> [m]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.radius">
+<code class="sig-name descname">radius</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.radius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Radius of the synchrotron, <span class="math notranslate nohighlight">\(R = C/(2 \pi)\)</span> [m]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.bending_radius">
+<code class="sig-name descname">bending_radius</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.bending_radius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bending radius in dipole magnets, <span class="math notranslate nohighlight">\(\rho\)</span> [m]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.alpha_order">
+<code class="sig-name descname">alpha_order</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.alpha_order" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of orders of the momentum compaction factor (from 0 to 2)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.eta_0">
+<code class="sig-name descname">eta_0</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.eta_0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zeroth order slippage factor <span class="math notranslate nohighlight">\(\eta_{0,k,n} = \alpha_{0,k,n} -
+\frac{1}{\gamma_{s,k,n}^2}\)</span> [1]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float matrix [n_sections, n_turns+1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.eta_1">
+<code class="sig-name descname">eta_1</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.eta_1" title="Permalink to this definition">¶</a></dt>
+<dd><p>First order slippage factor <span class="math notranslate nohighlight">\(\eta_{1,k,n} =
+\frac{3\beta_{s,k,n}^2}{2\gamma_{s,k,n}^2} + \alpha_{1,k,n} -
+\alpha_{0,k,n}\eta_{0,k,n}\)</span> [1]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float matrix [n_sections, n_turns+1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.eta_2">
+<code class="sig-name descname">eta_2</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.eta_2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Second order slippage factor <span class="math notranslate nohighlight">\(\eta_{2,k,n} =
+-\frac{\beta_{s,k,n}^2\left(5\beta_{s,k,n}^2-1\right)}
+{2\gamma_{s,k,n}^2} + \alpha_{2,k,n} - 2\alpha_{0,k,n}\alpha_{1,k,n}
++ \frac{\alpha_{1,k,n}}{\gamma_{s,k,n}^2} + \alpha_{0,k}^2\eta_{0,k,n}
+- \frac{3\beta_{s,k,n}^2\alpha_{0,k,n}}{2\gamma_{s,k,n}^2}\)</span> [1]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float matrix [n_sections, n_turns+1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.momentum">
+<code class="sig-name descname">momentum</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.momentum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synchronous relativistic momentum on the design orbit <span class="math notranslate nohighlight">\(p_{s,k,n}\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float matrix [n_sections, n_turns+1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.beta">
+<code class="sig-name descname">beta</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.beta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synchronous relativistic beta program for each segment of the
+ring <span class="math notranslate nohighlight">\(\beta_{s,k}^n = \frac{1}{\sqrt{1
++ \left(\frac{m}{p_{s,k,n}}\right)^2} }\)</span> [1]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float matrix [n_sections, n_turns+1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.gamma">
+<code class="sig-name descname">gamma</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.gamma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synchronous relativistic gamma program for each segment of the ring
+<span class="math notranslate nohighlight">\(\gamma_{s,k,n} = \sqrt{ 1
++ \left(\frac{p_{s,k,n}}{m}\right)^2 }\)</span> [1]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float matrix [n_sections, n_turns+1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.energy">
+<code class="sig-name descname">energy</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synchronous total energy program for each segment of the ring
+<span class="math notranslate nohighlight">\(E_{s,k,n} = \sqrt{ p_{s,k,n}^2 + m^2 }\)</span> [eV]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float matrix [n_sections, n_turns+1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.kin_energy">
+<code class="sig-name descname">kin_energy</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.kin_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synchronous kinetic energy program for each segment of the ring
+<span class="math notranslate nohighlight">\(E_{s,kin} = \sqrt{ p_{s,k,n}^2 + m^2 } - m\)</span> [eV]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float matrix [n_sections, n_turns+1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.delta_E">
+<code class="sig-name descname">delta_E</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.delta_E" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gain in synchronous total energy from one point to another,
+for all sections,
+<span class="math notranslate nohighlight">\(: \quad E_{s,k,n+1}- E_{s,k,n}\)</span> [eV]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float matrix [n_sections, n_turns]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.t_rev">
+<code class="sig-name descname">t_rev</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.t_rev" title="Permalink to this definition">¶</a></dt>
+<dd><p>Revolution period turn by turn.
+<span class="math notranslate nohighlight">\(T_{0,n} = \frac{C}{\beta_{s,n} c}\)</span> [s]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float array [n_turns+1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.f_rev">
+<code class="sig-name descname">f_rev</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.f_rev" title="Permalink to this definition">¶</a></dt>
+<dd><p>Revolution frequency <span class="math notranslate nohighlight">\(f_{0,n} = \frac{1}{T_{0,n}}\)</span> [Hz]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float array [n_turns+1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.omega_rev">
+<code class="sig-name descname">omega_rev</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.omega_rev" title="Permalink to this definition">¶</a></dt>
+<dd><p>Revolution angular frequency <span class="math notranslate nohighlight">\(\omega_{0,n} = 2\pi f_{0,n}\)</span> [1/s]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float array [n_turns+1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.cycle_time">
+<code class="sig-name descname">cycle_time</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.cycle_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cumulative cycle time, turn by turn, <span class="math notranslate nohighlight">\(t_n = \sum_n T_{0,n}\)</span> [s].
+Possibility to extract cycle parameters at these moments using
+‘parameters_at_time’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float array [n_turns+1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="id0">
+<code class="sig-name descname">alpha_order</code><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Highest order of momentum compaction (as defined by the input). Can
+be 0,1,2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.RingOptions">
+<code class="sig-name descname">RingOptions</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.RingOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>The RingOptions is kept as an attribute of the Ring object for further
+usage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>RingOptions()</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># To declare a single-section synchrotron at constant energy:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Particle type Proton</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">beam.beam</span> <span class="kn">import</span> <span class="n">Proton</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">input_parameters.ring</span> <span class="kn">import</span> <span class="n">Ring</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n_turns</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="mi">26659</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_0</span> <span class="o">=</span> <span class="mf">3.21e-4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">momentum</span> <span class="o">=</span> <span class="mf">450e9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ring</span> <span class="o">=</span> <span class="n">Ring</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">alpha_0</span><span class="p">,</span> <span class="n">momentum</span><span class="p">,</span> <span class="n">Proton</span><span class="p">(),</span> <span class="n">n_turns</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># To declare a two section synchrotron at constant energy and</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># higher-order momentum compaction factors; particle Electron:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">beam.beam</span> <span class="kn">import</span> <span class="n">Electron</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">input_parameters.ring</span> <span class="kn">import</span> <span class="n">Ring</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n_turns</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="p">[</span><span class="mi">13000</span><span class="p">,</span> <span class="mi">13659</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_0</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">3.21e-4</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.89e-4</span><span class="p">]]</span>  <span class="c1"># or [3.21e-4, 2.89e-4]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_1</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">2.e-5</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.e-5</span><span class="p">]]</span>  <span class="c1"># or [2.e-5, 1.e-5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_2</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">5.e-7</span><span class="p">],</span> <span class="p">[</span><span class="mf">5.e-7</span><span class="p">]]</span>  <span class="c1"># or [5.e-7, 5.e-7]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">momentum</span> <span class="o">=</span> <span class="mf">450e9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ring</span> <span class="o">=</span> <span class="n">Ring</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">alpha_0</span><span class="p">,</span> <span class="n">momentum</span><span class="p">,</span> <span class="n">Electron</span><span class="p">(),</span> <span class="n">n_turns</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">alpha_1</span><span class="o">=</span><span class="n">alpha_1</span><span class="p">,</span> <span class="n">alpha_2</span><span class="o">=</span><span class="n">alpha_2</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.parameters_at_sample">
+<code class="sig-name descname">parameters_at_sample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sample</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/interfaces/input_parameters/ring.html#Ring.parameters_at_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.parameters_at_sample" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="blond_common.interfaces.input_parameters.ring.Ring.parameters_at_time">
+<code class="sig-name descname">parameters_at_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cycle_moments</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/interfaces/input_parameters/ring.html#Ring.parameters_at_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring.Ring.parameters_at_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to return various cycle parameters at a specific moment in
+time. The cycle time is defined to start at zero in turn zero.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cycle_moments</strong> (<em>float array</em>) – Moments of time at which cycle parameters are to be calculated [s].</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>parameters</strong> – Contains ‘momentum’, ‘beta’, ‘gamma’, ‘energy’, ‘kin_energy’,
+‘f_rev’, ‘t_rev’. ‘omega_rev’, ‘eta_0’, and ‘delta_E’ interpolated
+to the moments contained in the ‘cycle_moments’ array</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-blond_common.interfaces.input_parameters.ring_section">
 <span id="interfaces-input-parameters-ring-section-module"></span><h2>interfaces.input_parameters.ring_section module<a class="headerlink" href="#module-blond_common.interfaces.input_parameters.ring_section" title="Permalink to this headline">¶</a></h2>
