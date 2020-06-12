@@ -247,6 +247,12 @@
 <span class="sd">        and charge) that is reference for the momentum/energy in the ring.</span>
 <span class="sd">    Section_list : list</span>
 <span class="sd">        The list of all the sections to build the Ring.</span>
+<span class="sd">    t_start : float (optional, default 0)</span>
+<span class="sd">        Starting time from which the time array input should be taken into</span>
+<span class="sd">        account.</span>
+<span class="sd">    t_end : float (optional, default np,inf)</span>
+<span class="sd">        Last time up to which the time array input should be taken into</span>
+<span class="sd">        account.</span>
 <span class="sd">    eta_orders : int (optional, default 0)</span>
 <span class="sd">        The orders of slippage factor to be computed (alpha_1 and alpha_2,</span>
 <span class="sd">        will be assumed to be 0 by default if not defined in the sections).</span>
@@ -410,9 +416,7 @@
             <span class="k">if</span> <span class="n">index_section</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">synchronous_data</span> <span class="o">=</span> <span class="n">section</span><span class="o">.</span><span class="n">synchronous_data</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">synchronous_data</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">synchronous_data</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">:</span>
-                    <span class="k">pass</span>
-                <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">synchronous_data</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">synchronous_data</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">:</span>
                     <span class="n">warn_message</span> <span class="o">=</span> <span class="s1">&#39;The synchronous data for all sections &#39;</span> <span class="o">+</span> \
                         <span class="s1">&#39;is not identical. This case is not yet fully &#39;</span> <span class="o">+</span> \
                         <span class="s1">&#39;tested and is under implementation.&#39;</span>
@@ -441,6 +445,12 @@
         <span class="c1"># Getting options for the interpolation</span>
         <span class="n">interpolation</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;interpolation&#39;</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">)</span>
         <span class="n">store_turns</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;store_turns&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Converting the synchronous data to momentum before processing</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">synchronous_data</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="p">,</span>
+                                      <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">charge</span><span class="p">,</span>
+                                      <span class="bp">self</span><span class="o">.</span><span class="n">bending_radius</span><span class="p">,</span>
+                                      <span class="n">inPlace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="c1"># Processing the momentum program and interpolating on the</span>
         <span class="c1"># values defined by sample_func</span>
