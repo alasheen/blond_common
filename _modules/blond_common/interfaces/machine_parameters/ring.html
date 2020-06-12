@@ -475,10 +475,11 @@
         <span class="c1"># Updating the number of turns in case it was changed after ramp</span>
         <span class="c1"># interpolation</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span> <span class="o">=</span> <span class="n">momentum_processed</span><span class="o">.</span><span class="n">n_turns</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">momentum_processed</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="p">)</span>
 
         <span class="c1"># Generating the attributes where to store the synchronous data</span>
         <span class="c1"># and associated parameters</span>
-        <span class="n">program_shape</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="p">)</span>
+        <span class="n">program_shape</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">momentum_program</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">program_shape</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">energy</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">total_energy_program</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">program_shape</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kin_energy</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">kinetic_energy_program</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
