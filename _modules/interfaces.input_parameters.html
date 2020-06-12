@@ -534,7 +534,7 @@ to the moments contained in the ‘cycle_moments’ array</p>
 </dl>
 <dl class="py class">
 <dt id="blond_common.interfaces.input_parameters.ring_section.RingSection">
-<em class="property">class </em><code class="sig-prename descclassname">blond_common.interfaces.input_parameters.ring_section.</code><code class="sig-name descname">RingSection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">length</span></em>, <em class="sig-param"><span class="n">alpha_0</span></em>, <em class="sig-param"><span class="n">momentum</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">kin_energy</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">energy</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bending_field</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bending_radius</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">orbit_length</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">alpha_1</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">alpha_2</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/interfaces/input_parameters/ring_section.html#RingSection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring_section.RingSection" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">blond_common.interfaces.input_parameters.ring_section.</code><code class="sig-name descname">RingSection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">length</span></em>, <em class="sig-param"><span class="n">alpha_0</span></em>, <em class="sig-param"><span class="n">momentum</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">kin_energy</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">energy</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bending_field</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bending_radius</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">orbit_bump</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">alpha_1</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">alpha_2</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/interfaces/input_parameters/ring_section.html#RingSection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring_section.RingSection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Class containing the general properties of a section of the
 accelerator that are independent of the RF system or the beam.</p>
@@ -569,20 +569,7 @@ can be input as single float or as a program (1D array is a
 turn-by-turn program and 2D array is a time dependent program).</p></li>
 <li><p><strong>bending_radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Optional: Radius [m] of the bending magnets,
 required if ‘bending field’ is set for the synchronous_data_type</p></li>
-<li><p><strong>orbit_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Length of the trajectory of the beam including potential
-orbit bumps;
-can be input as single float or as a program (1D array is a
-turn-by-turn program and 2D array is a time dependent program).
-If a turn-by-turn program is passed, should be of the same size
-as the synchronous data.</p></li>
-<li><p><strong>alpha_1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Optional : Momentum compaction factor of first order
-<span class="math notranslate nohighlight">\(\alpha_{1}\)</span>;
-can be input as single float or as a program (1D array is a
-turn-by-turn program and 2D array is a time dependent program).
-If a turn-by-turn program is passed, should be of the same size
-as the synchronous data.</p></li>
-<li><p><strong>alpha_2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Optional : Momentum compaction factor of second order
-<span class="math notranslate nohighlight">\(\alpha_{2}\)</span>;
+<li><p><strong>orbit_bump</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Length of orbit bump to add as increment to the design length;
 can be input as single float or as a program (1D array is a
 turn-by-turn program and 2D array is a time dependent program).
 If a turn-by-turn program is passed, should be of the same size
@@ -597,12 +584,24 @@ as the synchronous data.</p></li>
 </dd>
 </dl>
 <dl class="py attribute">
-<dt id="blond_common.interfaces.input_parameters.ring_section.RingSection.length">
-<code class="sig-name descname">length</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring_section.RingSection.length" title="Permalink to this definition">¶</a></dt>
+<dt id="blond_common.interfaces.input_parameters.ring_section.RingSection.length_design">
+<code class="sig-name descname">length_design</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring_section.RingSection.length_design" title="Permalink to this definition">¶</a></dt>
 <dd><p>Length of the section on the reference orbit [m]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.input_parameters.ring_section.RingSection.length">
+<code class="sig-name descname">length</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring_section.RingSection.length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Length of the beam trajectory, including possible
+orbit bump programs [m]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>datatype.machine_program.orbit_length</p>
 </dd>
 </dl>
 </dd></dl>
@@ -633,18 +632,6 @@ bending_field_program</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="blond_common.interfaces.input_parameters.ring_section.RingSection.orbit_length">
-<code class="sig-name descname">orbit_length</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring_section.RingSection.orbit_length" title="Permalink to this definition">¶</a></dt>
-<dd><p>Length of the beam trajectory, including possible
-orbit bump programs [m]</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>datatype.machine_program.orbit_length</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
 <dt id="blond_common.interfaces.input_parameters.ring_section.RingSection.alpha_0">
 <code class="sig-name descname">alpha_0</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring_section.RingSection.alpha_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Momentum compaction factor of zeroth order</p>
@@ -656,31 +643,9 @@ orbit bump programs [m]</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="blond_common.interfaces.input_parameters.ring_section.RingSection.alpha_1">
-<code class="sig-name descname">alpha_1</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring_section.RingSection.alpha_1" title="Permalink to this definition">¶</a></dt>
-<dd><p>Momentum compaction factor of first order</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>datatype.machine_program.momentum_compaction (or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a>)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="blond_common.interfaces.input_parameters.ring_section.RingSection.alpha_2">
-<code class="sig-name descname">alpha_2</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring_section.RingSection.alpha_2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Momentum compaction factor of second order</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>datatype.machine_program.momentum_compaction (or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a>)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
 <dt id="blond_common.interfaces.input_parameters.ring_section.RingSection.alpha_n">
 <code class="sig-name descname">alpha_n</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring_section.RingSection.alpha_n" title="Permalink to this definition">¶</a></dt>
-<dd><p>Momentum compaction factor of higer orders</p>
+<dd><p>Momentum compaction factor of higher orders</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>datatype.machine_program.momentum_compaction (or undefined)</p>
@@ -689,19 +654,8 @@ orbit bump programs [m]</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="blond_common.interfaces.input_parameters.ring_section.RingSection.alpha_order">
-<code class="sig-name descname">alpha_order</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring_section.RingSection.alpha_order" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maximum order of momentum compaction</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="blond_common.interfaces.input_parameters.ring_section.RingSection.alpha_orders_defined">
-<code class="sig-name descname">alpha_orders_defined</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring_section.RingSection.alpha_orders_defined" title="Permalink to this definition">¶</a></dt>
+<dt id="blond_common.interfaces.input_parameters.ring_section.RingSection.alpha_orders">
+<code class="sig-name descname">alpha_orders</code><a class="headerlink" href="#blond_common.interfaces.input_parameters.ring_section.RingSection.alpha_orders" title="Permalink to this definition">¶</a></dt>
 <dd><p>Orders of momentum compaction defined by the user</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -729,16 +683,17 @@ orbit bump programs [m]</p>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="n">Section</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">length</span> <span class="o">=</span> <span class="mi">300</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_0</span> <span class="o">=</span> <span class="mf">1e-3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">0.9e-3</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_1</span> <span class="o">=</span> <span class="mf">1e-4</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_2</span> <span class="o">=</span> <span class="mf">1e-5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_5</span> <span class="o">=</span> <span class="mf">1e-9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">orbit_bump</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">energy</span> <span class="o">=</span> <span class="n">machine_program</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
 <span class="gp">&gt;&gt;&gt; </span>                          <span class="p">[</span><span class="mf">26e9</span><span class="p">,</span> <span class="mf">27e9</span><span class="p">,</span> <span class="mf">28e9</span><span class="p">]])</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">section</span> <span class="o">=</span> <span class="n">RingSection</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">alpha_0</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="n">energy</span><span class="p">,</span>
 <span class="gp">&gt;&gt;&gt; </span>                      <span class="n">alpha_1</span><span class="o">=</span><span class="n">alpha_1</span><span class="p">,</span> <span class="n">alpha_2</span><span class="o">=</span><span class="n">alpha_2</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>                      <span class="n">alpha_5</span><span class="o">=</span><span class="n">alpha_5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>                      <span class="n">alpha_5</span><span class="o">=</span><span class="n">alpha_5</span><span class="p">,</span> <span class="n">orbit_bump</span><span class="o">=</span><span class="n">orbit_bump</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
