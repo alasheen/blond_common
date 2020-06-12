@@ -247,6 +247,9 @@
 <span class="sd">        and charge) that is reference for the momentum/energy in the ring.</span>
 <span class="sd">    Section_list : list</span>
 <span class="sd">        The list of all the sections to build the Ring.</span>
+<span class="sd">    eta_orders : int (optional, default 0)</span>
+<span class="sd">        The orders of slippage factor to be computed (alpha_1 and alpha_2,</span>
+<span class="sd">        will be assumed to be 0 by default if not defined in the sections).</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -527,7 +530,17 @@
         <span class="c1"># not defined in sections for the calculation of all orders of eta</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">section</span><span class="o">.</span><span class="n">alpha_orders</span>
-            <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">]</span> <span class="o">+</span> <span class="p">[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+            <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">]</span>
+
+        <span class="c1"># Add alpha orders if eta_orders is defined</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;eta_orders&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span> <span class="o">+=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span> <span class="o">+=</span> <span class="p">[[</span><span class="mi">2</span><span class="p">]]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">warn_message</span> <span class="o">=</span> <span class="s1">&#39;The eta_orders can only be computed up to eta_2!&#39;</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">warn_message</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span><span class="p">)</span>
 
@@ -536,8 +549,10 @@
         <span class="c1"># with zeros).</span>
         <span class="c1"># The programs are reshaped to the size of the momentum program</span>
         <span class="k">for</span> <span class="n">alpha_order</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span><span class="p">:</span>
+
             <span class="n">alpha_prog</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">alpha_name</span> <span class="o">=</span> <span class="s1">&#39;alpha_</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">alpha_order</span><span class="p">)</span>
+
             <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">:</span>
 
                 <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">alpha_name</span><span class="p">):</span>
@@ -553,8 +568,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span><span class="p">))</span>
 
         <span class="c1"># Slippage factor derived from alpha, beta, gamma</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span> <span class="o">=</span> <span class="mi">3</span>
-        <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;eta_</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">order</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_eta_generation</span><span class="p">()</span>
 
@@ -715,7 +729,7 @@
 <span class="sd">                Third Edition, 2012.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
             <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_eta&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))()</span>
 
     <span class="k">def</span> <span class="nf">_eta0</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
