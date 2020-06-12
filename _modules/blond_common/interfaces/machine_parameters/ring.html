@@ -475,11 +475,10 @@
         <span class="c1"># Updating the number of turns in case it was changed after ramp</span>
         <span class="c1"># interpolation</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span> <span class="o">=</span> <span class="n">momentum_processed</span><span class="o">.</span><span class="n">n_turns</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">momentum_processed</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="p">)</span>
 
         <span class="c1"># Generating the attributes where to store the synchronous data</span>
         <span class="c1"># and associated parameters</span>
-        <span class="n">program_shape</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">program_shape</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turns</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">momentum_program</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">program_shape</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">energy</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">total_energy_program</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">program_shape</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kin_energy</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">kinetic_energy_program</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
@@ -504,7 +503,8 @@
 
         <span class="c1"># Extracting and combining the orbit length programs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">section_length</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">orbit_length_program</span><span class="o">.</span><span class="n">combine_single_sections</span><span class="p">(</span>
-            <span class="o">*</span><span class="p">[</span><span class="n">section</span><span class="o">.</span><span class="n">length</span> <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">])</span>
+            <span class="o">*</span><span class="p">[</span><span class="n">section</span><span class="o">.</span><span class="n">length</span> <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">],</span>
+            <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
 
         <span class="c1"># Reshaping to match the dimensions of the synchronous data program</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">section_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">section_length</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
@@ -539,16 +539,16 @@
         <span class="c1"># Determining the momentum compaction orders defined in all sections</span>
         <span class="c1"># The orders 1 and 2 are presently set by default to zeros if</span>
         <span class="c1"># not defined in sections for the calculation of all orders of eta</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">section</span><span class="o">.</span><span class="n">alpha_orders</span>
-            <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span> <span class="o">+=</span> <span class="n">section</span><span class="o">.</span><span class="n">alpha_orders</span>
 
         <span class="c1"># Add alpha orders if eta_orders is defined</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;eta_orders&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span> <span class="o">+=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">]]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span> <span class="o">+=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span> <span class="o">+=</span> <span class="p">[[</span><span class="mi">2</span><span class="p">]]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span> <span class="o">+=</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
             <span class="n">warn_message</span> <span class="o">=</span> <span class="s1">&#39;The eta_orders can only be computed up to eta_2!&#39;</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">warn_message</span><span class="p">)</span>
@@ -559,10 +559,10 @@
         <span class="c1"># and combining the programs (the missing programs are filled</span>
         <span class="c1"># with zeros).</span>
         <span class="c1"># The programs are reshaped to the size of the momentum program</span>
-        <span class="k">for</span> <span class="n">alpha_order</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span><span class="p">:</span>
 
             <span class="n">alpha_prog</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">alpha_name</span> <span class="o">=</span> <span class="s1">&#39;alpha_</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">alpha_order</span><span class="p">)</span>
+            <span class="n">alpha_name</span> <span class="o">=</span> <span class="s1">&#39;alpha_</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">order</span><span class="p">)</span>
 
             <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">:</span>
 
@@ -570,10 +570,10 @@
                     <span class="n">alpha_prog</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">alpha_name</span><span class="p">))</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">alpha_prog</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ring_programs</span><span class="o">.</span><span class="n">momentum_compaction</span><span class="p">(</span>
-                        <span class="mi">0</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">alpha_order</span><span class="p">))</span>
+                        <span class="mi">0</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">))</span>
 
             <span class="n">alpha_prog</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">momentum_compaction</span><span class="o">.</span><span class="n">combine_single_sections</span><span class="p">(</span>
-                <span class="o">*</span><span class="n">alpha_prog</span><span class="p">)</span>
+                <span class="o">*</span><span class="n">alpha_prog</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
 
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha_name</span><span class="p">,</span> <span class="n">alpha_prog</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span><span class="p">))</span>
