@@ -257,8 +257,8 @@
 <span class="sd">        Radius of the synchrotron, :math:`R = C/(2 \pi)` [m]</span>
 <span class="sd">    bending_radius : float</span>
 <span class="sd">        Bending radius in dipole magnets, :math:`\rho` [m]</span>
-<span class="sd">    alpha_order : int</span>
-<span class="sd">        Number of orders of the momentum compaction factor (from 0 to 2)</span>
+<span class="sd">    alpha_orders : list</span>
+<span class="sd">        Number of orders of the momentum compaction factor</span>
 <span class="sd">    eta_0 : float matrix [n_sections, n_turns+1]</span>
 <span class="sd">        Zeroth order slippage factor :math:`\eta_{0,k,n} = \alpha_{0,k,n} -</span>
 <span class="sd">        \frac{1}{\gamma_{s,k,n}^2}` [1]</span>
@@ -303,12 +303,6 @@
 <span class="sd">        Cumulative cycle time, turn by turn, :math:`t_n = \sum_n T_{0,n}` [s].</span>
 <span class="sd">        Possibility to extract cycle parameters at these moments using</span>
 <span class="sd">        &#39;parameters_at_time&#39;.</span>
-<span class="sd">    alpha_order : int</span>
-<span class="sd">        Highest order of momentum compaction (as defined by the input). Can</span>
-<span class="sd">        be 0,1,2.</span>
-<span class="sd">    RingOptions : RingOptions()</span>
-<span class="sd">        The RingOptions is kept as an attribute of the Ring object for further</span>
-<span class="sd">        usage.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -373,9 +367,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">)</span>
 
         <span class="c1"># Extracting the length of sections to get circumference</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">section_length</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">section</span><span class="o">.</span><span class="n">length</span> <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">circumference</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section_length</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">section_length_design</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">section</span><span class="o">.</span><span class="n">length_design</span> <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circumference</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section_length_design</span><span class="p">)</span>
 
         <span class="c1"># Computing ring radius</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">circumference</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
@@ -471,23 +465,24 @@
                 <span class="n">momentum_processed</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="p">)</span>
 
         <span class="c1"># Extracting and combining the orbit length programs</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">orbit_length</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">orbit_length_program</span><span class="o">.</span><span class="n">combine_single_sections</span><span class="p">(</span>
-            <span class="o">*</span><span class="p">[</span><span class="n">section</span><span class="o">.</span><span class="n">orbit_length</span> <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">section_length</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">orbit_length_program</span><span class="o">.</span><span class="n">combine_single_sections</span><span class="p">(</span>
+            <span class="o">*</span><span class="p">[</span><span class="n">section</span><span class="o">.</span><span class="n">length</span> <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">])</span>
 
         <span class="c1"># Reshaping to match the dimensions of the synchronous data program</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">orbit_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orbit_length</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">section_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">section_length</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span><span class="p">)</span>
 
         <span class="c1"># Computing the revolution period on the design orbit</span>
         <span class="c1"># as well as revolution frequency and angular frequency</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">t_rev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section_length</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">*</span> <span class="n">c</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t_rev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section_length_design</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">*</span> <span class="n">c</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">f_rev</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_rev</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">omega_rev</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_rev</span>
 
         <span class="c1"># Computing the time of flight in each section</span>
         <span class="c1"># and the revolution period on the beam orbit including</span>
         <span class="c1"># possible orbit bumps</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tof_section_orbit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orbit_length</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">*</span> <span class="n">c</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tof_section_orbit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">section_length</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">*</span> <span class="n">c</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">t_rev_orbit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tof_section_orbit</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">f_rev_orbit</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_rev_orbit</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">omega_rev_orbit</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_rev_orbit</span>
@@ -501,18 +496,17 @@
         <span class="c1"># Determining the momentum compaction orders defined in all sections</span>
         <span class="c1"># The orders 1 and 2 are presently set by default to zeros if</span>
         <span class="c1"># not defined in sections for the calculation of all orders of eta</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders_defined</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">section</span><span class="o">.</span><span class="n">alpha_orders_defined</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">section</span><span class="o">.</span><span class="n">alpha_orders</span>
             <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">]</span> <span class="o">+</span> <span class="p">[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders_defined</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders_defined</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders_defined</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span><span class="p">)</span>
 
         <span class="c1"># Getting the momentum compaction programs in all sections</span>
         <span class="c1"># and combining the programs (the missing programs are filled</span>
         <span class="c1"># with zeros).</span>
         <span class="c1"># The programs are reshaped to the size of the momentum program</span>
-        <span class="k">for</span> <span class="n">alpha_order</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders_defined</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">alpha_order</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span><span class="p">:</span>
             <span class="n">alpha_prog</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">alpha_name</span> <span class="o">=</span> <span class="s1">&#39;alpha_</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">alpha_order</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">:</span>
@@ -530,7 +524,8 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span><span class="p">))</span>
 
         <span class="c1"># Slippage factor derived from alpha, beta, gamma</span>
-        <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span><span class="p">):</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;eta_</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">order</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_eta_generation</span><span class="p">()</span>
 
@@ -691,7 +686,7 @@
 <span class="sd">                Third Edition, 2012.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span><span class="p">):</span>
             <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_eta&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))()</span>
 
     <span class="k">def</span> <span class="nf">_eta0</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
