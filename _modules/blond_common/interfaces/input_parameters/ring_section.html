@@ -394,7 +394,8 @@
         <span class="c1"># Checking that the synchronous data and the momentum compaction</span>
         <span class="c1"># have the same length if defined turn-by-turn, raise a warning if one</span>
         <span class="c1"># is defined by turn and the other time based</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">alpha_order_max</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">alpha_0</span><span class="p">,</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">momentum_compaction</span><span class="p">):</span>
             <span class="n">alpha_0</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">momentum_compaction</span><span class="p">(</span><span class="n">alpha_0</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -410,15 +411,15 @@
         <span class="n">alpha_n</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="n">alpha_1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="n">alpha_2</span><span class="p">}</span>
 
         <span class="k">if</span> <span class="n">alpha_1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">alpha_order_max</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="n">alpha_2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span> <span class="o">=</span> <span class="mi">2</span>
+            <span class="n">alpha_order_max</span> <span class="o">=</span> <span class="mi">2</span>
 
         <span class="k">for</span> <span class="n">argument</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
             <span class="k">if</span> <span class="s1">&#39;alpha&#39;</span> <span class="ow">in</span> <span class="n">argument</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">order</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">argument</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span><span class="p">,</span> <span class="n">order</span><span class="p">])</span>
+                    <span class="n">alpha_order_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">alpha_order_max</span><span class="p">,</span> <span class="n">order</span><span class="p">])</span>
                     <span class="n">alpha_n</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">argument</span><span class="p">]</span>
                 <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span>
@@ -429,8 +430,8 @@
 
         <span class="c1"># Setting all the valid non-linear alpha and replacing</span>
         <span class="c1"># undeclared orders with zeros</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders_defined</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+
+        <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha_order_max</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
             <span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha_n</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">alpha</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -438,7 +439,7 @@
                 <span class="c1"># This condition can be replaced by &#39;continue&#39; to avoid</span>
                 <span class="c1"># populating the object with 0 programs</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders_defined</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">momentum_compaction</span><span class="p">):</span>
                 <span class="n">alpha</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">momentum_compaction</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
