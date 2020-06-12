@@ -278,7 +278,7 @@
 <span class="sd">        as the synchronous data.</span>
 <span class="sd">    alpha_n : float (opt: list or np.ndarray)</span>
 <span class="sd">        Optional : Higher order momentum compaction can also be passed through</span>
-<span class="sd">        extra keyword arguments;</span>
+<span class="sd">        keyword arguments (orders not limited, e.g. alpha_3 is recognized);</span>
 <span class="sd">        can be input as single float or as a program (1D array is a</span>
 <span class="sd">        turn-by-turn program and 2D array is a time dependent program).</span>
 <span class="sd">        If a turn-by-turn program is passed, should be of the same size</span>
@@ -430,7 +430,6 @@
 
         <span class="c1"># Setting all the valid non-linear alpha and replacing</span>
         <span class="c1"># undeclared orders with zeros</span>
-
         <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha_order_max</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
             <span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha_n</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
