@@ -335,28 +335,28 @@
 <span class="sd">    &gt;&gt;&gt; # To declare a single-section synchrotron at constant energy:</span>
 <span class="sd">    &gt;&gt;&gt; # Particle type Proton</span>
 <span class="sd">    &gt;&gt;&gt; from beam.beam import Proton</span>
-<span class="sd">    &gt;&gt;&gt; from input_parameters.ring import Ring</span>
+<span class="sd">    &gt;&gt;&gt; from input_parameters.ring import Ring, RingSection, machine_program</span>
 <span class="sd">    &gt;&gt;&gt;</span>
-<span class="sd">    &gt;&gt;&gt; n_turns = 10</span>
 <span class="sd">    &gt;&gt;&gt; C = 26659</span>
 <span class="sd">    &gt;&gt;&gt; alpha_0 = 3.21e-4</span>
-<span class="sd">    &gt;&gt;&gt; momentum = 450e9</span>
-<span class="sd">    &gt;&gt;&gt; ring = Ring(C, alpha_0, momentum, Proton(), n_turns)</span>
-<span class="sd">    &gt;&gt;&gt;</span>
-<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; momentum = machine_program(450e9, n_turns=10)</span>
+<span class="sd">    &gt;&gt;&gt; ring = Ring(Proton(), RingSection(C, alpha_0, momentum))</span>
+
 <span class="sd">    &gt;&gt;&gt; # To declare a two section synchrotron at constant energy and</span>
 <span class="sd">    &gt;&gt;&gt; # higher-order momentum compaction factors; particle Electron:</span>
 <span class="sd">    &gt;&gt;&gt; from beam.beam import Electron</span>
-<span class="sd">    &gt;&gt;&gt; from input_parameters.ring import Ring</span>
+<span class="sd">    &gt;&gt;&gt; from input_parameters.ring import Ring, RingSection, machine_program</span>
 <span class="sd">    &gt;&gt;&gt;</span>
 <span class="sd">    &gt;&gt;&gt; n_turns = 10</span>
 <span class="sd">    &gt;&gt;&gt; C = [13000, 13659]</span>
-<span class="sd">    &gt;&gt;&gt; alpha_0 = [[3.21e-4], [2.89e-4]]  # or [3.21e-4, 2.89e-4]</span>
-<span class="sd">    &gt;&gt;&gt; alpha_1 = [[2.e-5], [1.e-5]]  # or [2.e-5, 1.e-5]</span>
-<span class="sd">    &gt;&gt;&gt; alpha_2 = [[5.e-7], [5.e-7]]  # or [5.e-7, 5.e-7]</span>
-<span class="sd">    &gt;&gt;&gt; momentum = 450e9</span>
-<span class="sd">    &gt;&gt;&gt; ring = Ring(C, alpha_0, momentum, Electron(), n_turns,</span>
-<span class="sd">    &gt;&gt;&gt;             alpha_1=alpha_1, alpha_2=alpha_2)</span>
+<span class="sd">    &gt;&gt;&gt; alpha_0 = [3.21e-4, 2.89e-4]</span>
+<span class="sd">    &gt;&gt;&gt; alpha_1 = [2.e-5, 1.e-5]</span>
+<span class="sd">    &gt;&gt;&gt; alpha_2 = [5.e-7, 5.e-7]</span>
+<span class="sd">    &gt;&gt;&gt; momentum = machine_program(450e9, n_turns=10)</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; section_1 = RingSection(C[0], alpha_0[0], momentum)</span>
+<span class="sd">    &gt;&gt;&gt; section_2 = RingSection(C[1], alpha_0[1], momentum)</span>
+<span class="sd">    &gt;&gt;&gt; ring = Ring(Electron(), [section_1, section_2])</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 

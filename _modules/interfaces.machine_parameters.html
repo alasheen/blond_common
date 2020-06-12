@@ -534,28 +534,29 @@ Possibility to extract cycle parameters at these moments using
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># To declare a single-section synchrotron at constant energy:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Particle type Proton</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">beam.beam</span> <span class="kn">import</span> <span class="n">Proton</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">input_parameters.ring</span> <span class="kn">import</span> <span class="n">Ring</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">input_parameters.ring</span> <span class="kn">import</span> <span class="n">Ring</span><span class="p">,</span> <span class="n">RingSection</span><span class="p">,</span> <span class="n">machine_program</span>
 <span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">n_turns</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="mi">26659</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_0</span> <span class="o">=</span> <span class="mf">3.21e-4</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">momentum</span> <span class="o">=</span> <span class="mf">450e9</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ring</span> <span class="o">=</span> <span class="n">Ring</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">alpha_0</span><span class="p">,</span> <span class="n">momentum</span><span class="p">,</span> <span class="n">Proton</span><span class="p">(),</span> <span class="n">n_turns</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># To declare a two section synchrotron at constant energy and</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">momentum</span> <span class="o">=</span> <span class="n">machine_program</span><span class="p">(</span><span class="mf">450e9</span><span class="p">,</span> <span class="n">n_turns</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ring</span> <span class="o">=</span> <span class="n">Ring</span><span class="p">(</span><span class="n">Proton</span><span class="p">(),</span> <span class="n">RingSection</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">alpha_0</span><span class="p">,</span> <span class="n">momentum</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># To declare a two section synchrotron at constant energy and</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># higher-order momentum compaction factors; particle Electron:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">beam.beam</span> <span class="kn">import</span> <span class="n">Electron</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">input_parameters.ring</span> <span class="kn">import</span> <span class="n">Ring</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">input_parameters.ring</span> <span class="kn">import</span> <span class="n">Ring</span><span class="p">,</span> <span class="n">RingSection</span><span class="p">,</span> <span class="n">machine_program</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n_turns</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="p">[</span><span class="mi">13000</span><span class="p">,</span> <span class="mi">13659</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_0</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">3.21e-4</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.89e-4</span><span class="p">]]</span>  <span class="c1"># or [3.21e-4, 2.89e-4]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_1</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">2.e-5</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.e-5</span><span class="p">]]</span>  <span class="c1"># or [2.e-5, 1.e-5]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_2</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">5.e-7</span><span class="p">],</span> <span class="p">[</span><span class="mf">5.e-7</span><span class="p">]]</span>  <span class="c1"># or [5.e-7, 5.e-7]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">momentum</span> <span class="o">=</span> <span class="mf">450e9</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ring</span> <span class="o">=</span> <span class="n">Ring</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">alpha_0</span><span class="p">,</span> <span class="n">momentum</span><span class="p">,</span> <span class="n">Electron</span><span class="p">(),</span> <span class="n">n_turns</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>            <span class="n">alpha_1</span><span class="o">=</span><span class="n">alpha_1</span><span class="p">,</span> <span class="n">alpha_2</span><span class="o">=</span><span class="n">alpha_2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.21e-4</span><span class="p">,</span> <span class="mf">2.89e-4</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.e-5</span><span class="p">,</span> <span class="mf">1.e-5</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5.e-7</span><span class="p">,</span> <span class="mf">5.e-7</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">momentum</span> <span class="o">=</span> <span class="n">machine_program</span><span class="p">(</span><span class="mf">450e9</span><span class="p">,</span> <span class="n">n_turns</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">section_1</span> <span class="o">=</span> <span class="n">RingSection</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">alpha_0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">momentum</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">section_2</span> <span class="o">=</span> <span class="n">RingSection</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">alpha_0</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">momentum</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ring</span> <span class="o">=</span> <span class="n">Ring</span><span class="p">(</span><span class="n">Electron</span><span class="p">(),</span> <span class="p">[</span><span class="n">section_1</span><span class="p">,</span> <span class="n">section_2</span><span class="p">])</span>
 </pre></div>
 </div>
 <dl class="py method">
