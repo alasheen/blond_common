@@ -237,10 +237,34 @@ and charge) that is reference for the momentum/energy in the ring.</p></li>
 </dd>
 </dl>
 <dl class="py attribute">
+<dt id="blond_common.interfaces.machine_parameters.ring.Ring.circumference_design">
+<code class="sig-name descname">circumference_design</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.circumference_design" title="Permalink to this definition">¶</a></dt>
+<dd><p>Design circumference of the synchrotron. Sum of ring segment design
+lengths,
+<span class="math notranslate nohighlight">\(C_s = \sum_k L_{s,k}\)</span> [m]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="blond_common.interfaces.machine_parameters.ring.Ring.circumference">
 <code class="sig-name descname">circumference</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.circumference" title="Permalink to this definition">¶</a></dt>
-<dd><p>Circumference of the synchrotron. Sum of ring segment lengths,
+<dd><p>Circumference of the synchrotron including possible orbit bumps,
 <span class="math notranslate nohighlight">\(C = \sum_k L_k\)</span> [m]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.machine_parameters.ring.Ring.radius_design">
+<code class="sig-name descname">radius_design</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.radius_design" title="Permalink to this definition">¶</a></dt>
+<dd><p>Design radius of the synchrotron, <span class="math notranslate nohighlight">\(R_s = C_s/(2 \pi)\)</span> [m]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
@@ -251,7 +275,8 @@ and charge) that is reference for the momentum/energy in the ring.</p></li>
 <dl class="py attribute">
 <dt id="blond_common.interfaces.machine_parameters.ring.Ring.radius">
 <code class="sig-name descname">radius</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.radius" title="Permalink to this definition">¶</a></dt>
-<dd><p>Radius of the synchrotron, <span class="math notranslate nohighlight">\(R = C/(2 \pi)\)</span> [m]</p>
+<dd><p>Radius of the synchrotron including possible orbit bumps,
+<span class="math notranslate nohighlight">\(R = C/(2 \pi)\)</span> [m]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
@@ -262,7 +287,7 @@ and charge) that is reference for the momentum/energy in the ring.</p></li>
 <dl class="py attribute">
 <dt id="blond_common.interfaces.machine_parameters.ring.Ring.bending_radius">
 <code class="sig-name descname">bending_radius</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.bending_radius" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bending radius in dipole magnets, <span class="math notranslate nohighlight">\(\rho\)</span> [m]</p>
+<dd><p>Bending radius in dipole magnets on design orbit, <span class="math notranslate nohighlight">\(\rho\)</span> [m]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
@@ -277,6 +302,28 @@ and charge) that is reference for the momentum/energy in the ring.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.machine_parameters.ring.Ring.alpha_0">
+<code class="sig-name descname">alpha_0</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.alpha_0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Linear momentum compaction factor <span class="math notranslate nohighlight">\(\alpha_{0,k,n}\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float matrix [n_sections, n_turns+1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.machine_parameters.ring.Ring.alpha_n">
+<code class="sig-name descname">alpha_n</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.alpha_n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Higher order momentum compaction factors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float matrix [n_sections, n_turns+1]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -324,7 +371,7 @@ and charge) that is reference for the momentum/energy in the ring.</p></li>
 <dl class="py attribute">
 <dt id="blond_common.interfaces.machine_parameters.ring.Ring.momentum">
 <code class="sig-name descname">momentum</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.momentum" title="Permalink to this definition">¶</a></dt>
-<dd><p>Synchronous relativistic momentum on the design orbit <span class="math notranslate nohighlight">\(p_{s,k,n}\)</span></p>
+<dd><p>Design relativistic momentum on the design orbit <span class="math notranslate nohighlight">\(p_{s,k,n}\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>float matrix [n_sections, n_turns+1]</p>
@@ -335,7 +382,7 @@ and charge) that is reference for the momentum/energy in the ring.</p></li>
 <dl class="py attribute">
 <dt id="blond_common.interfaces.machine_parameters.ring.Ring.beta">
 <code class="sig-name descname">beta</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.beta" title="Permalink to this definition">¶</a></dt>
-<dd><p>Synchronous relativistic beta program for each segment of the
+<dd><p>Design relativistic beta program for each segment of the
 ring <span class="math notranslate nohighlight">\(\beta_{s,k}^n = \frac{1}{\sqrt{1
 + \left(\frac{m}{p_{s,k,n}}\right)^2} }\)</span> [1]</p>
 <dl class="field-list simple">
@@ -348,7 +395,7 @@ ring <span class="math notranslate nohighlight">\(\beta_{s,k}^n = \frac{1}{\sqrt
 <dl class="py attribute">
 <dt id="blond_common.interfaces.machine_parameters.ring.Ring.gamma">
 <code class="sig-name descname">gamma</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.gamma" title="Permalink to this definition">¶</a></dt>
-<dd><p>Synchronous relativistic gamma program for each segment of the ring
+<dd><p>Design relativistic gamma program for each segment of the ring
 <span class="math notranslate nohighlight">\(\gamma_{s,k,n} = \sqrt{ 1
 + \left(\frac{p_{s,k,n}}{m}\right)^2 }\)</span> [1]</p>
 <dl class="field-list simple">
@@ -361,7 +408,7 @@ ring <span class="math notranslate nohighlight">\(\beta_{s,k}^n = \frac{1}{\sqrt
 <dl class="py attribute">
 <dt id="blond_common.interfaces.machine_parameters.ring.Ring.energy">
 <code class="sig-name descname">energy</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.energy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Synchronous total energy program for each segment of the ring
+<dd><p>Design total energy program for each segment of the ring
 <span class="math notranslate nohighlight">\(E_{s,k,n} = \sqrt{ p_{s,k,n}^2 + m^2 }\)</span> [eV]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -373,7 +420,7 @@ ring <span class="math notranslate nohighlight">\(\beta_{s,k}^n = \frac{1}{\sqrt
 <dl class="py attribute">
 <dt id="blond_common.interfaces.machine_parameters.ring.Ring.kin_energy">
 <code class="sig-name descname">kin_energy</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.kin_energy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Synchronous kinetic energy program for each segment of the ring
+<dd><p>Design kinetic energy program for each segment of the ring
 <span class="math notranslate nohighlight">\(E_{s,kin} = \sqrt{ p_{s,k,n}^2 + m^2 } - m\)</span> [eV]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -385,7 +432,7 @@ ring <span class="math notranslate nohighlight">\(\beta_{s,k}^n = \frac{1}{\sqrt
 <dl class="py attribute">
 <dt id="blond_common.interfaces.machine_parameters.ring.Ring.delta_E">
 <code class="sig-name descname">delta_E</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.delta_E" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gain in synchronous total energy from one point to another,
+<dd><p>Gain in design total energy from one point to another,
 for all sections,
 <span class="math notranslate nohighlight">\(: \quad E_{s,k,n+1}- E_{s,k,n}\)</span> [eV]</p>
 <dl class="field-list simple">
@@ -396,10 +443,34 @@ for all sections,
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="blond_common.interfaces.machine_parameters.ring.Ring.t_rev_design">
+<code class="sig-name descname">t_rev_design</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.t_rev_design" title="Permalink to this definition">¶</a></dt>
+<dd><p>Revolution period turn by turn on the design orbit.
+<span class="math notranslate nohighlight">\(T_{s,0,n} = \frac{C_s}{\beta_{s,n} c}\)</span> [s]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float array [n_turns+1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="blond_common.interfaces.machine_parameters.ring.Ring.t_rev">
 <code class="sig-name descname">t_rev</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.t_rev" title="Permalink to this definition">¶</a></dt>
-<dd><p>Revolution period turn by turn.
+<dd><p>Revolution period turn by turn (including orbit bumps).
 <span class="math notranslate nohighlight">\(T_{0,n} = \frac{C}{\beta_{s,n} c}\)</span> [s]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float array [n_turns+1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.machine_parameters.ring.Ring.f_rev_design">
+<code class="sig-name descname">f_rev_design</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.f_rev_design" title="Permalink to this definition">¶</a></dt>
+<dd><p>Revolution frequency on the design orbit
+<span class="math notranslate nohighlight">\(f_{s,0,n} = \frac{1}{T_{s,0,n}}\)</span> [Hz]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>float array [n_turns+1]</p>
@@ -410,7 +481,20 @@ for all sections,
 <dl class="py attribute">
 <dt id="blond_common.interfaces.machine_parameters.ring.Ring.f_rev">
 <code class="sig-name descname">f_rev</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.f_rev" title="Permalink to this definition">¶</a></dt>
-<dd><p>Revolution frequency <span class="math notranslate nohighlight">\(f_{0,n} = \frac{1}{T_{0,n}}\)</span> [Hz]</p>
+<dd><p>Revolution frequency (including orbit bumps)
+<span class="math notranslate nohighlight">\(f_{0,n} = \frac{1}{T_{0,n}}\)</span> [Hz]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float array [n_turns+1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.interfaces.machine_parameters.ring.Ring.omega_rev_design">
+<code class="sig-name descname">omega_rev_design</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.omega_rev_design" title="Permalink to this definition">¶</a></dt>
+<dd><p>Revolution angular frequency on the design orbit
+<span class="math notranslate nohighlight">\(\omega_{s,0,n} = 2\pi f_{s,0,n}\)</span> [1/s]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>float array [n_turns+1]</p>
@@ -421,7 +505,8 @@ for all sections,
 <dl class="py attribute">
 <dt id="blond_common.interfaces.machine_parameters.ring.Ring.omega_rev">
 <code class="sig-name descname">omega_rev</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.omega_rev" title="Permalink to this definition">¶</a></dt>
-<dd><p>Revolution angular frequency <span class="math notranslate nohighlight">\(\omega_{0,n} = 2\pi f_{0,n}\)</span> [1/s]</p>
+<dd><p>Revolution angular frequency (including orbit bumps)
+<span class="math notranslate nohighlight">\(\omega_{0,n} = 2\pi f_{0,n}\)</span> [1/s]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>float array [n_turns+1]</p>
@@ -432,7 +517,8 @@ for all sections,
 <dl class="py attribute">
 <dt id="blond_common.interfaces.machine_parameters.ring.Ring.cycle_time">
 <code class="sig-name descname">cycle_time</code><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring.cycle_time" title="Permalink to this definition">¶</a></dt>
-<dd><p>Cumulative cycle time, turn by turn, <span class="math notranslate nohighlight">\(t_n = \sum_n T_{0,n}\)</span> [s].
+<dd><p>Cumulative cycle time, turn by turn,
+<span class="math notranslate nohighlight">\(t_n = \sum_n T_{s,0,n}\)</span> [s].
 Possibility to extract cycle parameters at these moments using
 ‘parameters_at_time’.</p>
 <dl class="field-list simple">

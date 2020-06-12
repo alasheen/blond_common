@@ -250,15 +250,26 @@
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
+<span class="sd">    circumference_design : float</span>
+<span class="sd">        Design circumference of the synchrotron. Sum of ring segment design</span>
+<span class="sd">        lengths,</span>
+<span class="sd">        :math:`C_s = \sum_k L_{s,k}` [m]</span>
 <span class="sd">    circumference : float</span>
-<span class="sd">        Circumference of the synchrotron. Sum of ring segment lengths,</span>
+<span class="sd">        Circumference of the synchrotron including possible orbit bumps,</span>
 <span class="sd">        :math:`C = \sum_k L_k` [m]</span>
+<span class="sd">    radius_design : float</span>
+<span class="sd">        Design radius of the synchrotron, :math:`R_s = C_s/(2 \pi)` [m]</span>
 <span class="sd">    radius : float</span>
-<span class="sd">        Radius of the synchrotron, :math:`R = C/(2 \pi)` [m]</span>
+<span class="sd">        Radius of the synchrotron including possible orbit bumps,</span>
+<span class="sd">        :math:`R = C/(2 \pi)` [m]</span>
 <span class="sd">    bending_radius : float</span>
-<span class="sd">        Bending radius in dipole magnets, :math:`\rho` [m]</span>
+<span class="sd">        Bending radius in dipole magnets on design orbit, :math:`\rho` [m]</span>
 <span class="sd">    alpha_orders : list</span>
 <span class="sd">        Number of orders of the momentum compaction factor</span>
+<span class="sd">    alpha_0 : float matrix [n_sections, n_turns+1]</span>
+<span class="sd">        Linear momentum compaction factor :math:`\alpha_{0,k,n}`</span>
+<span class="sd">    alpha_n : float matrix [n_sections, n_turns+1]</span>
+<span class="sd">        Higher order momentum compaction factors</span>
 <span class="sd">    eta_0 : float matrix [n_sections, n_turns+1]</span>
 <span class="sd">        Zeroth order slippage factor :math:`\eta_{0,k,n} = \alpha_{0,k,n} -</span>
 <span class="sd">        \frac{1}{\gamma_{s,k,n}^2}` [1]</span>
@@ -273,34 +284,46 @@
 <span class="sd">        + \frac{\alpha_{1,k,n}}{\gamma_{s,k,n}^2} + \alpha_{0,k}^2\eta_{0,k,n}</span>
 <span class="sd">        - \frac{3\beta_{s,k,n}^2\alpha_{0,k,n}}{2\gamma_{s,k,n}^2}` [1]</span>
 <span class="sd">    momentum : float matrix [n_sections, n_turns+1]</span>
-<span class="sd">        Synchronous relativistic momentum on the design orbit :math:`p_{s,k,n}`</span>
+<span class="sd">        Design relativistic momentum on the design orbit :math:`p_{s,k,n}`</span>
 <span class="sd">    beta : float matrix [n_sections, n_turns+1]</span>
-<span class="sd">        Synchronous relativistic beta program for each segment of the</span>
+<span class="sd">        Design relativistic beta program for each segment of the</span>
 <span class="sd">        ring :math:`\beta_{s,k}^n = \frac{1}{\sqrt{1</span>
 <span class="sd">        + \left(\frac{m}{p_{s,k,n}}\right)^2} }` [1]</span>
 <span class="sd">    gamma : float matrix [n_sections, n_turns+1]</span>
-<span class="sd">        Synchronous relativistic gamma program for each segment of the ring</span>
+<span class="sd">        Design relativistic gamma program for each segment of the ring</span>
 <span class="sd">        :math:`\gamma_{s,k,n} = \sqrt{ 1</span>
 <span class="sd">        + \left(\frac{p_{s,k,n}}{m}\right)^2 }` [1]</span>
 <span class="sd">    energy : float matrix [n_sections, n_turns+1]</span>
-<span class="sd">        Synchronous total energy program for each segment of the ring</span>
+<span class="sd">        Design total energy program for each segment of the ring</span>
 <span class="sd">        :math:`E_{s,k,n} = \sqrt{ p_{s,k,n}^2 + m^2 }` [eV]</span>
 <span class="sd">    kin_energy : float matrix [n_sections, n_turns+1]</span>
-<span class="sd">        Synchronous kinetic energy program for each segment of the ring</span>
+<span class="sd">        Design kinetic energy program for each segment of the ring</span>
 <span class="sd">        :math:`E_{s,kin} = \sqrt{ p_{s,k,n}^2 + m^2 } - m` [eV]</span>
 <span class="sd">    delta_E : float matrix [n_sections, n_turns]</span>
-<span class="sd">        Gain in synchronous total energy from one point to another,</span>
+<span class="sd">        Gain in design total energy from one point to another,</span>
 <span class="sd">        for all sections,</span>
 <span class="sd">        :math:`: \quad E_{s,k,n+1}- E_{s,k,n}` [eV]</span>
+<span class="sd">    t_rev_design : float array [n_turns+1]</span>
+<span class="sd">        Revolution period turn by turn on the design orbit.</span>
+<span class="sd">        :math:`T_{s,0,n} = \frac{C_s}{\beta_{s,n} c}` [s]</span>
 <span class="sd">    t_rev : float array [n_turns+1]</span>
-<span class="sd">        Revolution period turn by turn.</span>
+<span class="sd">        Revolution period turn by turn (including orbit bumps).</span>
 <span class="sd">        :math:`T_{0,n} = \frac{C}{\beta_{s,n} c}` [s]</span>
+<span class="sd">    f_rev_design : float array [n_turns+1]</span>
+<span class="sd">        Revolution frequency on the design orbit</span>
+<span class="sd">        :math:`f_{s,0,n} = \frac{1}{T_{s,0,n}}` [Hz]</span>
 <span class="sd">    f_rev : float array [n_turns+1]</span>
-<span class="sd">        Revolution frequency :math:`f_{0,n} = \frac{1}{T_{0,n}}` [Hz]</span>
+<span class="sd">        Revolution frequency (including orbit bumps)</span>
+<span class="sd">        :math:`f_{0,n} = \frac{1}{T_{0,n}}` [Hz]</span>
+<span class="sd">    omega_rev_design : float array [n_turns+1]</span>
+<span class="sd">        Revolution angular frequency on the design orbit</span>
+<span class="sd">        :math:`\omega_{s,0,n} = 2\pi f_{s,0,n}` [1/s]</span>
 <span class="sd">    omega_rev : float array [n_turns+1]</span>
-<span class="sd">        Revolution angular frequency :math:`\omega_{0,n} = 2\pi f_{0,n}` [1/s]</span>
+<span class="sd">        Revolution angular frequency (including orbit bumps)</span>
+<span class="sd">        :math:`\omega_{0,n} = 2\pi f_{0,n}` [1/s]</span>
 <span class="sd">    cycle_time : float array [n_turns+1]</span>
-<span class="sd">        Cumulative cycle time, turn by turn, :math:`t_n = \sum_n T_{0,n}` [s].</span>
+<span class="sd">        Cumulative cycle time, turn by turn,</span>
+<span class="sd">        :math:`t_n = \sum_n T_{s,0,n}` [s].</span>
 <span class="sd">        Possibility to extract cycle parameters at these moments using</span>
 <span class="sd">        &#39;parameters_at_time&#39;.</span>
 
@@ -366,13 +389,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span> <span class="o">=</span> <span class="n">Section_list</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">)</span>
 
-        <span class="c1"># Extracting the length of sections to get circumference</span>
+        <span class="c1"># Extracting the length of sections to get circumference on design</span>
+        <span class="c1"># orbit</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">section_length_design</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
             <span class="p">[</span><span class="n">section</span><span class="o">.</span><span class="n">length_design</span> <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">circumference</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section_length_design</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circumference_design</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section_length_design</span><span class="p">)</span>
 
-        <span class="c1"># Computing ring radius</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">circumference</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+        <span class="c1"># Computing ring radius on design orbit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radius_design</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">circumference_design</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 
         <span class="c1"># Extracting the bending radius from all sections</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bending_radius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
@@ -419,7 +443,7 @@
         <span class="c1"># values defined by sample_func</span>
         <span class="n">momentum_processed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">synchronous_data</span><span class="o">.</span><span class="n">preprocess</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">circumference</span><span class="p">,</span> <span class="n">sample_func</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">circumference_design</span><span class="p">,</span> <span class="n">sample_func</span><span class="p">,</span>
             <span class="n">interpolation</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span>
             <span class="n">store_turns</span><span class="o">=</span><span class="n">store_turns</span><span class="p">)</span>
 
@@ -472,20 +496,25 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">section_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">section_length</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">n_sections</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_turns</span><span class="p">)</span>
 
+        <span class="c1"># Getting the circumference and radius (including potential orbit</span>
+        <span class="c1"># bumps)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circumference</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section_length</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">circumference</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
         <span class="c1"># Computing the revolution period on the design orbit</span>
         <span class="c1"># as well as revolution frequency and angular frequency</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">t_rev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section_length_design</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">*</span> <span class="n">c</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">f_rev</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_rev</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">omega_rev</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_rev</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t_rev_design</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section_length_design</span><span class="p">,</span>
+                                   <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">*</span> <span class="n">c</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f_rev_design</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_rev_design</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">omega_rev_design</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_rev_design</span>
 
         <span class="c1"># Computing the time of flight in each section</span>
         <span class="c1"># and the revolution period on the beam orbit including</span>
         <span class="c1"># possible orbit bumps</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tof_section_orbit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">section_length</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">*</span> <span class="n">c</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">t_rev_orbit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tof_section_orbit</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">f_rev_orbit</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_rev_orbit</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">omega_rev_orbit</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_rev_orbit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t_rev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">section_length</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">*</span> <span class="n">c</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f_rev</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_rev</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">omega_rev</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_rev</span>
 
         <span class="c1"># Recalculating the delta_E</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">delta_E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -556,8 +585,8 @@
 <span class="c1">#</span>
 <span class="c1">#         # Setting ring length, circumerence, radius, bending radius if defined</span>
 <span class="c1">#         self.section_length = np.array(section_length, ndmin=1, dtype=float)</span>
-<span class="c1">#         self.circumference = np.sum(self.section_length)</span>
-<span class="c1">#         self.radius = self.circumference / (2 * np.pi)</span>
+<span class="c1">#         self.circumference_design = np.sum(self.section_length)</span>
+<span class="c1">#         self.radius = self.circumference_design / (2 * np.pi)</span>
 <span class="c1">#</span>
 <span class="c1">#         if bending_radius is not None:</span>
 <span class="c1">#             self.bending_radius = float(bending_radius)</span>
@@ -604,7 +633,7 @@
 <span class="c1">#</span>
 <span class="c1">#         self.momentum = synchronous_data.preprocess(</span>
 <span class="c1">#             self.Particle.mass,</span>
-<span class="c1">#             self.circumference, sample_func,</span>
+<span class="c1">#             self.circumference_design, sample_func,</span>
 <span class="c1">#             interpolation, start, stop,</span>
 <span class="c1">#             store_turns=store_turns)</span>
 <span class="c1">#</span>
@@ -627,7 +656,7 @@
 <span class="c1">#                                             self.Particle.mass)</span>
 <span class="c1">#         self.kin_energy = rt.momentum_to_kin_energy(self.momentum[2:],</span>
 <span class="c1">#                                                     self.Particle.mass)</span>
-<span class="c1">#         self.t_rev = np.dot(self.section_length, 1 / (self.beta * c))</span>
+<span class="c1">#         self.t_rev_design = np.dot(self.section_length, 1 / (self.beta * c))</span>
 <span class="c1">#         self.delta_E = np.diff(self.energy, axis=1)</span>
 <span class="c1">#         if self.n_turns &gt; len(self.use_turns):</span>
 <span class="c1">#             self.delta_E = np.zeros(self.energy.shape)</span>
@@ -635,8 +664,8 @@
 <span class="c1">#</span>
 <span class="c1">#         self.momentum = self.momentum[2:]</span>
 <span class="c1">#</span>
-<span class="c1">#         self.f_rev = 1 / self.t_rev</span>
-<span class="c1">#         self.omega_rev = 2 * np.pi * self.f_rev</span>
+<span class="c1">#         self.f_rev_design = 1 / self.t_rev_design</span>
+<span class="c1">#         self.omega_rev_design = 2 * np.pi * self.f_rev_design</span>
 <span class="c1">#</span>
 <span class="c1">#         # Momentum compaction, checks, and derived slippage factors</span>
 <span class="c1">#</span>
