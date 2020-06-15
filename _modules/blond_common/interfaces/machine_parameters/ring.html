@@ -411,11 +411,17 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">bending_radius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
             <span class="n">section</span><span class="o">.</span><span class="n">bending_radius</span> <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">])</span>
 
-        <span class="c1"># Extracting the synchronous data from the sections</span>
+        <span class="c1"># Extracting the synchronous data from the sections,</span>
+        <span class="c1"># converting to momentum</span>
         <span class="c1"># and checking if the synchronous data type and sizes are correct</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Section_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">synchronous_data</span> <span class="o">=</span> <span class="n">section</span><span class="o">.</span><span class="n">synchronous_data</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">synchronous_data</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="p">,</span>
+                                          <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">charge</span><span class="p">,</span>
+                                          <span class="bp">self</span><span class="o">.</span><span class="n">bending_radius</span><span class="p">,</span>
+                                          <span class="n">inPlace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
 
@@ -425,7 +431,7 @@
                 <span class="n">sync_data_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">synchronous_data</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="p">,</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">charge</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">bending_radius</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">bending_radius</span><span class="p">[</span><span class="n">index_section</span><span class="p">],</span>
                     <span class="n">inPlace</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 
                 <span class="k">if</span> <span class="n">index_section</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -478,12 +484,6 @@
         <span class="c1"># Getting options for the interpolation</span>
         <span class="n">interpolation</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;interpolation&#39;</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">)</span>
         <span class="n">store_turns</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;store_turns&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-
-        <span class="c1"># Converting the synchronous data to momentum before processing</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">synchronous_data</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">mass</span><span class="p">,</span>
-                                      <span class="bp">self</span><span class="o">.</span><span class="n">Particle</span><span class="o">.</span><span class="n">charge</span><span class="p">,</span>
-                                      <span class="bp">self</span><span class="o">.</span><span class="n">bending_radius</span><span class="p">,</span>
-                                      <span class="n">inPlace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="c1"># Processing the momentum program and interpolating on the</span>
         <span class="c1"># values defined by sample_func</span>
