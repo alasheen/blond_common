@@ -1111,7 +1111,7 @@
             <span class="n">next_time</span> <span class="o">=</span> <span class="n">next_time</span> <span class="o">+</span> <span class="n">rt</span><span class="o">.</span><span class="n">beta_to_trev</span><span class="p">(</span><span class="n">next_beta</span><span class="p">,</span> <span class="n">circumference</span><span class="p">)</span>
             <span class="n">nTurns</span> <span class="o">+=</span> <span class="mi">1</span>
 
-            <span class="k">if</span> <span class="n">next_time</span> <span class="o">&gt;=</span> <span class="n">next_store_time</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">next_time</span> <span class="o">&gt;=</span> <span class="n">next_store_time</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">next_time</span> <span class="o">&lt;</span> <span class="n">input_time</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
                 <span class="n">time_interp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_time</span><span class="p">)</span>
                 <span class="n">momentum_interp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_momentum</span><span class="p">)</span>
                 <span class="n">use_turns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nTurns</span><span class="p">)</span>
@@ -1207,7 +1207,7 @@
             <span class="n">next_time</span> <span class="o">=</span> <span class="n">future_time</span>
             <span class="n">nTurns</span> <span class="o">+=</span> <span class="mi">1</span>
 
-            <span class="k">if</span> <span class="n">next_time</span> <span class="o">&gt;=</span> <span class="n">next_store_time</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">next_time</span> <span class="o">&gt;=</span> <span class="n">next_store_time</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">next_time</span> <span class="o">&lt;</span> <span class="n">input_time</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
                 <span class="n">time_interp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_time</span><span class="p">)</span>
                 <span class="n">momentum_interp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_momentum</span><span class="p">)</span>
                 <span class="n">use_turns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nTurns</span><span class="p">)</span>
