@@ -84,7 +84,7 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../interfaces.html">interfaces package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../interfaces.html#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../interfaces.input_parameters.html">interfaces.input_parameters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interfaces.machine_parameters.html">interfaces.machine_parameters package</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../interfaces.html#examples">Examples</a></li>
@@ -202,7 +202,15 @@
            <div itemprop="articleBody">
             
   <h1>Source code for blond_common.datatypes.ring_programs</h1><div class="highlight"><pre>
-<span></span><span class="c1">#General imports</span>
+<span></span><span class="c1"># coding: utf8</span>
+<span class="c1"># Copyright 2014-2020 CERN. This software is distributed under the</span>
+<span class="c1"># terms of the GNU General Public Licence version 3 (GPL Version 3),</span>
+<span class="c1"># copied verbatim in the file LICENCE.md.</span>
+<span class="c1"># In applying this licence, CERN does not waive the privileges and immunities</span>
+<span class="c1"># granted to it by virtue of its status as an Intergovernmental Organization or</span>
+<span class="c1"># submit itself to any jurisdiction.</span>
+
+<span class="c1"># General imports</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -210,19 +218,19 @@
 <span class="kn">import</span> <span class="nn">scipy.constants</span> <span class="k">as</span> <span class="nn">cont</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="c1">#Common imports</span>
+<span class="c1"># Common imports</span>
 <span class="kn">from</span> <span class="nn">..devtools</span> <span class="kn">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">excpt</span>
 <span class="kn">from</span> <span class="nn">..devtools</span> <span class="kn">import</span> <span class="n">assertions</span> <span class="k">as</span> <span class="n">assrt</span>
 <span class="kn">from</span> <span class="nn">..utilities</span> <span class="kn">import</span> <span class="n">rel_transforms</span> <span class="k">as</span> <span class="n">rt</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">blond_function</span> <span class="k">as</span> <span class="n">bf</span>
 <span class="kn">from</span> <span class="nn">._core</span> <span class="kn">import</span> <span class="n">_function</span><span class="p">,</span> <span class="n">_expand_function</span><span class="p">,</span> <span class="n">_check_time_turns</span><span class="p">,</span>\
-                   <span class="n">_get_dats_types</span><span class="p">,</span> <span class="n">_check_data_types</span><span class="p">,</span> <span class="n">_expand_singletons</span><span class="p">,</span>\
-                   <span class="n">_check_turn_numbers</span>
+    <span class="n">_get_dats_types</span><span class="p">,</span> <span class="n">_check_data_types</span><span class="p">,</span> <span class="n">_expand_singletons</span><span class="p">,</span>\
+    <span class="n">_check_turn_numbers</span>
 
 
 <div class="viewcode-block" id="_ring_function"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._ring_function">[docs]</a><span class="k">class</span> <span class="nc">_ring_function</span><span class="p">(</span><span class="n">_function</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Base class for functions that are used to define ring parameters </span>
+<span class="sd">    Base class for functions that are used to define ring parameters</span>
 <span class="sd">    (e.g. momentum, alpha)</span>
 
 <span class="sd">    Parameters</span>
@@ -230,7 +238,7 @@
 <span class="sd">    *args : float, 1D iterable of floats, 2D iterable of floats</span>
 <span class="sd">        The data defining the programs</span>
 <span class="sd">    time : iterable of floats</span>
-<span class="sd">        The time array to be used for the data, to be used if the time </span>
+<span class="sd">        The time array to be used for the data, to be used if the time</span>
 <span class="sd">        dependent data is not given as 2D array</span>
 <span class="sd">    n_turns : int</span>
 <span class="sd">        The number of turns to be used, if a single value is given it will be</span>
@@ -239,14 +247,14 @@
 <span class="sd">        The type of interpolation to be used</span>
 <span class="sd">    **kwargs : keyword arguments</span>
 <span class="sd">        Additional kwargs used to define the data_type dict.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    data_type : dict</span>
 <span class="sd">        Dictionary containing relevant information to define the datatype</span>
 <span class="sd">    timebase : str</span>
 <span class="sd">        Either &#39;single&#39;, &#39;by_turn&#39;, or &#39;by_time&#39; depending on the definition</span>
-<span class="sd">        of the datatype.  As a string it is used as a key for the data_type </span>
+<span class="sd">        of the datatype.  As a string it is used as a key for the data_type</span>
 <span class="sd">        dict</span>
 <span class="sd">    interpolation : str</span>
 <span class="sd">        Identifier of the type of interpolation to be used when reshaping</span>
@@ -256,40 +264,38 @@
 <span class="sd">        or multiple machine sections</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
-                <span class="n">allow_single</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">allow_single</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">args</span> <span class="o">=</span> <span class="n">_expand_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
         <span class="n">_check_time_turns</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">n_turns</span><span class="p">)</span>
-            
-        <span class="n">data_points</span><span class="p">,</span> <span class="n">data_types</span> <span class="o">=</span> <span class="n">_get_dats_types</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">time</span><span class="p">,</span> \
-                                                  <span class="n">n_turns</span> <span class="o">=</span> <span class="n">n_turns</span><span class="p">)</span>
+
+        <span class="n">data_points</span><span class="p">,</span> <span class="n">data_types</span> <span class="o">=</span> <span class="n">_get_dats_types</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span>
+                                                  <span class="n">n_turns</span><span class="o">=</span><span class="n">n_turns</span><span class="p">)</span>
 
         <span class="n">_check_data_types</span><span class="p">(</span><span class="n">data_types</span><span class="p">,</span> <span class="n">allow_single</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">allow_single</span><span class="p">:</span>
-            <span class="n">data_types</span><span class="p">,</span> <span class="n">data_points</span> <span class="o">=</span> <span class="n">_expand_singletons</span><span class="p">(</span><span class="n">data_types</span><span class="p">,</span> 
+            <span class="n">data_types</span><span class="p">,</span> <span class="n">data_points</span> <span class="o">=</span> <span class="n">_expand_singletons</span><span class="p">(</span><span class="n">data_types</span><span class="p">,</span>
                                                          <span class="n">data_points</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="s1">&#39;by_turn&#39;</span> <span class="ow">in</span> <span class="n">data_types</span><span class="p">:</span>
             <span class="n">_check_turn_numbers</span><span class="p">(</span><span class="n">data_points</span><span class="p">,</span> <span class="n">data_types</span><span class="p">)</span>
-        
-        
+
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_types</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">data_type</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;timebase&#39;</span><span class="p">:</span> <span class="n">data_types</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+            <span class="n">data_type</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;timebase&#39;</span><span class="p">:</span> <span class="n">data_types</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                          <span class="s1">&#39;sectioning&#39;</span><span class="p">:</span> <span class="s1">&#39;single_section&#39;</span><span class="p">}</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">data_type</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;timebase&#39;</span><span class="p">:</span> <span class="n">data_types</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+            <span class="n">data_type</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;timebase&#39;</span><span class="p">:</span> <span class="n">data_types</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                          <span class="s1">&#39;sectioning&#39;</span><span class="p">:</span> <span class="s1">&#39;multi_section&#39;</span><span class="p">}</span>
-        
+
         <span class="n">data_type</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">data_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">}</span>
-        
+
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_points</span><span class="p">,</span> <span class="n">data_type</span><span class="p">,</span> <span class="n">interpolation</span><span class="p">)</span>
-    
-    
+
 <div class="viewcode-block" id="_ring_function._combine_single_sections"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._ring_function._combine_single_sections">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">_combine_single_sections</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-                                <span class="n">interpolation</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                                 <span class="n">interpolation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Prepare to combine multiple single sections datatype functions into a </span>
+<span class="sd">        Prepare to combine multiple single sections datatype functions into a</span>
 <span class="sd">        single array.</span>
 
 <span class="sd">        Parameters</span>
@@ -314,7 +320,7 @@
 <span class="sd">        excpt.DataDefinitionError</span>
 <span class="sd">            If the times of the input data are different and no interpolation</span>
 <span class="sd">            type is available and DataDefinitionError is raised.</span>
-<span class="sd">            If the function timebase attributes are not recognised a </span>
+<span class="sd">            If the function timebase attributes are not recognised a</span>
 <span class="sd">            DataDefinitionError is raised.</span>
 
 <span class="sd">        Returns</span>
@@ -334,10 +340,10 @@
 
         <span class="n">timeBases</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">timebase</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">]</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">assrt</span><span class="o">.</span><span class="n">equal_arrays</span><span class="p">(</span><span class="o">*</span><span class="n">timeBases</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Attempting to combine &#39;</span>
-                                                 <span class="o">+</span> <span class="s1">&#39;sections with different &#39;</span>
-                                                 <span class="o">+</span> <span class="s1">&#39;timebases&#39;</span><span class="p">,</span>
-                                                 <span class="n">exception</span> <span class="o">=</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">)</span>
+            <span class="n">assrt</span><span class="o">.</span><span class="n">equal_arrays</span><span class="p">(</span><span class="o">*</span><span class="n">timeBases</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Attempting to combine &#39;</span>
+                               <span class="o">+</span> <span class="s1">&#39;sections with different &#39;</span>
+                               <span class="o">+</span> <span class="s1">&#39;timebases&#39;</span><span class="p">,</span>
+                               <span class="n">exception</span><span class="o">=</span><span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="n">turns</span> <span class="o">=</span> <span class="nb">len</span><span class="p">([</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">timeBases</span> <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="s1">&#39;by_turn&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span>
             <span class="n">times</span> <span class="o">=</span> <span class="nb">len</span><span class="p">([</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">timeBases</span> <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span>
@@ -353,22 +359,22 @@
             <span class="n">input_times</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="n">input_times</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                    <span class="n">input_times</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
                 <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
                     <span class="k">pass</span>
             <span class="n">use_times</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">input_times</span><span class="p">))</span>
 
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">assrt</span><span class="o">.</span><span class="n">equal_arrays</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span> 
-                                                 <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">timebase</span> <span class="o">!=</span> <span class="s1">&#39;single&#39;</span><span class="p">),</span>
+                <span class="n">assrt</span><span class="o">.</span><span class="n">equal_arrays</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span>
+                                     <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">timebase</span> <span class="o">!=</span> <span class="s1">&#39;single&#39;</span><span class="p">),</span>
                                    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                   <span class="n">exception</span> <span class="o">=</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">)</span>
+                                   <span class="n">exception</span><span class="o">=</span><span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">)</span>
             <span class="k">except</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">interpolation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
                         <span class="n">a</span><span class="o">.</span><span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span>
-                <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">interpolation</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span> 
-                                                   <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">timebase</span> <span class="o">!=</span> <span class="s1">&#39;single&#39;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">interpolation</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span>
+                       <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">timebase</span> <span class="o">!=</span> <span class="s1">&#39;single&#39;</span><span class="p">):</span>
                     <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">DataDefinitionError</span><span class="p">(</span><span class="s2">&quot;Combining functions with &quot;</span>
                                                     <span class="o">+</span> <span class="s2">&quot;different time axes &quot;</span>
                                                     <span class="o">+</span> <span class="s2">&quot;requires interpolation &quot;</span>
@@ -376,14 +382,14 @@
             <span class="n">use_turns</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">newArray</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">nFuncs</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">use_times</span><span class="p">)])</span>
         <span class="k">elif</span> <span class="s1">&#39;by_turn&#39;</span> <span class="ow">in</span> <span class="n">timeBases</span><span class="p">:</span>
-            
+
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">assrt</span><span class="o">.</span><span class="n">equal_array_lengths</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                                          <span class="n">exception</span> <span class="o">=</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">)</span>
+                <span class="n">assrt</span><span class="o">.</span><span class="n">equal_array_lengths</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                          <span class="n">exception</span><span class="o">=</span><span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">)</span>
             <span class="k">except</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">:</span>
                 <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Arrays cover different numbers of turns, &quot;</span>
                               <span class="o">+</span> <span class="s2">&quot;shortest array length will be used&quot;</span><span class="p">)</span>
-            
+
             <span class="n">shortest</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
             <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">timebase</span> <span class="o">!=</span> <span class="s1">&#39;single&#39;</span> <span class="ow">and</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">shortest</span><span class="p">:</span>
@@ -398,11 +404,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">DataDefinitionError</span><span class="p">(</span><span class="s2">&quot;function timebases not &quot;</span>
                                             <span class="o">+</span> <span class="s2">&quot;recognised&quot;</span><span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">newArray</span><span class="p">,</span> <span class="n">timeBases</span><span class="p">,</span> <span class="n">use_times</span><span class="p">,</span> <span class="n">use_turns</span></div>
-    
-    
-    
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">sectioning</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -413,7 +417,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sectioning</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
-    
+
     <span class="nd">@sectioning</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">sectioning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_data_type</span><span class="p">(</span><span class="s1">&#39;sectioning&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
@@ -429,21 +433,21 @@
 <span class="sd">    *args : float, 1D iterable of floats, 2D iterable of floats</span>
 <span class="sd">        The data defining the programs</span>
 <span class="sd">    time : iterable of floats</span>
-<span class="sd">        The time array to be used for the data, to be used if the time </span>
+<span class="sd">        The time array to be used for the data, to be used if the time</span>
 <span class="sd">        dependent data is not given as 2D array</span>
 <span class="sd">    n_turns : int</span>
 <span class="sd">        The number of turns to be used, if a single value is given it will be</span>
 <span class="sd">        extended to n_turns length</span>
 <span class="sd">    interpolation : str</span>
 <span class="sd">        The type of interpolation to be used</span>
-<span class="sd">    </span>
+
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    data_type : dict</span>
 <span class="sd">        Dictionary containing relevant information to define the datatype</span>
 <span class="sd">    timebase : str</span>
 <span class="sd">        Either &#39;single&#39;, &#39;by_turn&#39;, or &#39;by_time&#39; depending on the definition</span>
-<span class="sd">        of the datatype.  As a string it is used as a key for the data_type </span>
+<span class="sd">        of the datatype.  As a string it is used as a key for the data_type</span>
 <span class="sd">        dict</span>
 <span class="sd">    interpolation : str</span>
 <span class="sd">        Identifier of the type of interpolation to be used when reshaping</span>
@@ -455,16 +459,16 @@
 
     <span class="n">_conversions</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A dictionary storing the available classes for converting to.  Each</span>
-<span class="sd">    key corresponds to the &#39;source&#39; class attribute of the different </span>
+<span class="sd">    A dictionary storing the available classes for converting to. Each</span>
+<span class="sd">    key corresponds to the &#39;source&#39; class attribute of the different</span>
 <span class="sd">    synchronous programs, and the value is the corresponding class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">time</span><span class="p">,</span> <span class="n">n_turns</span> <span class="o">=</span> <span class="n">n_turns</span><span class="p">,</span>
-                               <span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">n_turns</span><span class="o">=</span><span class="n">n_turns</span><span class="p">,</span>
+                               <span class="n">interpolation</span><span class="o">=</span><span class="n">interpolation</span><span class="p">)</span>
 
-<div class="viewcode-block" id="_synchronous_data_program.to_momentum"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program.to_momentum">[docs]</a>    <span class="k">def</span> <span class="nf">to_momentum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="_synchronous_data_program.to_momentum"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program.to_momentum">[docs]</a>    <span class="k">def</span> <span class="nf">to_momentum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inPlace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert from any synchronous data to momentum either in place or as</span>
 <span class="sd">        a new array.</span>
@@ -475,8 +479,8 @@
 <span class="sd">            If True the array will be changed in place, if False a new array</span>
 <span class="sd">            is created and returned. The default is True.</span>
 <span class="sd">        **kwargs : keyword arguments</span>
-<span class="sd">            The keyword argumens requred for the conversion.  Requirements </span>
-<span class="sd">            depend on the data to be converted, but will include some of: </span>
+<span class="sd">            The keyword argumens requred for the conversion.  Requirements</span>
+<span class="sd">            depend on the data to be converted, but will include some of:</span>
 <span class="sd">                (bending_radius, rest_mass, charge).</span>
 
 <span class="sd">        Returns</span>
@@ -489,7 +493,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert</span><span class="p">(</span><span class="s1">&#39;momentum&#39;</span><span class="p">,</span> <span class="n">inPlace</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="_synchronous_data_program.to_total_energy"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program.to_total_energy">[docs]</a>    <span class="k">def</span> <span class="nf">to_total_energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="_synchronous_data_program.to_total_energy"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program.to_total_energy">[docs]</a>    <span class="k">def</span> <span class="nf">to_total_energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inPlace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert from any synchronous data to total energy either in place or</span>
 <span class="sd">        as a new array.</span>
@@ -500,8 +504,8 @@
 <span class="sd">            If True the array will be changed in place, if False a new array</span>
 <span class="sd">            is created and returned. The default is True.</span>
 <span class="sd">        **kwargs : keyword arguments</span>
-<span class="sd">            The keyword argumens requred for the conversion.  Requirements </span>
-<span class="sd">            depend on the data to be converted, but will include some of: </span>
+<span class="sd">            The keyword argumens requred for the conversion.  Requirements</span>
+<span class="sd">            depend on the data to be converted, but will include some of:</span>
 <span class="sd">                (bending_radius, rest_mass, charge).</span>
 
 <span class="sd">        Returns</span>
@@ -514,7 +518,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert</span><span class="p">(</span><span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="n">inPlace</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="_synchronous_data_program.to_B_field"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program.to_B_field">[docs]</a>    <span class="k">def</span> <span class="nf">to_B_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="_synchronous_data_program.to_B_field"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program.to_B_field">[docs]</a>    <span class="k">def</span> <span class="nf">to_B_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inPlace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert from any synchronous data to magnetic field either in place or</span>
 <span class="sd">        as a new array.</span>
@@ -525,8 +529,8 @@
 <span class="sd">            If True the array will be changed in place, if False a new array</span>
 <span class="sd">            is created and returned. The default is True.</span>
 <span class="sd">        **kwargs : keyword arguments</span>
-<span class="sd">            The keyword argumens requred for the conversion.  Requirements </span>
-<span class="sd">            depend on the data to be converted, but will include some of: </span>
+<span class="sd">            The keyword argumens requred for the conversion.  Requirements</span>
+<span class="sd">            depend on the data to be converted, but will include some of:</span>
 <span class="sd">                (bending_radius, rest_mass, charge).</span>
 
 <span class="sd">        Returns</span>
@@ -535,7 +539,7 @@
 <span class="sd">            If inPlace is False a new datatype array is returned.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="_synchronous_data_program.to_kin_energy"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program.to_kin_energy">[docs]</a>    <span class="k">def</span> <span class="nf">to_kin_energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="_synchronous_data_program.to_kin_energy"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program.to_kin_energy">[docs]</a>    <span class="k">def</span> <span class="nf">to_kin_energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inPlace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert from any synchronous data to kinetic energy either in place or</span>
 <span class="sd">        as a new array.</span>
@@ -546,8 +550,8 @@
 <span class="sd">            If True the array will be changed in place, if False a new array</span>
 <span class="sd">            is created and returned. The default is True.</span>
 <span class="sd">        **kwargs : keyword arguments</span>
-<span class="sd">            The keyword argumens requred for the conversion.  Requirements </span>
-<span class="sd">            depend on the data to be converted, but will include some of: </span>
+<span class="sd">            The keyword argumens requred for the conversion.  Requirements</span>
+<span class="sd">            depend on the data to be converted, but will include some of:</span>
 <span class="sd">                (bending_radius, rest_mass, charge).</span>
 
 <span class="sd">        Returns</span>
@@ -558,15 +562,14 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="s1">&#39;kin_energy&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_no_convert</span><span class="p">(</span><span class="n">inPlace</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert</span><span class="p">(</span><span class="s1">&#39;kin_energy&#39;</span><span class="p">,</span> <span class="n">inPlace</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>   </div>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert</span><span class="p">(</span><span class="s1">&#39;kin_energy&#39;</span><span class="p">,</span> <span class="n">inPlace</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-
-    <span class="c1">#TODO: Consider multi-section version</span>
+    <span class="c1"># TODO: Consider multi-section version</span>
 <div class="viewcode-block" id="_synchronous_data_program.combine_single_sections"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program.combine_single_sections">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">combine_single_sections</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-                                <span class="n">interpolation</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                                <span class="n">interpolation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Combine multiple single sections datatype functions into a </span>
+<span class="sd">        Combine multiple single sections datatype functions into a</span>
 <span class="sd">        single array.</span>
 
 <span class="sd">        Parameters</span>
@@ -597,24 +600,24 @@
                                    <span class="o">+</span> <span class="s2">&quot;combined&quot;</span><span class="p">)</span>
 
         <span class="n">newArray</span><span class="p">,</span> <span class="n">timeBases</span><span class="p">,</span> <span class="n">use_times</span><span class="p">,</span> <span class="n">use_turns</span> \
-            <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_combine_single_sections</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> 
-                                            <span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span><span class="p">,</span> 
-                                            <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-            
+            <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_combine_single_sections</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                                           <span class="n">interpolation</span><span class="o">=</span><span class="n">interpolation</span><span class="p">,</span>
+                                           <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
         <span class="n">bending_radius</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;bending_radius&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">bending_radius</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">):</span>
-            <span class="n">bending_radius</span> <span class="o">=</span> <span class="p">[</span><span class="n">bending_radius</span><span class="p">]</span><span class="o">*</span><span class="n">newArray</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">bending_radius</span> <span class="o">=</span> <span class="p">[</span><span class="n">bending_radius</span><span class="p">]</span> <span class="o">*</span> <span class="n">newArray</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">bending_radius</span><span class="p">)):</span>
             <span class="k">if</span> <span class="n">timeBases</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;single&#39;</span><span class="p">:</span>
-                <span class="n">section</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">use_time</span> <span class="o">=</span> <span class="n">use_times</span><span class="p">,</span> 
-                                    <span class="n">use_turns</span> <span class="o">=</span> <span class="n">use_turns</span><span class="p">)</span>
+                <span class="n">section</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">use_time</span><span class="o">=</span><span class="n">use_times</span><span class="p">,</span>
+                                    <span class="n">use_turns</span><span class="o">=</span><span class="n">use_turns</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">section</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">source</span> <span class="o">!=</span> <span class="n">a</span><span class="o">.</span><span class="n">source</span><span class="p">:</span>
-                <span class="n">section</span><span class="o">.</span><span class="n">_convert</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
-                                 <span class="n">bending_radius</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="n">section</span><span class="o">.</span><span class="n">_convert</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="n">inPlace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                 <span class="n">bending_radius</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">newArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">section</span>
-        
+
         <span class="n">newArray</span><span class="o">.</span><span class="n">timebase</span> <span class="o">=</span> <span class="n">timeBases</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">newArray</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
             <span class="n">newArray</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">use_times</span>
@@ -623,20 +626,19 @@
             <span class="n">newArray</span><span class="o">.</span><span class="n">sectioning</span> <span class="o">=</span> <span class="s1">&#39;multi_section&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">newArray</span><span class="o">.</span><span class="n">sectioning</span> <span class="o">=</span> <span class="s1">&#39;single_section&#39;</span>
-        
+
         <span class="n">newArray</span><span class="o">.</span><span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span>
-        
+
         <span class="k">return</span> <span class="n">newArray</span></div>
 
-
-    <span class="c1">#TODO: multi-section</span>
-    <span class="c1">#TODO: handle flat_bottom and flat_top</span>
-<div class="viewcode-block" id="_synchronous_data_program.preprocess"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program.preprocess">[docs]</a>    <span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">circumference</span><span class="p">,</span> <span class="n">interp_time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
-                   <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">t_start</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">t_end</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span>
-                   <span class="n">flat_bottom</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">flat_top</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">targetNTurns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span>
-                   <span class="n">store_turns</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="c1"># TODO: multi-section</span>
+    <span class="c1"># TODO: handle flat_bottom and flat_top</span>
+<div class="viewcode-block" id="_synchronous_data_program.preprocess"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program.preprocess">[docs]</a>    <span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">circumference</span><span class="p">,</span> <span class="n">interp_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">t_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t_end</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span>
+                   <span class="n">flat_bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">flat_top</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">targetNTurns</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span>
+                   <span class="n">store_turns</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Preprocess the synchronous data to a full program for simulations or </span>
+<span class="sd">        Preprocess the synchronous data to a full program for simulations or</span>
 <span class="sd">        calculations</span>
 
 <span class="sd">        Parameters</span>
@@ -646,37 +648,37 @@
 <span class="sd">        circumference : float</span>
 <span class="sd">            Ring circumference.</span>
 <span class="sd">        interp_time : float or function, optional</span>
-<span class="sd">            Defines the separation in time between points saved by the </span>
+<span class="sd">            Defines the separation in time between points saved by the</span>
 <span class="sd">            interpolation. The default is None.</span>
 <span class="sd">        interpolation : str, optional</span>
 <span class="sd">            The type of interpolation to be used. The default is &#39;linear&#39;.</span>
 <span class="sd">        t_start : float, optional</span>
-<span class="sd">            The earliest desired start time of the interpolation. The default </span>
+<span class="sd">            The earliest desired start time of the interpolation. The default</span>
 <span class="sd">            is 0.</span>
 <span class="sd">        t_end : float, optional</span>
-<span class="sd">            The latest desired end time of the interpolation. The default is </span>
+<span class="sd">            The latest desired end time of the interpolation. The default is</span>
 <span class="sd">            np.inf.</span>
 <span class="sd">        flat_bottom : int, optional</span>
-<span class="sd">            Number of turns of flat bottom.  Not yet implemented. The default </span>
+<span class="sd">            Number of turns of flat bottom.  Not yet implemented. The default</span>
 <span class="sd">            is 0.</span>
 <span class="sd">        flat_top : int, optional</span>
-<span class="sd">            Number of turns of flat top.  Not yet implemented. The default is </span>
+<span class="sd">            Number of turns of flat top.  Not yet implemented. The default is</span>
 <span class="sd">            0.</span>
 <span class="sd">        targetNTurns : int, optional</span>
 <span class="sd">            The maximum desired number of turns. The default is np.inf.</span>
 <span class="sd">        store_turns : bool, optional</span>
 <span class="sd">            Flag to determine if the turn numbers will be included.  If True</span>
 <span class="sd">            the program is interpolated turn by turn and the turn numbers are</span>
-<span class="sd">            stored, if not no turn information is available.  Interpolation </span>
+<span class="sd">            stored, if not no turn information is available.  Interpolation</span>
 <span class="sd">            without turn numbers is faster. The default is True.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        excpt.DataDefinitionError</span>
-<span class="sd">            If the data is not a momentum_program a DataDefinitionError is </span>
+<span class="sd">            If the data is not a momentum_program a DataDefinitionError is</span>
 <span class="sd">            raised.</span>
 <span class="sd">        excpt.InputError</span>
-<span class="sd">            If the requested type of interpolation is not available an </span>
+<span class="sd">            If the requested type of interpolation is not available an</span>
 <span class="sd">            InputError is raised.</span>
 
 <span class="sd">        Returns</span>
@@ -684,20 +686,20 @@
 <span class="sd">        newArray : datatype</span>
 <span class="sd">            The newly preprocessed array.  The data is of the form</span>
 <span class="sd">            [turn numbers, time, synchronous data].  If multiple sections are</span>
-<span class="sd">            defined additional synchronous data members are added for each </span>
+<span class="sd">            defined additional synchronous data members are added for each</span>
 <span class="sd">            section.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">momentum_program</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">DataDefinitionError</span><span class="p">(</span><span class="s2">&quot;Only momentum functions &quot;</span>
-                                                 <span class="o">+</span> <span class="s2">&quot;can be preprocessed, not &quot;</span>
-                                                 <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> 
-                                                 <span class="o">+</span> <span class="s2">&quot;, first run &quot;</span> 
-                                                 <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> 
-                                                 <span class="o">+</span> <span class="s2">&quot;.convert&quot;</span><span class="p">)</span>
+                                            <span class="o">+</span> <span class="s2">&quot;can be preprocessed, not &quot;</span>
+                                            <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                                            <span class="o">+</span> <span class="s2">&quot;, first run &quot;</span>
+                                            <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                                            <span class="o">+</span> <span class="s2">&quot;.convert&quot;</span><span class="p">)</span>
 
         <span class="n">interp_funcs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;linear&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_linear_interpolation</span><span class="p">,</span>
                         <span class="s1">&#39;derivative&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_derivative_interpolation</span><span class="p">}</span>
-        
+
         <span class="k">if</span> <span class="n">interpolation</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">interp_funcs</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Available interpolation options are:</span><span class="se">\</span>
 <span class="s2">                                        </span><span class="si">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">interp_funcs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -707,69 +709,73 @@
                 <span class="n">_interp_time</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">_interp_time</span> <span class="o">=</span> <span class="n">interp_time</span>
-            <span class="n">interp_time</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">_interp_time</span>
-        
+
+            <span class="k">def</span> <span class="nf">interp_time</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">_interp_time</span>
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">t_start</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]:</span>
-                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;t_start too early, starting from &quot;</span> 
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;t_start too early, starting from &quot;</span>
                               <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
                 <span class="n">t_start</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-    
+
             <span class="k">if</span> <span class="n">t_end</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;t_stop too late, ending at &quot;</span> 
-                              <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">t_end</span><span class="p">):</span>
+                    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;t_stop too late, ending at &quot;</span>
+                                  <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
                 <span class="n">t_end</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="c1">#TODO: Treat derivative interpolation without storing turns</span>
+        <span class="c1"># TODO: Treat derivative interpolation without storing turns</span>
             <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
                 <span class="k">if</span> <span class="n">store_turns</span><span class="p">:</span>
                     <span class="n">nTurns</span><span class="p">,</span> <span class="n">useTurns</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">momentum</span> \
-                                <span class="o">=</span> <span class="n">interp_funcs</span><span class="p">[</span><span class="n">interpolation</span><span class="p">](</span><span class="n">mass</span><span class="p">,</span>
-                                                              <span class="n">circumference</span><span class="p">,</span> 
-                                                              <span class="p">(</span><span class="n">interp_time</span><span class="p">,</span> 
-                                                               <span class="n">t_start</span><span class="p">,</span> <span class="n">t_end</span><span class="p">),</span> 
-                                                              <span class="n">targetNTurns</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+                        <span class="o">=</span> <span class="n">interp_funcs</span><span class="p">[</span><span class="n">interpolation</span><span class="p">](</span><span class="n">mass</span><span class="p">,</span>
+                                                      <span class="n">circumference</span><span class="p">,</span>
+                                                      <span class="p">(</span><span class="n">interp_time</span><span class="p">,</span>
+                                                       <span class="n">t_start</span><span class="p">,</span> <span class="n">t_end</span><span class="p">),</span>
+                                                      <span class="n">targetNTurns</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">nTurns</span><span class="p">,</span> <span class="n">useTurns</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">momentum</span> \
-                        <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_linear_interpolation_no_turns</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span> 
-                                                              <span class="n">circumference</span><span class="p">,</span> 
+                        <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_linear_interpolation_no_turns</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span>
+                                                              <span class="n">circumference</span><span class="p">,</span>
                                                               <span class="p">(</span><span class="n">interp_time</span><span class="p">,</span>
                                                                <span class="n">t_start</span><span class="p">,</span> <span class="n">t_end</span><span class="p">),</span>
                                                               <span class="n">s</span><span class="p">)</span>
-                    
-        <span class="c1">#TODO: Sampling with turn by turn data</span>
-        <span class="c1">#TODO: nTurns != self.shape[1]</span>
+
+        <span class="c1"># TODO: Sampling with turn by turn data</span>
+        <span class="c1"># TODO: nTurns != self.shape[1]</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_turn&#39;</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">targetNTurns</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">:</span>
-                <span class="n">nTurns</span> <span class="o">=</span> <span class="n">targetNTurns</span>
+                <span class="n">nTurns</span> <span class="o">=</span> <span class="n">targetNTurns</span> <span class="o">-</span> <span class="mi">1</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">nTurns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">useTurns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nTurns</span><span class="p">)</span>
+                <span class="n">nTurns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="n">useTurns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nTurns</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
             <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time_from_turn</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span> <span class="n">circumference</span><span class="p">)</span>
-            <span class="n">momentum</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        
-        <span class="c1">#TODO: Handle passed number of turns</span>
+            <span class="n">momentum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="c1"># TODO: Handle passed number of turns</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;single&#39;</span><span class="p">:</span>
             <span class="n">time</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">nTurns</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">nTurns</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">useTurns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">momentum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-        <span class="n">newArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">2</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">useTurns</span><span class="p">)])</span>
+        <span class="n">newArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">useTurns</span><span class="p">)])</span>
         <span class="n">newArray</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">useTurns</span>
         <span class="n">newArray</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">time</span>
-        
+
         <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-            <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">momentum</span>
-            
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
+                <span class="n">newArray</span><span class="p">[</span><span class="n">s</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">momentum</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">newArray</span><span class="p">[</span><span class="n">s</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">momentum</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+
         <span class="n">newArray</span> <span class="o">=</span> <span class="n">newArray</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">momentum_program</span><span class="p">)</span>
-        
+
         <span class="n">newArray</span><span class="o">.</span><span class="n">n_turns</span> <span class="o">=</span> <span class="n">nTurns</span>
-        
+
         <span class="k">return</span> <span class="n">newArray</span></div>
 
-
-<div class="viewcode-block" id="_synchronous_data_program.convert"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program.convert">[docs]</a>    <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">charge</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">bending_radius</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
-                <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="_synchronous_data_program.convert"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program.convert">[docs]</a>    <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">charge</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bending_radius</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">inPlace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert from any synchronous data to momentum.</span>
 
@@ -782,7 +788,7 @@
 <span class="sd">        bending_radius : float, optional</span>
 <span class="sd">            Bending radius of the machine. The default is None.</span>
 <span class="sd">        inPlace : bool, optional</span>
-<span class="sd">            Indicate of the array should be updated or a new array should be </span>
+<span class="sd">            Indicate of the array should be updated or a new array should be</span>
 <span class="sd">            returned. The default is True.</span>
 
 <span class="sd">        Returns</span>
@@ -797,11 +803,11 @@
         <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
                 <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_section</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">charge</span><span class="p">,</span>
-                                                        <span class="n">bending_radius</span><span class="p">)</span>
+                                                       <span class="n">bending_radius</span><span class="p">)</span>
                 <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_section</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">charge</span><span class="p">,</span>
-                                                     <span class="n">bending_radius</span><span class="p">)</span>
+                                                    <span class="n">bending_radius</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">inPlace</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
@@ -809,16 +815,15 @@
                     <span class="bp">self</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="bp">self</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
-            
+
             <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">=</span> <span class="n">momentum_program</span>
             <span class="k">return</span> <span class="kc">None</span>
-        
+
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">momentum_program</span><span class="p">,</span> <span class="o">*</span><span class="n">newArray</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="_synchronous_data_program._convert_section"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program._convert_section">[docs]</a>    <span class="k">def</span> <span class="nf">_convert_section</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">charge</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
-                         <span class="n">bending_radius</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="_synchronous_data_program._convert_section"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program._convert_section">[docs]</a>    <span class="k">def</span> <span class="nf">_convert_section</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">charge</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">bending_radius</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert a single machine section to momentum.</span>
 
@@ -836,7 +841,7 @@
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        excpt.InputError</span>
-<span class="sd">            If converting from magnetic field and bending_radius is not </span>
+<span class="sd">            If converting from magnetic field and bending_radius is not</span>
 <span class="sd">            supplied an InputError is raised.</span>
 <span class="sd">        RuntimeError</span>
 <span class="sd">            If the program is not convertible a RuntimeError is raised.</span>
@@ -850,7 +855,7 @@
             <span class="n">sectionFunction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">section</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">sectionFunction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">section</span><span class="p">])</span>
-        
+
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">momentum_program</span><span class="p">):</span>
             <span class="k">pass</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_energy_program</span><span class="p">):</span>
@@ -860,18 +865,17 @@
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bending_field_program</span><span class="p">):</span>
             <span class="k">if</span> <span class="kc">None</span> <span class="ow">in</span> <span class="p">(</span><span class="n">bending_radius</span><span class="p">,</span> <span class="n">charge</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;Converting from bending field &quot;</span>
-                                            <span class="o">+</span> <span class="s2">&quot;requires both charge and &quot;</span>
-                                            <span class="o">+</span> <span class="s2">&quot;bending radius to be defined&quot;</span><span class="p">)</span>
-            <span class="n">sectionFunction</span> <span class="o">=</span> <span class="n">rt</span><span class="o">.</span><span class="n">B_field_to_momentum</span><span class="p">(</span><span class="n">sectionFunction</span><span class="p">,</span> 
-                                                     <span class="n">bending_radius</span><span class="p">,</span> 
+                                       <span class="o">+</span> <span class="s2">&quot;requires both charge and &quot;</span>
+                                       <span class="o">+</span> <span class="s2">&quot;bending radius to be defined&quot;</span><span class="p">)</span>
+            <span class="n">sectionFunction</span> <span class="o">=</span> <span class="n">rt</span><span class="o">.</span><span class="n">B_field_to_momentum</span><span class="p">(</span><span class="n">sectionFunction</span><span class="p">,</span>
+                                                     <span class="n">bending_radius</span><span class="p">,</span>
                                                      <span class="n">charge</span><span class="p">)</span>
-    
+
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Function type invalid&quot;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">sectionFunction</span></div>
-    
-    
+
 <div class="viewcode-block" id="_synchronous_data_program._convert"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program._convert">[docs]</a>    <span class="k">def</span> <span class="nf">_convert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">inPlace</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert between different types of synchronous data, called by the</span>
@@ -885,8 +889,8 @@
 <span class="sd">            If True the data will be modified directly, if False a new array</span>
 <span class="sd">            is created and returned.</span>
 <span class="sd">        **kwargs : keyword arguments</span>
-<span class="sd">            Keyword arguments needed for the conversion.  Requirements </span>
-<span class="sd">            depend on the data to be converted, but will include some of: </span>
+<span class="sd">            Keyword arguments needed for the conversion.  Requirements</span>
+<span class="sd">            depend on the data to be converted, but will include some of:</span>
 <span class="sd">                (bending_radius, rest_mass, charge).</span>
 
 <span class="sd">        Returns</span>
@@ -897,30 +901,30 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">conversion_function</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">rt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">+</span> <span class="s1">&#39;_to_&#39;</span> <span class="o">+</span> <span class="n">destination</span><span class="p">)</span>
         <span class="n">newArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-        
+
         <span class="n">arguments</span> <span class="o">=</span> <span class="n">conversion_function</span><span class="o">.</span><span class="vm">__code__</span><span class="o">.</span><span class="n">co_varnames</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">arguments</span> <span class="o">=</span> <span class="p">{</span><span class="n">arg</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">arguments</span><span class="p">}</span>        
+        <span class="n">arguments</span> <span class="o">=</span> <span class="p">{</span><span class="n">arg</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">arguments</span><span class="p">}</span>
 
         <span class="n">massTypes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;rest_mass&#39;</span><span class="p">,</span> <span class="s1">&#39;n_nuc&#39;</span><span class="p">,</span> <span class="s1">&#39;atomic_mass&#39;</span><span class="p">]</span>
 
-        <span class="n">checkList</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">arguments</span><span class="p">[</span><span class="n">arg</span><span class="p">]</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">arguments</span> \
-                         <span class="k">if</span> <span class="n">arg</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">massTypes</span><span class="p">)</span>
-        
-        <span class="n">checkKwargs</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">arg</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">arguments</span> \
-                        <span class="k">if</span> <span class="n">arg</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">massTypes</span><span class="p">)</span>
-        
+        <span class="n">checkList</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">arguments</span><span class="p">[</span><span class="n">arg</span><span class="p">]</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">arguments</span>
+                          <span class="k">if</span> <span class="n">arg</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">massTypes</span><span class="p">)</span>
+
+        <span class="n">checkKwargs</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">arg</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">arguments</span>
+                            <span class="k">if</span> <span class="n">arg</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">massTypes</span><span class="p">)</span>
+
         <span class="n">errorMsg</span> <span class="o">=</span> <span class="s1">&#39;conversion from &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">+</span> <span class="s1">&#39; to &#39;</span> <span class="o">+</span> <span class="n">destination</span> \
                    <span class="o">+</span> <span class="s1">&#39; requires all of &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">checkKwargs</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; to be defined&#39;</span>
-        
+
         <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">m</span> <span class="ow">in</span> <span class="n">arguments</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">massTypes</span><span class="p">):</span>
             <span class="n">errorMsg</span> <span class="o">+=</span> <span class="s1">&#39; and one of (rest_mass, n_nuc, atomic_mass)&#39;</span>
-            <span class="n">assrt</span><span class="o">.</span><span class="n">single_not_none</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">arguments</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">massTypes</span><span class="p">),</span> 
-                                  <span class="n">msg</span> <span class="o">=</span> <span class="n">errorMsg</span><span class="p">,</span> 
-                                  <span class="n">exception</span> <span class="o">=</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">)</span>
-        
-        <span class="n">assrt</span><span class="o">.</span><span class="n">all_not_none</span><span class="p">(</span><span class="o">*</span><span class="n">checkList</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">errorMsg</span><span class="p">,</span> 
-                           <span class="n">exception</span> <span class="o">=</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">)</span>
-        
+            <span class="n">assrt</span><span class="o">.</span><span class="n">single_not_none</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">arguments</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">massTypes</span><span class="p">),</span>
+                                  <span class="n">msg</span><span class="o">=</span><span class="n">errorMsg</span><span class="p">,</span>
+                                  <span class="n">exception</span><span class="o">=</span><span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">)</span>
+
+        <span class="n">assrt</span><span class="o">.</span><span class="n">all_not_none</span><span class="p">(</span><span class="o">*</span><span class="n">checkList</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="n">errorMsg</span><span class="p">,</span>
+                           <span class="n">exception</span><span class="o">=</span><span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">)</span>
+
         <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
                 <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">conversion_function</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">arguments</span><span class="p">)</span>
@@ -934,13 +938,12 @@
                     <span class="bp">self</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="bp">self</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
-            
+
             <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conversions</span><span class="p">[</span><span class="n">destination</span><span class="p">]</span>
             <span class="k">return</span> <span class="kc">None</span>
 
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_conversions</span><span class="p">[</span><span class="n">destination</span><span class="p">],</span> <span class="o">*</span><span class="n">newArray</span><span class="p">)</span></div>
-
 
 <div class="viewcode-block" id="_synchronous_data_program._no_convert"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program._no_convert">[docs]</a>    <span class="k">def</span> <span class="nf">_no_convert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inPlace</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -963,7 +966,6 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="p">)</span></div>
 
-
 <div class="viewcode-block" id="_synchronous_data_program._time_from_turn"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program._time_from_turn">[docs]</a>    <span class="k">def</span> <span class="nf">_time_from_turn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">circumference</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Used to acquire cumulative cycle time for data that has been defined</span>
@@ -983,10 +985,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">trev</span> <span class="o">=</span> <span class="n">rt</span><span class="o">.</span><span class="n">mom_to_trev</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mass</span><span class="p">,</span> <span class="n">circ</span><span class="o">=</span><span class="n">circumference</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">trev</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">trev</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="_synchronous_data_program._linear_interpolation_no_turns"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program._linear_interpolation_no_turns">[docs]</a>    <span class="k">def</span> <span class="nf">_linear_interpolation_no_turns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">circumference</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> 
+<div class="viewcode-block" id="_synchronous_data_program._linear_interpolation_no_turns"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program._linear_interpolation_no_turns">[docs]</a>    <span class="k">def</span> <span class="nf">_linear_interpolation_no_turns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">circumference</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span>
                                        <span class="n">section</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Linearly interpolate the cycle without considering turn numbers.</span>
@@ -998,7 +999,7 @@
 <span class="sd">        circumference : float</span>
 <span class="sd">            Machine circumference.</span>
 <span class="sd">        time : tuple of (function, float, float)</span>
-<span class="sd">            (interp_time function, start time, stop time) used for the </span>
+<span class="sd">            (interp_time function, start time, stop time) used for the</span>
 <span class="sd">            interpolation.</span>
 <span class="sd">        section : int</span>
 <span class="sd">            Section number.</span>
@@ -1006,7 +1007,7 @@
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        RuntimeError</span>
-<span class="sd">            If interp_time function returns 0 an infinite loop would be </span>
+<span class="sd">            If interp_time function returns 0 an infinite loop would be</span>
 <span class="sd">            entered and a RuntimeError is raised.</span>
 
 <span class="sd">        Returns</span>
@@ -1036,15 +1037,14 @@
 
         <span class="k">if</span> <span class="n">interp_time</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">stop</span><span class="p">:</span>
             <span class="n">interp_time</span> <span class="o">=</span> <span class="n">interp_time</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        
+
         <span class="n">input_time</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">section</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
         <span class="n">input_momentum</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">section</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-        
-        <span class="n">momentum_interp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">interp_time</span><span class="p">,</span> <span class="n">input_time</span><span class="p">,</span> <span class="n">input_momentum</span><span class="p">)</span>
-        
-        <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">interp_time</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">),</span> 
-                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">interp_time</span><span class="p">),</span> <span class="n">momentum_interp</span><span class="p">)</span></div>
 
+        <span class="n">momentum_interp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">interp_time</span><span class="p">,</span> <span class="n">input_time</span><span class="p">,</span> <span class="n">input_momentum</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">interp_time</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">interp_time</span><span class="p">),</span> <span class="n">momentum_interp</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="_synchronous_data_program._linear_interpolation"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program._linear_interpolation">[docs]</a>    <span class="k">def</span> <span class="nf">_linear_interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">circumference</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">targetNTurns</span><span class="p">,</span>
                               <span class="n">section</span><span class="p">):</span>
@@ -1058,7 +1058,7 @@
 <span class="sd">        circumference : float</span>
 <span class="sd">            Ring circumference.</span>
 <span class="sd">        time : tuple of (function, float, float)</span>
-<span class="sd">            (interp_time function, start time, stop time) used for the </span>
+<span class="sd">            (interp_time function, start time, stop time) used for the</span>
 <span class="sd">            interpolation.</span>
 <span class="sd">        targetNTurns : int, optional</span>
 <span class="sd">            The maximum desired number of turns. The default is np.inf.</span>
@@ -1090,7 +1090,7 @@
         <span class="n">use_turns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="n">next_time</span> <span class="o">=</span> <span class="n">time_interp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">T0</span>
-        
+
         <span class="n">next_store_time</span> <span class="o">=</span> <span class="n">time_func</span><span class="p">(</span><span class="n">time_interp</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
         <span class="n">input_time</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">section</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
@@ -1102,22 +1102,22 @@
             <span class="k">while</span> <span class="n">next_time</span> <span class="o">&gt;</span> <span class="n">input_time</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
                 <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
 
-            <span class="n">next_momentum</span> <span class="o">=</span> <span class="n">input_momentum</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> \
-                            <span class="o">+</span> <span class="p">(</span><span class="n">input_momentum</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">input_momentum</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> \
-                             <span class="o">*</span> <span class="p">(</span><span class="n">next_time</span> <span class="o">-</span> <span class="n">input_time</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> \
-                             <span class="o">/</span> <span class="p">(</span><span class="n">input_time</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">input_time</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-                             
+            <span class="n">next_momentum</span> <span class="o">=</span> <span class="n">input_momentum</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> \
+                <span class="o">+</span> <span class="p">(</span><span class="n">input_momentum</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">input_momentum</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> \
+                <span class="o">*</span> <span class="p">(</span><span class="n">next_time</span> <span class="o">-</span> <span class="n">input_time</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> \
+                <span class="o">/</span> <span class="p">(</span><span class="n">input_time</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">input_time</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+
             <span class="n">next_beta</span> <span class="o">=</span> <span class="n">rt</span><span class="o">.</span><span class="n">mom_to_beta</span><span class="p">(</span><span class="n">next_momentum</span><span class="p">,</span> <span class="n">mass</span><span class="p">)</span>
             <span class="n">next_time</span> <span class="o">=</span> <span class="n">next_time</span> <span class="o">+</span> <span class="n">rt</span><span class="o">.</span><span class="n">beta_to_trev</span><span class="p">(</span><span class="n">next_beta</span><span class="p">,</span> <span class="n">circumference</span><span class="p">)</span>
             <span class="n">nTurns</span> <span class="o">+=</span> <span class="mi">1</span>
 
-            <span class="k">if</span> <span class="n">next_time</span> <span class="o">&gt;=</span> <span class="n">next_store_time</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">next_time</span> <span class="o">&gt;=</span> <span class="n">next_store_time</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">next_time</span> <span class="o">&lt;</span> <span class="n">input_time</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
                 <span class="n">time_interp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_time</span><span class="p">)</span>
                 <span class="n">momentum_interp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_momentum</span><span class="p">)</span>
                 <span class="n">use_turns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nTurns</span><span class="p">)</span>
                 <span class="n">next_store_time</span> <span class="o">=</span> <span class="n">time_func</span><span class="p">(</span><span class="n">time_interp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
-            <span class="k">if</span> <span class="n">nTurns</span> <span class="o">&gt;=</span> <span class="n">targetNTurns</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">nTurns</span> <span class="o">&gt;=</span> <span class="n">targetNTurns</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="k">break</span>
 
         <span class="k">else</span><span class="p">:</span>
@@ -1126,7 +1126,7 @@
 
         <span class="k">return</span> <span class="n">nTurns</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">,</span> <span class="n">time_interp</span><span class="p">,</span> <span class="n">momentum_interp</span></div>
 
-<div class="viewcode-block" id="_synchronous_data_program._derivative_interpolation"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program._derivative_interpolation">[docs]</a>    <span class="k">def</span> <span class="nf">_derivative_interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">circumference</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> 
+<div class="viewcode-block" id="_synchronous_data_program._derivative_interpolation"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program._derivative_interpolation">[docs]</a>    <span class="k">def</span> <span class="nf">_derivative_interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">circumference</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span>
                                   <span class="n">targetNTurns</span><span class="p">,</span> <span class="n">section</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Interpolate the synchronous data maintaining a linearly varying first</span>
@@ -1139,7 +1139,7 @@
 <span class="sd">        circumference : float</span>
 <span class="sd">            Ring circumference.</span>
 <span class="sd">        time : tuple of (function, float, float)</span>
-<span class="sd">            (interp_time function, start time, stop time) used for the </span>
+<span class="sd">            (interp_time function, start time, stop time) used for the</span>
 <span class="sd">            interpolation.</span>
 <span class="sd">        targetNTurns : int, optional</span>
 <span class="sd">            The maximum desired number of turns. The default is np.inf.</span>
@@ -1160,8 +1160,8 @@
         <span class="n">time_func</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">stop</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-        
-        <span class="c1">#TODO: Is it acceptable to have linear interp here?</span>
+
+        <span class="c1"># TODO: Is it acceptable to have linear interp here?</span>
         <span class="n">pInit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="n">section</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="p">[</span><span class="n">section</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
         <span class="n">beta_0</span> <span class="o">=</span> <span class="n">rt</span><span class="o">.</span><span class="n">mom_to_beta</span><span class="p">(</span><span class="n">pInit</span><span class="p">,</span> <span class="n">mass</span><span class="p">)</span>
         <span class="n">T0</span> <span class="o">=</span> <span class="n">rt</span><span class="o">.</span><span class="n">beta_to_trev</span><span class="p">(</span><span class="n">beta_0</span><span class="p">,</span> <span class="n">circumference</span><span class="p">)</span>
@@ -1172,7 +1172,7 @@
         <span class="n">use_turns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="n">next_time</span> <span class="o">=</span> <span class="n">time_interp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">T0</span>
-        
+
         <span class="n">next_store_time</span> <span class="o">=</span> <span class="n">time_func</span><span class="p">(</span><span class="n">time_interp</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
         <span class="n">input_time</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">section</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
@@ -1180,11 +1180,10 @@
 
         <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
 
-        
         <span class="n">momentum_initial</span> <span class="o">=</span> <span class="n">momentum_interp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="c1">#TODO: Compare gradients with other methods of derivative calculation</span>
+        <span class="c1"># TODO: Compare gradients with other methods of derivative calculation</span>
         <span class="n">momentum_derivative</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">input_momentum</span><span class="p">)</span>\
-                                <span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">input_time</span><span class="p">)</span>
+            <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">input_time</span><span class="p">)</span>
 
         <span class="n">momentum_derivative_interp</span> <span class="o">=</span> <span class="p">[</span><span class="n">momentum_derivative</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
         <span class="n">next_momentum</span> <span class="o">=</span> <span class="n">momentum_initial</span>
@@ -1193,12 +1192,12 @@
             <span class="k">while</span> <span class="n">next_time</span> <span class="o">&gt;</span> <span class="n">input_time</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
                 <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
 
-            <span class="n">derivative_point</span> <span class="o">=</span> <span class="n">momentum_derivative</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> \
-                            <span class="o">+</span> <span class="p">(</span><span class="n">momentum_derivative</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> \
-                               <span class="o">-</span> <span class="n">momentum_derivative</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> \
-                             <span class="o">*</span> <span class="p">(</span><span class="n">next_time</span> <span class="o">-</span> <span class="n">input_time</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> \
-                             <span class="o">/</span> <span class="p">(</span><span class="n">input_time</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">input_time</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-                             
+            <span class="n">derivative_point</span> <span class="o">=</span> <span class="n">momentum_derivative</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> \
+                <span class="o">+</span> <span class="p">(</span><span class="n">momentum_derivative</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+                   <span class="o">-</span> <span class="n">momentum_derivative</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> \
+                <span class="o">*</span> <span class="p">(</span><span class="n">next_time</span> <span class="o">-</span> <span class="n">input_time</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> \
+                <span class="o">/</span> <span class="p">(</span><span class="n">input_time</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">input_time</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+
             <span class="n">momentum_derivative_interp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">derivative_point</span><span class="p">)</span>
             <span class="n">future_time</span> <span class="o">=</span> <span class="n">next_time</span> <span class="o">+</span> <span class="n">rt</span><span class="o">.</span><span class="n">beta_to_trev</span><span class="p">(</span><span class="n">next_beta</span><span class="p">,</span> <span class="n">circumference</span><span class="p">)</span>
             <span class="n">next_momentum</span> <span class="o">+=</span> <span class="p">(</span><span class="n">future_time</span> <span class="o">-</span> <span class="n">next_time</span><span class="p">)</span> \
@@ -1208,20 +1207,20 @@
             <span class="n">next_time</span> <span class="o">=</span> <span class="n">future_time</span>
             <span class="n">nTurns</span> <span class="o">+=</span> <span class="mi">1</span>
 
-            <span class="k">if</span> <span class="n">next_time</span> <span class="o">&gt;=</span> <span class="n">next_store_time</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">next_time</span> <span class="o">&gt;=</span> <span class="n">next_store_time</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">next_time</span> <span class="o">&lt;</span> <span class="n">input_time</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
                 <span class="n">time_interp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_time</span><span class="p">)</span>
                 <span class="n">momentum_interp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_momentum</span><span class="p">)</span>
                 <span class="n">use_turns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nTurns</span><span class="p">)</span>
                 <span class="n">next_store_time</span> <span class="o">=</span> <span class="n">time_func</span><span class="p">(</span><span class="n">time_interp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
-            <span class="k">if</span> <span class="n">nTurns</span> <span class="o">&gt;=</span> <span class="n">targetNTurns</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">nTurns</span> <span class="o">&gt;=</span> <span class="n">targetNTurns</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="k">break</span>
 
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">targetNTurns</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">:</span>
                 <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Maximum time reached before number of turns&quot;</span><span class="p">)</span>
 
-        <span class="c1">#TODO: adjust respecting the correct boundaries</span>
+        <span class="c1"># TODO: adjust respecting the correct boundaries</span>
         <span class="c1"># Adjust result to get flat top energy correct as derivation and</span>
         <span class="c1"># integration leads to ~10^-8 error in flat top momentum</span>
         <span class="c1"># momentum_interp = np.asarray(momentum_interp)</span>
@@ -1231,8 +1230,7 @@
         <span class="c1"># momentum_interp += input_momentum[0]</span>
 
         <span class="k">return</span> <span class="n">nTurns</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">,</span> <span class="n">time_interp</span><span class="p">,</span> <span class="n">momentum_interp</span></div>
-        
-        
+
 <div class="viewcode-block" id="_synchronous_data_program._ramp_start_stop"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program._ramp_start_stop">[docs]</a>    <span class="k">def</span> <span class="nf">_ramp_start_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the start and end times of the ramp.</span>
@@ -1252,7 +1250,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">!=</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Only implemented for by_time functions&quot;</span><span class="p">)</span>
-        
+
         <span class="n">time_start_ramp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">][</span><span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
         <span class="n">time_end_ramp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">][</span><span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
 
@@ -1280,21 +1278,21 @@
 <span class="sd">    *args : float, 1D iterable of floats, 2D iterable of floats</span>
 <span class="sd">        The data defining the programs</span>
 <span class="sd">    time : iterable of floats</span>
-<span class="sd">        The time array to be used for the data, to be used if the time </span>
+<span class="sd">        The time array to be used for the data, to be used if the time</span>
 <span class="sd">        dependent data is not given as 2D array</span>
 <span class="sd">    n_turns : int</span>
 <span class="sd">        The number of turns to be used, if a single value is given it will be</span>
 <span class="sd">        extended to n_turns length</span>
 <span class="sd">    interpolation : str</span>
 <span class="sd">        The type of interpolation to be used</span>
-<span class="sd">    </span>
+
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    data_type : dict</span>
 <span class="sd">        Dictionary containing relevant information to define the datatype</span>
 <span class="sd">    timebase : str</span>
 <span class="sd">        Either &#39;single&#39;, &#39;by_turn&#39;, or &#39;by_time&#39; depending on the definition</span>
-<span class="sd">        of the datatype.  As a string it is used as a key for the data_type </span>
+<span class="sd">        of the datatype.  As a string it is used as a key for the data_type</span>
 <span class="sd">        dict</span>
 <span class="sd">    interpolation : str</span>
 <span class="sd">        Identifier of the type of interpolation to be used when reshaping</span>
@@ -1306,6 +1304,7 @@
     <span class="n">source</span> <span class="o">=</span> <span class="s1">&#39;momentum&#39;</span>
     <span class="sd">&quot;&quot;&quot;A str identifying the data&quot;&quot;&quot;</span></div>
 
+
 <div class="viewcode-block" id="total_energy_program"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs.total_energy_program">[docs]</a><span class="k">class</span> <span class="nc">total_energy_program</span><span class="p">(</span><span class="n">_synchronous_data_program</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for  defining synchronous data as total energy.</span>
@@ -1315,21 +1314,21 @@
 <span class="sd">    *args : float, 1D iterable of floats, 2D iterable of floats</span>
 <span class="sd">        The data defining the programs</span>
 <span class="sd">    time : iterable of floats</span>
-<span class="sd">        The time array to be used for the data, to be used if the time </span>
+<span class="sd">        The time array to be used for the data, to be used if the time</span>
 <span class="sd">        dependent data is not given as 2D array</span>
 <span class="sd">    n_turns : int</span>
 <span class="sd">        The number of turns to be used, if a single value is given it will be</span>
 <span class="sd">        extended to n_turns length</span>
 <span class="sd">    interpolation : str</span>
 <span class="sd">        The type of interpolation to be used</span>
-<span class="sd">    </span>
+
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    data_type : dict</span>
 <span class="sd">        Dictionary containing relevant information to define the datatype</span>
 <span class="sd">    timebase : str</span>
 <span class="sd">        Either &#39;single&#39;, &#39;by_turn&#39;, or &#39;by_time&#39; depending on the definition</span>
-<span class="sd">        of the datatype.  As a string it is used as a key for the data_type </span>
+<span class="sd">        of the datatype.  As a string it is used as a key for the data_type</span>
 <span class="sd">        dict</span>
 <span class="sd">    interpolation : str</span>
 <span class="sd">        Identifier of the type of interpolation to be used when reshaping</span>
@@ -1341,6 +1340,7 @@
     <span class="n">source</span> <span class="o">=</span> <span class="s1">&#39;energy&#39;</span>
     <span class="sd">&quot;&quot;&quot;A str identifying the data&quot;&quot;&quot;</span></div>
 
+
 <div class="viewcode-block" id="kinetic_energy_program"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs.kinetic_energy_program">[docs]</a><span class="k">class</span> <span class="nc">kinetic_energy_program</span><span class="p">(</span><span class="n">_synchronous_data_program</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for  defining synchronous data as kinetic energy.</span>
@@ -1350,21 +1350,21 @@
 <span class="sd">    *args : float, 1D iterable of floats, 2D iterable of floats</span>
 <span class="sd">        The data defining the programs</span>
 <span class="sd">    time : iterable of floats</span>
-<span class="sd">        The time array to be used for the data, to be used if the time </span>
+<span class="sd">        The time array to be used for the data, to be used if the time</span>
 <span class="sd">        dependent data is not given as 2D array</span>
 <span class="sd">    n_turns : int</span>
 <span class="sd">        The number of turns to be used, if a single value is given it will be</span>
 <span class="sd">        extended to n_turns length</span>
 <span class="sd">    interpolation : str</span>
 <span class="sd">        The type of interpolation to be used</span>
-<span class="sd">    </span>
+
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    data_type : dict</span>
 <span class="sd">        Dictionary containing relevant information to define the datatype</span>
 <span class="sd">    timebase : str</span>
 <span class="sd">        Either &#39;single&#39;, &#39;by_turn&#39;, or &#39;by_time&#39; depending on the definition</span>
-<span class="sd">        of the datatype.  As a string it is used as a key for the data_type </span>
+<span class="sd">        of the datatype.  As a string it is used as a key for the data_type</span>
 <span class="sd">        dict</span>
 <span class="sd">    interpolation : str</span>
 <span class="sd">        Identifier of the type of interpolation to be used when reshaping</span>
@@ -1376,6 +1376,7 @@
     <span class="n">source</span> <span class="o">=</span> <span class="s1">&#39;kin_energy&#39;</span>
     <span class="sd">&quot;&quot;&quot;A str identifying the data&quot;&quot;&quot;</span></div>
 
+
 <div class="viewcode-block" id="bending_field_program"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs.bending_field_program">[docs]</a><span class="k">class</span> <span class="nc">bending_field_program</span><span class="p">(</span><span class="n">_synchronous_data_program</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for  defining synchronous data as magnetic field.</span>
@@ -1385,21 +1386,21 @@
 <span class="sd">    *args : float, 1D iterable of floats, 2D iterable of floats</span>
 <span class="sd">        The data defining the programs</span>
 <span class="sd">    time : iterable of floats</span>
-<span class="sd">        The time array to be used for the data, to be used if the time </span>
+<span class="sd">        The time array to be used for the data, to be used if the time</span>
 <span class="sd">        dependent data is not given as 2D array</span>
 <span class="sd">    n_turns : int</span>
 <span class="sd">        The number of turns to be used, if a single value is given it will be</span>
 <span class="sd">        extended to n_turns length</span>
 <span class="sd">    interpolation : str</span>
 <span class="sd">        The type of interpolation to be used</span>
-<span class="sd">    </span>
+
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    data_type : dict</span>
 <span class="sd">        Dictionary containing relevant information to define the datatype</span>
 <span class="sd">    timebase : str</span>
 <span class="sd">        Either &#39;single&#39;, &#39;by_turn&#39;, or &#39;by_time&#39; depending on the definition</span>
-<span class="sd">        of the datatype.  As a string it is used as a key for the data_type </span>
+<span class="sd">        of the datatype.  As a string it is used as a key for the data_type</span>
 <span class="sd">        dict</span>
 <span class="sd">    interpolation : str</span>
 <span class="sd">        Identifier of the type of interpolation to be used when reshaping</span>
@@ -1411,6 +1412,7 @@
     <span class="n">source</span> <span class="o">=</span> <span class="s1">&#39;B_field&#39;</span>
     <span class="sd">&quot;&quot;&quot;A str identifying the data&quot;&quot;&quot;</span></div>
 
+
 <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="p">[</span><span class="n">momentum_program</span><span class="p">,</span> <span class="n">total_energy_program</span><span class="p">,</span> <span class="n">kinetic_energy_program</span><span class="p">,</span>
              <span class="n">bending_field_program</span><span class="p">]:</span>
     <span class="n">data</span><span class="o">.</span><span class="n">_add_to_conversions</span><span class="p">()</span>
@@ -1419,7 +1421,7 @@
 <div class="viewcode-block" id="momentum_compaction"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs.momentum_compaction">[docs]</a><span class="k">class</span> <span class="nc">momentum_compaction</span><span class="p">(</span><span class="n">_ring_function</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class defining momentum_compaction factors</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    *args : float, 1D iterable of floats, 2D iterable of floats</span>
@@ -1427,21 +1429,21 @@
 <span class="sd">    order : int</span>
 <span class="sd">        The order of the momentum compaction factor program</span>
 <span class="sd">    time : iterable of floats</span>
-<span class="sd">        The time array to be used for the data, to be used if the time </span>
+<span class="sd">        The time array to be used for the data, to be used if the time</span>
 <span class="sd">        dependent data is not given as 2D array</span>
 <span class="sd">    n_turns : int</span>
 <span class="sd">        The number of turns to be used, if a single value is given it will be</span>
 <span class="sd">        extended to n_turns length</span>
 <span class="sd">    interpolation : str</span>
 <span class="sd">        The type of interpolation to be used</span>
-<span class="sd">    </span>
+
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    data_type : dict</span>
 <span class="sd">        Dictionary containing relevant information to define the datatype</span>
 <span class="sd">    timebase : str</span>
 <span class="sd">        Either &#39;single&#39;, &#39;by_turn&#39;, or &#39;by_time&#39; depending on the definition</span>
-<span class="sd">        of the datatype.  As a string it is used as a key for the data_type </span>
+<span class="sd">        of the datatype.  As a string it is used as a key for the data_type</span>
 <span class="sd">        dict</span>
 <span class="sd">    interpolation : str</span>
 <span class="sd">        Identifier of the type of interpolation to be used when reshaping</span>
@@ -1452,15 +1454,15 @@
 <span class="sd">    order : int</span>
 <span class="sd">        The order of the momentum compaction factor program</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
-                <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">):</span>
 
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">time</span><span class="p">,</span> 
-                                 <span class="n">n_turns</span> <span class="o">=</span> <span class="n">n_turns</span><span class="p">,</span> <span class="n">allow_single</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-                                 <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span>
+                               <span class="n">n_turns</span><span class="o">=</span><span class="n">n_turns</span><span class="p">,</span> <span class="n">allow_single</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                               <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
 
 <div class="viewcode-block" id="momentum_compaction.combine_single_sections"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs.momentum_compaction.combine_single_sections">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">combine_single_sections</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">combine_single_sections</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Combine multiple single sections into a single array.</span>
 
@@ -1477,7 +1479,7 @@
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        excpt.InputError</span>
-<span class="sd">            If the passed data are not momentum_compaction type an InputError </span>
+<span class="sd">            If the passed data are not momentum_compaction type an InputError</span>
 <span class="sd">            is raised.</span>
 <span class="sd">            If the passed data do not all have the same order an InputError is</span>
 <span class="sd">            raised.</span>
@@ -1496,17 +1498,17 @@
                                    <span class="o">+</span> <span class="s2">&quot;combined&quot;</span><span class="p">)</span>
 
         <span class="n">newArray</span><span class="p">,</span> <span class="n">timeBases</span><span class="p">,</span> <span class="n">use_times</span><span class="p">,</span> <span class="n">use_turns</span> \
-            <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_combine_single_sections</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> 
-                                           <span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span><span class="p">)</span>
-            
+            <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_combine_single_sections</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                                           <span class="n">interpolation</span><span class="o">=</span><span class="n">interpolation</span><span class="p">)</span>
+
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">timeBases</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;single&#39;</span><span class="p">:</span>
-                <span class="n">section</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">use_time</span> <span class="o">=</span> <span class="n">use_times</span><span class="p">,</span> 
-                                    <span class="n">use_turns</span> <span class="o">=</span> <span class="n">use_turns</span><span class="p">)</span>
+                <span class="n">section</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">use_time</span><span class="o">=</span><span class="n">use_times</span><span class="p">,</span>
+                                    <span class="n">use_turns</span><span class="o">=</span><span class="n">use_turns</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">section</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="n">newArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">section</span>
-        
+
         <span class="n">newArray</span><span class="o">.</span><span class="n">timebase</span> <span class="o">=</span> <span class="n">timeBases</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">newArray</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
             <span class="n">newArray</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">use_times</span>
@@ -1515,11 +1517,10 @@
             <span class="n">newArray</span><span class="o">.</span><span class="n">sectioning</span> <span class="o">=</span> <span class="s1">&#39;multi_section&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">newArray</span><span class="o">.</span><span class="n">sectioning</span> <span class="o">=</span> <span class="s1">&#39;single_section&#39;</span>
-        
-        <span class="n">newArray</span><span class="o">.</span><span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span>
-        
-        <span class="k">return</span> <span class="n">newArray</span></div>
 
+        <span class="n">newArray</span><span class="o">.</span><span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span>
+
+        <span class="k">return</span> <span class="n">newArray</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">order</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1531,7 +1532,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
-    
+
     <span class="nd">@order</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_data_type</span><span class="p">(</span><span class="s1">&#39;order&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
