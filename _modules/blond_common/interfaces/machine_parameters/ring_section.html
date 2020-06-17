@@ -382,24 +382,30 @@
 
         <span class="c1"># Setting orbit length</span>
         <span class="k">if</span> <span class="n">orbit_bump</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
             <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">orbit_length_program</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">length_design</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">orbit_bump</span> <span class="o">=</span> <span class="kc">None</span>
+
         <span class="k">else</span><span class="p">:</span>
+
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">orbit_bump</span><span class="p">,</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">orbit_length_program</span><span class="p">):</span>
                 <span class="n">orbit_bump</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">orbit_length_program</span><span class="p">(</span><span class="n">orbit_bump</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_check_and_set_alpha_and_orbit</span><span class="p">(</span><span class="n">orbit_bump</span><span class="p">)</span>
 
-            <span class="c1"># orbit_bump was checked, the length attribute is created</span>
-            <span class="c1"># as a copy to keep all datatypes info and length_design</span>
-            <span class="c1"># is added onto it</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="n">orbit_bump</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
+            <span class="c1"># orbit_bump was checked</span>
+            <span class="c1"># The length attribute is created with no further checks</span>
             <span class="k">if</span> <span class="n">orbit_bump</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">length_design</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">orbit_length_program</span><span class="p">(</span>
+                    <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">length_design</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orbit_bump</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]),</span>
+                    <span class="n">time</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">orbit_bump</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orbit_bump</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">length_design</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orbit_bump</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">length_design</span>
 
         <span class="c1"># Setting the linear momentum compaction factor</span>
         <span class="c1"># Checking that the synchronous data and the momentum compaction</span>

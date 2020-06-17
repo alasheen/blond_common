@@ -490,7 +490,7 @@
             <span class="n">store_turns</span><span class="o">=</span><span class="n">store_turns</span><span class="p">)</span>
 
         <span class="c1"># Getting the cycle time from the interpolation</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span> <span class="o">=</span> <span class="n">momentum_processed</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cycle_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">momentum_processed</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
         <span class="c1"># The machine turn numbers corresponding to the cycle_time</span>
         <span class="c1"># are kept if the store_turns is enabled</span>
