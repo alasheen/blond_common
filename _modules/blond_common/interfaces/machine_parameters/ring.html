@@ -470,7 +470,8 @@
         <span class="c1"># Getting the sample times</span>
         <span class="n">sample_func</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="n">tmng</span><span class="o">.</span><span class="n">time_from_sampling</span><span class="p">(</span><span class="o">*</span><span class="n">interp_time</span><span class="p">)</span>
 
-        <span class="c1"># Keeping only the values between the user defined bounds</span>
+        <span class="c1"># Setting interpolation bounds to user defined values if they are</span>
+        <span class="c1"># within the bounds defined by interp_time</span>
         <span class="k">if</span> <span class="n">t_start</span> <span class="o">&gt;</span> <span class="n">start</span><span class="p">:</span>
             <span class="n">start</span> <span class="o">=</span> <span class="n">t_start</span>
         <span class="k">if</span> <span class="n">t_stop</span> <span class="o">&lt;</span> <span class="n">stop</span><span class="p">:</span>
