@@ -221,7 +221,7 @@
 </dl>
 <dl class="py class">
 <dt id="blond_common.interfaces.machine_parameters.ring.Ring">
-<em class="property">class </em><code class="sig-prename descclassname">blond_common.interfaces.machine_parameters.ring.</code><code class="sig-name descname">Ring</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Particle</span></em>, <em class="sig-param"><span class="n">Section_list</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/interfaces/machine_parameters/ring.html#Ring"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">blond_common.interfaces.machine_parameters.ring.</code><code class="sig-name descname">Ring</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Particle</span></em>, <em class="sig-param"><span class="n">RingSection_list</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/interfaces/machine_parameters/ring.html#Ring"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Class containing the general properties of the synchrotron that are
 independent of the RF system or the beam.</p>
@@ -232,7 +232,7 @@ and <span class="math notranslate nohighlight">\(i\)</span> momentum compaction 
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>Particle</strong> (<em>class</em>) – A Particle-based class defining the primary, synchronous particle (mass
 and charge) that is reference for the momentum/energy in the ring.</p></li>
-<li><p><strong>Section_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – The list of all the sections to build the Ring.</p></li>
+<li><p><strong>RingSection_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> (or </em><em>iterable</em><em>) </em><em>of RingSection objects</em>) – The list of all the sections to build the Ring.</p></li>
 <li><p><strong>t_start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> (</em><em>optional</em><em>, </em><em>default 0</em><em>)</em>) – Starting time from which the time array input should be taken into
 account.</p></li>
 <li><p><strong>t_end</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> (</em><em>optional</em><em>, </em><em>default np</em><em>,</em><em>inf</em><em>)</em>) – Last time up to which the time array input should be taken into
