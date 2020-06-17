@@ -291,6 +291,8 @@
 <span class="sd">    length : datatype.machine_program.orbit_length</span>
 <span class="sd">        Length of the beam trajectory, including possible</span>
 <span class="sd">        orbit bump programs [m]</span>
+<span class="sd">    orbit_bump : datatype.machine_program.orbit_length</span>
+<span class="sd">        Length of the orbit bump only [m]</span>
 <span class="sd">    synchronous_data : datatype.machine_program._ring_program</span>
 <span class="sd">        The user input synchronous data, with no conversion applied.</span>
 <span class="sd">        The datatype depends on the user input and can be</span>
@@ -346,7 +348,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">length_design</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
 
         <span class="c1"># Checking that at least one synchronous data input is passed</span>
-        <span class="n">syncDataTypes</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;momentum&#39;</span><span class="p">,</span> <span class="s1">&#39;kin_energy&#39;</span><span class="p">,</span> <span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="s1">&#39;B_field&#39;</span><span class="p">)</span>
+        <span class="n">syncDataTypes</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;momentum&#39;</span><span class="p">,</span> <span class="s1">&#39;kinetic_energy&#39;</span><span class="p">,</span> <span class="s1">&#39;total_energy&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;bending_field&#39;</span><span class="p">)</span>
         <span class="n">syncDataInput</span> <span class="o">=</span> <span class="p">(</span><span class="n">momentum</span><span class="p">,</span> <span class="n">kin_energy</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">bending_field</span><span class="p">)</span>
         <span class="n">assrt</span><span class="o">.</span><span class="n">single_not_none</span><span class="p">(</span><span class="o">*</span><span class="n">syncDataInput</span><span class="p">,</span>
                               <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Exactly one of &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">syncDataTypes</span><span class="p">)</span> <span class="o">+</span>
@@ -372,8 +375,8 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">synchronous_data</span><span class="p">,</span>
                           <span class="n">ring_programs</span><span class="o">.</span><span class="n">_synchronous_data_program</span><span class="p">):</span>
             <span class="n">synchronous_data</span> \
-                <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">_synchronous_data_program</span><span class="o">.</span><span class="n">_conversions</span><span class="p">[</span>
-                    <span class="n">func_type</span><span class="p">](</span><span class="n">synchronous_data</span><span class="p">)</span>
+                <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">ring_programs</span><span class="p">,</span> <span class="n">func_type</span> <span class="o">+</span> <span class="s1">&#39;_program&#39;</span><span class="p">)(</span>
+                    <span class="n">synchronous_data</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">synchronous_data</span> <span class="o">=</span> <span class="n">synchronous_data</span>
 
@@ -381,14 +384,22 @@
         <span class="k">if</span> <span class="n">orbit_bump</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">orbit_length_program</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">length_design</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">orbit_bump</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">orbit_bump</span><span class="p">,</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">orbit_length_program</span><span class="p">):</span>
                 <span class="n">orbit_bump</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">orbit_length_program</span><span class="p">(</span><span class="n">orbit_bump</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">orbit_bump</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
-                <span class="n">orbit_bump</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">length_design</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">orbit_bump</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">length_design</span>
+
             <span class="bp">self</span><span class="o">.</span><span class="n">_check_and_set_alpha_and_orbit</span><span class="p">(</span><span class="n">orbit_bump</span><span class="p">)</span>
+
+            <span class="c1"># orbit_bump was checked, the length attribute is created</span>
+            <span class="c1"># as a copy to keep all datatypes info and length_design</span>
+            <span class="c1"># is added onto it</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="n">orbit_bump</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">orbit_bump</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">length_design</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">length_design</span>
 
         <span class="c1"># Setting the linear momentum compaction factor</span>
         <span class="c1"># Checking that the synchronous data and the momentum compaction</span>
@@ -463,19 +474,17 @@
         <span class="c1"># attr_name is the attribute to apply to RingSection</span>
         <span class="c1"># attr_name_err is for the warning message</span>
         <span class="k">if</span> <span class="n">order</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">attr_name</span> <span class="o">=</span> <span class="s1">&#39;alpha_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
-            <span class="n">attr_name_err</span> <span class="o">=</span> <span class="n">attr_name</span>
+            <span class="n">attr</span> <span class="o">=</span> <span class="s1">&#39;alpha_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">attr_name</span> <span class="o">=</span> <span class="s1">&#39;length&#39;</span>
-            <span class="n">attr_name_err</span> <span class="o">=</span> <span class="s1">&#39;orbit_bump&#39;</span>
+            <span class="n">attr</span> <span class="o">=</span> <span class="s1">&#39;orbit_bump&#39;</span>
 
-        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">alpha_or_orbit</span><span class="p">)</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">alpha_or_orbit</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">synchronous_data</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;single&#39;</span><span class="p">)</span> <span class="ow">and</span> \
                 <span class="p">(</span><span class="n">alpha_or_orbit</span><span class="o">.</span><span class="n">timebase</span> <span class="o">!=</span> <span class="s1">&#39;single&#39;</span><span class="p">):</span>
 
             <span class="n">warn_message</span> <span class="o">=</span> <span class="s1">&#39;The synchronous data was defined as single element while the &#39;</span> <span class="o">+</span> \
-                <span class="s1">&#39;input &#39;</span> <span class="o">+</span> <span class="n">attr_name_err</span> <span class="o">+</span> <span class="s1">&#39; was defined turn or time based. &#39;</span> <span class="o">+</span> \
+                <span class="s1">&#39;input &#39;</span> <span class="o">+</span> <span class="n">attr</span> <span class="o">+</span> <span class="s1">&#39; was defined turn or time based. &#39;</span> <span class="o">+</span> \
                 <span class="s1">&#39;Only the first element of the program will be taken in &#39;</span> <span class="o">+</span> \
                 <span class="s1">&#39;the Ring object after treatment.&#39;</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">warn_message</span><span class="p">)</span>
@@ -488,7 +497,7 @@
                      <span class="o">&gt;</span> <span class="n">alpha_or_orbit</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
 
                 <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span>
-                    <span class="s1">&#39;The input &#39;</span> <span class="o">+</span> <span class="n">attr_name_err</span> <span class="o">+</span>
+                    <span class="s1">&#39;The input &#39;</span> <span class="o">+</span> <span class="n">attr</span> <span class="o">+</span>
                     <span class="s1">&#39; was passed as a turn based program but with &#39;</span> <span class="o">+</span>
                     <span class="s1">&#39;different length than the synchronous data. &#39;</span> <span class="o">+</span>
                     <span class="s1">&#39;Turn based programs should have the same length.&#39;</span><span class="p">)</span>
@@ -497,7 +506,7 @@
                 <span class="p">(</span><span class="n">alpha_or_orbit</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_turn&#39;</span><span class="p">):</span>
 
             <span class="n">warn_message</span> <span class="o">=</span> <span class="s1">&#39;The synchronous data was defined time based while the &#39;</span> <span class="o">+</span> \
-                <span class="s1">&#39;input &#39;</span> <span class="o">+</span> <span class="n">attr_name_err</span> <span class="o">+</span> <span class="s1">&#39; was defined turn base, this may&#39;</span> <span class="o">+</span> \
+                <span class="s1">&#39;input &#39;</span> <span class="o">+</span> <span class="n">attr</span> <span class="o">+</span> <span class="s1">&#39; was defined turn base, this may&#39;</span> <span class="o">+</span> \
                 <span class="s1">&#39;lead to errors in the Ring object after interpolation.&#39;</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">warn_message</span><span class="p">)</span></div>
 </pre></div>
