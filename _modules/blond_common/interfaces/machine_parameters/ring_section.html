@@ -429,7 +429,6 @@
 
         <span class="k">if</span> <span class="n">alpha_1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">alpha_n</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">alpha_1</span>
-            <span class="n">alpha_order_max</span> <span class="o">=</span> <span class="mi">1</span>
 
         <span class="k">for</span> <span class="n">argument</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
             <span class="k">if</span> <span class="s1">&#39;alpha&#39;</span> <span class="ow">in</span> <span class="n">argument</span><span class="p">:</span>
@@ -442,8 +441,9 @@
                         <span class="s1">&#39;factor. &#39;</span> <span class="o">+</span>
                         <span class="s1">&#39;The correct syntax is alpha_n.&#39;</span><span class="p">)</span>
 
-                <span class="n">alpha_order_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">alpha_order_max</span><span class="p">,</span> <span class="n">order</span><span class="p">])</span>
                 <span class="n">alpha_n</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">argument</span><span class="p">)</span>
+
+        <span class="n">alpha_order_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">alpha_n</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
         <span class="c1"># Setting all the valid non-linear alpha and replacing</span>
         <span class="c1"># undeclared orders with zeros</span>
