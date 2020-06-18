@@ -273,14 +273,16 @@
 <span class="sd">        Design circumference of the synchrotron. Sum of ring segment design</span>
 <span class="sd">        lengths,</span>
 <span class="sd">        :math:`C_s = \sum_k L_{s,k}` [m]</span>
-<span class="sd">    circumference : float</span>
+<span class="sd">    circumference : float matrix [n_sections, n_turns+1]</span>
 <span class="sd">        Circumference of the synchrotron including possible orbit bumps,</span>
 <span class="sd">        :math:`C = \sum_k L_k` [m]</span>
 <span class="sd">    radius_design : float</span>
 <span class="sd">        Design radius of the synchrotron, :math:`R_s = C_s/(2 \pi)` [m]</span>
-<span class="sd">    radius : float</span>
+<span class="sd">    radius : float matrix [n_sections, n_turns+1]</span>
 <span class="sd">        Radius of the synchrotron including possible orbit bumps,</span>
 <span class="sd">        :math:`R = C/(2 \pi)` [m]</span>
+<span class="sd">    orbit_bump : float matrix [n_sections, n_turns+1]</span>
+<span class="sd">        Orbit bump for each section</span>
 <span class="sd">    bending_radius : float</span>
 <span class="sd">        Bending radius in dipole magnets on design orbit, :math:`\rho` [m]</span>
 <span class="sd">    alpha_orders : list of int</span>
@@ -540,6 +542,9 @@
         <span class="c1"># bumps)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">circumference</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">section_length</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">circumference</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+        <span class="c1"># Getting orbit bunp from comparison of circumference vs. design</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orbit_bump</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">circumference</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">circumference_design</span>
 
         <span class="c1"># Computing the revolution period on the design orbit</span>
         <span class="c1"># as well as revolution frequency and angular frequency</span>
