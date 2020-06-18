@@ -645,7 +645,7 @@
                                   <span class="n">syncDataTypes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_program&#39;</span><span class="p">)(</span><span class="n">sync_data</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
 
         <span class="c1"># Extending bending_radius to list of None if not defined</span>
-        <span class="k">if</span> <span class="n">orbit_bump</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">bending_radius</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">bending_radius</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_sections</span>
 
         <span class="c1"># Getting the momentum compaction factors (linear and non linear)</span>
@@ -690,7 +690,7 @@
                                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">alphas</span>
                                <span class="k">if</span> <span class="n">alphas</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">},</span>
                             <span class="o">**</span><span class="n">kwargs</span><span class="p">}</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">sectionInput</span><span class="p">)</span>
+
             <span class="n">RingSection_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RingSection</span><span class="p">(</span><span class="o">**</span><span class="n">sectionInput</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">Particle</span><span class="p">,</span> <span class="n">RingSection_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs_ring</span><span class="p">)</span></div>
