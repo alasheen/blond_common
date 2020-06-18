@@ -599,6 +599,12 @@
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;eta_</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">order</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_eta_generation</span><span class="p">()</span>
 
+        <span class="c1"># Warning if kwargs were unused</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;Unused kwargs have been detected, &quot;</span> <span class="o">+</span>
+                <span class="sa">f</span><span class="s2">&quot;they are </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
 <div class="viewcode-block" id="Ring.direct_input"><a class="viewcode-back" href="../../../interfaces.machine_parameters.html#blond_common.interfaces.machine_parameters.ring.Ring.direct_input">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">direct_input</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">Particle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">alpha_0</span><span class="p">,</span>
                      <span class="n">momentum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kin_energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
