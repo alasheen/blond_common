@@ -233,6 +233,16 @@
 <span class="kn">from</span> <span class="nn">.ring_section</span> <span class="kn">import</span> <span class="n">RingSection</span>
 
 
+<span class="c1"># Default options of the Ring object</span>
+<span class="n">_Ring_opt_dflt</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">_Ring_opt_dflt</span><span class="p">[</span><span class="s1">&#39;t_start&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">_Ring_opt_dflt</span><span class="p">[</span><span class="s1">&#39;t_stop&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+<span class="n">_Ring_opt_dflt</span><span class="p">[</span><span class="s1">&#39;interp_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">_Ring_opt_dflt</span><span class="p">[</span><span class="s1">&#39;interpolation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span>
+<span class="n">_Ring_opt_dflt</span><span class="p">[</span><span class="s1">&#39;store_turns&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">_Ring_opt_dflt</span><span class="p">[</span><span class="s1">&#39;eta_orders&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+
 <div class="viewcode-block" id="Ring"><a class="viewcode-back" href="../../../interfaces.machine_parameters.html#blond_common.interfaces.machine_parameters.ring.Ring">[docs]</a><span class="k">class</span> <span class="nc">Ring</span><span class="p">:</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot; Class containing the general properties of the synchrotron that are</span>
 <span class="sd">    independent of the RF system or the beam.</span>
@@ -459,9 +469,9 @@
         <span class="c1"># Processing the momentum program</span>
         <span class="c1"># Getting the options to get at which time samples the interpolation</span>
         <span class="c1"># is made</span>
-        <span class="n">t_start</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;t_start&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">t_stop</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;t_stop&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
-        <span class="n">interp_time</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;interp_time&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">t_start</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;t_start&#39;</span><span class="p">,</span> <span class="n">_Ring_opt_dflt</span><span class="p">[</span><span class="s1">&#39;t_start&#39;</span><span class="p">])</span>
+        <span class="n">t_stop</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;t_stop&#39;</span><span class="p">,</span> <span class="n">_Ring_opt_dflt</span><span class="p">[</span><span class="s1">&#39;t_stop&#39;</span><span class="p">])</span>
+        <span class="n">interp_time</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;interp_time&#39;</span><span class="p">,</span> <span class="n">_Ring_opt_dflt</span><span class="p">[</span><span class="s1">&#39;interp_time&#39;</span><span class="p">])</span>
 
         <span class="c1"># Treating the input of the interp_time option</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">interp_time</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">):</span>
@@ -478,8 +488,9 @@
             <span class="n">stop</span> <span class="o">=</span> <span class="n">t_stop</span>
 
         <span class="c1"># Getting options for the interpolation</span>
-        <span class="n">interpolation</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;interpolation&#39;</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">)</span>
-        <span class="n">store_turns</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;store_turns&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">interpolation</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;interpolation&#39;</span><span class="p">,</span>
+                                   <span class="n">_Ring_opt_dflt</span><span class="p">[</span><span class="s1">&#39;interpolation&#39;</span><span class="p">])</span>
+        <span class="n">store_turns</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;store_turns&#39;</span><span class="p">,</span> <span class="n">_Ring_opt_dflt</span><span class="p">[</span><span class="s1">&#39;store_turns&#39;</span><span class="p">])</span>
 
         <span class="c1"># Processing the momentum program and interpolating on the</span>
         <span class="c1"># values defined by sample_func</span>
@@ -560,7 +571,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span> <span class="o">+=</span> <span class="n">section</span><span class="o">.</span><span class="n">alpha_orders</span>
 
         <span class="c1"># Add alpha orders if eta_orders is defined</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;eta_orders&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;eta_orders&#39;</span><span class="p">,</span>
+                                     <span class="n">_Ring_opt_dflt</span><span class="p">[</span><span class="s1">&#39;eta_orders&#39;</span><span class="p">])</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span> <span class="o">+=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_orders</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
@@ -659,6 +671,10 @@
             <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputDataError</span><span class="p">(</span>
                 <span class="s2">&quot;Inconsistent data for Ring.direct_input !&quot;</span><span class="p">)</span>
 
+        <span class="c1"># Getting all kwargs for Ring separately</span>
+        <span class="n">kwargs_ring</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">_Ring_opt_dflt</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+                       <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">_Ring_opt_dflt</span><span class="p">}</span>
+
         <span class="c1"># Building all sections</span>
         <span class="n">RingSection_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_sections</span><span class="p">):</span>
@@ -675,7 +691,7 @@
 
             <span class="n">RingSection_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RingSection</span><span class="p">(</span><span class="o">**</span><span class="n">sectionInput</span><span class="p">))</span>
 
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">Particle</span><span class="p">,</span> <span class="n">RingSection_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">Particle</span><span class="p">,</span> <span class="n">RingSection_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs_ring</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_eta_generation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Function to generate the slippage factors (zeroth, first, and</span>
