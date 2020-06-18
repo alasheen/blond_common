@@ -603,55 +603,66 @@
     <span class="k">def</span> <span class="nf">direct_input</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">Particle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">alpha_0</span><span class="p">,</span>
                      <span class="n">momentum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kin_energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                      <span class="n">bending_field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bending_radius</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">orbit_bump</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                     <span class="n">alpha_1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha_2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                     <span class="n">alpha_1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 
         <span class="c1"># Getting the number of sections for the length list</span>
         <span class="n">length</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">ndmin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="n">n_sections</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
 
         <span class="c1"># Checking that at least one synchronous data input is passed</span>
-        <span class="n">syncDataTypes</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;momentum&#39;</span><span class="p">,</span> <span class="s1">&#39;kin_energy&#39;</span><span class="p">,</span> <span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="s1">&#39;B_field&#39;</span><span class="p">)</span>
+        <span class="n">syncDataTypes</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;momentum&#39;</span><span class="p">,</span> <span class="s1">&#39;kinetic_energy&#39;</span><span class="p">,</span> <span class="s1">&#39;total_energy&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;bending_field&#39;</span><span class="p">)</span>
         <span class="n">syncDataInput</span> <span class="o">=</span> <span class="p">(</span><span class="n">momentum</span><span class="p">,</span> <span class="n">kin_energy</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">bending_field</span><span class="p">)</span>
-        <span class="n">assrt</span><span class="o">.</span><span class="n">single_not_none</span><span class="p">(</span><span class="o">*</span><span class="n">syncDataInput</span><span class="p">,</span>
-                              <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Exactly one of &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">syncDataTypes</span><span class="p">)</span> <span class="o">+</span>
-                              <span class="s1">&#39; must be declared&#39;</span><span class="p">,</span>
-                              <span class="n">exception</span><span class="o">=</span><span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">)</span>
 
-        <span class="c1"># Taking the first synchronous_data input not declared as None</span>
-        <span class="c1"># The assertion above ensures that only one is declared</span>
-        <span class="k">for</span> <span class="n">func_type</span><span class="p">,</span> <span class="n">synchronous_data</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">syncDataTypes</span><span class="p">,</span> <span class="n">syncDataInput</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">synchronous_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">break</span>
+        <span class="n">sync_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">syncDataTypes</span><span class="p">,</span> <span class="n">syncDataInput</span><span class="p">)}</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">sync_data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">sync_data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">sync_data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_sections</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span>
+                        <span class="n">sync_data</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">_synchronous_data_program</span><span class="p">):</span>
+                    <span class="n">sync_data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> \
+                        <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">ring_programs</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="s1">&#39;_program&#39;</span><span class="p">)(</span><span class="n">sync_data</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
 
-        <span class="c1"># Casting synchronous data to datatype</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">synchronous_data</span><span class="p">,</span>
-                          <span class="n">ring_programs</span><span class="o">.</span><span class="n">_synchronous_data_program</span><span class="p">):</span>
-            <span class="n">synchronous_data</span> \
-                <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">_synchronous_data_program</span><span class="o">.</span><span class="n">_conversions</span><span class="p">[</span>
-                    <span class="n">func_type</span><span class="p">](</span><span class="n">synchronous_data</span><span class="p">)</span>
+        <span class="c1"># Extending bending_radius to list of None if not defined</span>
+        <span class="k">if</span> <span class="n">orbit_bump</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">bending_radius</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_sections</span>
 
-        <span class="c1"># Casting orbit bump to datatype</span>
-        <span class="k">if</span> <span class="n">orbit_bump</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Getting the momentum compaction factors (linear and non linear)</span>
+        <span class="n">alphas</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;alpha_0&#39;</span><span class="p">:</span> <span class="n">alpha_0</span><span class="p">,</span> <span class="s1">&#39;alpha_1&#39;</span><span class="p">:</span> <span class="n">alpha_1</span><span class="p">,</span>
+                  <span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">if</span> <span class="s1">&#39;alpha_&#39;</span> <span class="ow">in</span> <span class="n">k</span><span class="p">}}</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">alphas</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">alphas</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">alphas</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_sections</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span>
+                        <span class="n">alphas</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">momentum_compaction</span><span class="p">):</span>
+                    <span class="n">alphas</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">momentum_compaction</span><span class="p">(</span>
+                        <span class="n">alphas</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">k</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="c1"># Extending orbit_bump to list of None if not defined</span>
+        <span class="k">if</span> <span class="n">orbit_bump</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">orbit_bump</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_sections</span>
+        <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">orbit_bump</span><span class="p">,</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">orbit_length_program</span><span class="p">):</span>
                 <span class="n">orbit_bump</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">orbit_length_program</span><span class="p">(</span><span class="n">orbit_bump</span><span class="p">)</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">orbit_bump</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">orbit_bump</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">orbit_bump</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_sections</span>
+
+        <span class="c1"># Checking the data before building sections</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="n">n_sections</span>
+                    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">{</span><span class="o">**</span><span class="n">sync_data</span><span class="p">,</span> <span class="o">**</span><span class="n">alphas</span><span class="p">}</span><span class="o">.</span><span class="n">values</span><span class="p">()]):</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputDataError</span><span class="p">(</span>
+                <span class="s2">&quot;Inconsistent data for Ring.direct_input !&quot;</span><span class="p">)</span>
 
         <span class="c1"># Building all sections</span>
         <span class="n">RingSection_list</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">index_section</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_sections</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_sections</span><span class="p">):</span>
 
-            <span class="c1"># Passing sync_data as kwarg with the right func_type</span>
-            <span class="n">sync_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">func_type</span><span class="p">:</span> <span class="n">synchronous_data</span><span class="p">[</span><span class="n">index_section</span><span class="p">]}</span>
-
-            <span class="n">section</span> <span class="o">=</span> <span class="n">RingSection</span><span class="p">(</span>
-                <span class="n">length</span><span class="p">[</span><span class="n">index_section</span><span class="p">],</span> <span class="n">alpha_0</span><span class="p">,</span> <span class="o">**</span><span class="n">sync_data</span><span class="p">,</span>
-                <span class="n">orbit_bump</span><span class="o">=</span><span class="n">orbit_bump</span><span class="p">[</span><span class="n">index_section</span><span class="p">],</span>
-                <span class="n">alpha_1</span><span class="o">=</span><span class="n">alpha_1</span><span class="p">,</span> <span class="n">alpha_2</span><span class="o">=</span><span class="n">alpha_2</span><span class="p">,</span>
-                <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-            <span class="n">RingSection_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+            <span class="n">sectionInput</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="n">length</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                            <span class="s1">&#39;bending_radius&#39;</span><span class="p">:</span> <span class="n">bending_radius</span><span class="p">,</span>
+                            <span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">sync_data</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">sync_data</span><span class="p">},</span>
+                            <span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">alphas</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">alphas</span><span class="p">},</span>
+                            <span class="o">**</span><span class="n">kwargs</span><span class="p">}</span>
+            <span class="n">RingSection_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RingSection</span><span class="p">(</span><span class="o">**</span><span class="n">sectionInput</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">Particle</span><span class="p">,</span> <span class="n">RingSection_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
