@@ -412,7 +412,6 @@
         <span class="c1"># have the same length if defined turn-by-turn, raise a warning if one</span>
         <span class="c1"># is defined by turn and the other time based</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">alpha_orders</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">alpha_order_max</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">alpha_0</span><span class="p">,</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">momentum_compaction</span><span class="p">):</span>
             <span class="n">alpha_0</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">momentum_compaction</span><span class="p">(</span><span class="n">alpha_0</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
