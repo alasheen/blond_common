@@ -744,17 +744,17 @@
         <span class="c1"># TODO: nTurns != self.shape[1]</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_turn&#39;</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">targetNTurns</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">:</span>
-                <span class="n">nTurns</span> <span class="o">=</span> <span class="n">targetNTurns</span> <span class="o">-</span> <span class="mi">1</span>
+                <span class="n">nTurns</span> <span class="o">=</span> <span class="n">targetNTurns</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">nTurns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
-            <span class="n">useTurns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nTurns</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">nTurns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">useTurns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nTurns</span><span class="p">)</span>
             <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time_from_turn</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span> <span class="n">circumference</span><span class="p">)</span>
             <span class="n">momentum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
         <span class="c1"># TODO: Handle passed number of turns</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;single&#39;</span><span class="p">:</span>
             <span class="n">time</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">nTurns</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">nTurns</span> <span class="o">=</span> <span class="mi">1</span>
             <span class="n">useTurns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">momentum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
