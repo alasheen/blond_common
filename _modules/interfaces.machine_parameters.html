@@ -686,7 +686,7 @@ as the synchronous data.</p></li>
 orbit bump programs [m]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>datatype.machine_program.orbit_length</p>
+<dd class="field-odd"><p>datatype.ring_programs.orbit_length_program</p>
 </dd>
 </dl>
 </dd></dl>
@@ -697,7 +697,7 @@ orbit bump programs [m]</p>
 <dd><p>Length of the orbit bump only if declared by the user [m]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a> or datatype.machine_program.orbit_length</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a> or datatype.ring_programs.orbit_length_program</p>
 </dd>
 </dl>
 </dd></dl>
@@ -711,7 +711,7 @@ momentum_program, kinetic_energy_program, total_energy_program,
 bending_field_program</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>datatype.machine_program._ring_program</p>
+<dd class="field-odd"><p>datatype.machine_program._synchronous_data_program</p>
 </dd>
 </dl>
 </dd></dl>
@@ -733,7 +733,7 @@ bending_field_program</p>
 <dd><p>Momentum compaction factor of zeroth order</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>datatype.machine_program.momentum_compaction</p>
+<dd class="field-odd"><p>datatype.ring_programs.momentum_compaction</p>
 </dd>
 </dl>
 </dd></dl>
@@ -744,7 +744,7 @@ bending_field_program</p>
 <dd><p>Momentum compaction factor of higher orders</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>datatype.machine_program.momentum_compaction (or undefined)</p>
+<dd class="field-odd"><p>datatype.ring_programs.momentum_compaction (or undefined)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -764,7 +764,7 @@ bending_field_program</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># To declare a section of a synchrotron with very simple</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># parameters</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">blond_common.interfaces.machine_parameters.ring_section</span> <span class="kn">import</span> \
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">Section</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">RingSection</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">length</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_0</span> <span class="o">=</span> <span class="mf">1e-3</span>
