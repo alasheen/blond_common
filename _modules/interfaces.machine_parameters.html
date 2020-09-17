@@ -1260,7 +1260,7 @@ harmonic, no intensity effects)
 for further usage.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#blond_common.interfaces.machine_parameters.rf_parameters_options.RFStationOptions" title="blond_common.interfaces.machine_parameters.rf_parameters_options.RFStationOptions">RFStationOptions</a>()</p>
+<dd class="field-odd"><p>RFStationOptions()</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1384,105 +1384,8 @@ main harmonic is accelerating.</p></li>
 </dd></dl>
 
 </div>
-<div class="section" id="module-blond_common.interfaces.machine_parameters.rf_parameters_options">
-<span id="interfaces-machine-parameters-rf-parameters-options-module"></span><h2>interfaces.machine_parameters.rf_parameters_options module<a class="headerlink" href="#module-blond_common.interfaces.machine_parameters.rf_parameters_options" title="Permalink to this headline">¶</a></h2>
-<p><strong>Function(s) for pre-processing input data</strong></p>
-<dl class="field-list simple">
-<dt class="field-odd">Authors</dt>
-<dd class="field-odd"><p><strong>Helga Timko</strong>, <strong>Alexandre Lasheen</strong>, <strong>Danilo Quartullo</strong>,
-<strong>Simon Albright</strong></p>
-</dd>
-</dl>
-<dl class="py class">
-<dt id="blond_common.interfaces.machine_parameters.rf_parameters_options.RFStationOptions">
-<em class="property">class </em><code class="sig-prename descclassname">blond_common.interfaces.machine_parameters.rf_parameters_options.</code><code class="sig-name descname">RFStationOptions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">smoothing</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">plot</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">figdir</span><span class="o">=</span><span class="default_value">'fig'</span></em>, <em class="sig-param"><span class="n">figname</span><span class="o">=</span><span class="default_value">['data']</span></em>, <em class="sig-param"><span class="n">sampling</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/interfaces/machine_parameters/rf_parameters_options.html#RFStationOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.interfaces.machine_parameters.rf_parameters_options.RFStationOptions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Class to preprocess the RF data (voltage, phase, harmonic) for
-RFStation, interpolating it to every turn.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Interpolation options for the data points. Available options are
-‘linear’ (default) and ‘cubic’</p></li>
-<li><p><strong>smoothing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Smoothing value for ‘cubic’ interpolation</p></li>
-<li><p><strong>plot</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Option to plot interpolated arrays; default is False</p></li>
-<li><p><strong>figdir</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Directory to save optional plot; default is ‘fig’</p></li>
-<li><p><strong>figname</strong> (<em>list of str</em>) – Figure name to save optional plot; default is ‘data’, different arrays
-will have figures with different indices</p></li>
-<li><p><strong>sampling</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Decimation value for plotting; default is 1</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt id="blond_common.interfaces.machine_parameters.rf_parameters_options.RFStationOptions.reshape_data">
-<code class="sig-name descname">reshape_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_data</span></em>, <em class="sig-param"><span class="n">n_turns</span></em>, <em class="sig-param"><span class="n">n_rf</span></em>, <em class="sig-param"><span class="n">interp_time</span></em>, <em class="sig-param"><span class="n">t_start</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/interfaces/machine_parameters/rf_parameters_options.html#RFStationOptions.reshape_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.interfaces.machine_parameters.rf_parameters_options.RFStationOptions.reshape_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks whether the user input is consistent with the expectation
-for the RFStation object. The possibilites are detailed in the
-documentation of the RFStation object.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>input_data</strong> (<em>Ring.synchronous_data</em><em>, </em><em>Ring.alpha_0</em><em>,</em><em>1</em><em>,</em><em>2</em>) – Main input data to reshape</p></li>
-<li><p><strong>n_turns</strong> (<em>RFStation.n_turns</em>) – Number of turns the simulation should be. Note that if
-the input_data is passed as a tuple it is expected that the
-input_data is a program. This parameter is only relevant if the
-rf program is passed as an array/list with the rigth size
-(see interp_time otherwise)</p></li>
-<li><p><strong>n_rf</strong> (<em>RFStation.n_rf</em>) – The number of rf harmonics in the station. The simulation is
-stopped if the input_data shape does not correspond to the expected
-number of rf harmonics.</p></li>
-<li><p><strong>interp_time</strong> (<em>Ring.cycle_time</em>) – Ensure that the rf program is interpolated on the same time basis
-as the Ring.momentum program</p></li>
-<li><p><strong>t_start</strong> (<em>Ring.RingOptions.t_start</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Uses the same t_start as the one used to interpolate the momentum
-program in Ring. This value can nevertheless be changed to a custom
-value if necessary.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Returns the data with the adequate shape for the RStation object</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>output_data</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt id="blond_common.interfaces.machine_parameters.rf_parameters_options.combine_rf_functions">
-<code class="sig-prename descclassname">blond_common.interfaces.machine_parameters.rf_parameters_options.</code><code class="sig-name descname">combine_rf_functions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">function_list</span></em>, <em class="sig-param"><span class="n">merge_type</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">resolution</span><span class="o">=</span><span class="default_value">0.001</span></em>, <em class="sig-param"><span class="n">Ring</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">main_h</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/interfaces/machine_parameters/rf_parameters_options.html#combine_rf_functions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.interfaces.machine_parameters.rf_parameters_options.combine_rf_functions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function to combine different RF programs. Each program is passed in a
-tuple with complete function (single valued or numpy array) and 2-list
-[start_time, stop_time].</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>function_list</strong> (<em>list of tuples</em>) – each tuple has form (function, [start_time, stop_time])
-function can be a numpy.ndarray of format [time, value] or single valued
-if function is single valued it will be assumed constant from start_time to stop_time
-if function is numpy.ndarray it will be truncated to start_time, stop_time</p></li>
-<li><p><strong>merge_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <dl class="simple">
-<dt>string signifying type of merge available, options are:</dt><dd><p>linear : function will be linearly interpolated from function_1[stop_time] to function_2[start_time]
-isoadiabatic : designed for voltage functions and intended to maintain adiabaticity during change of voltage, best suited to flat momentum sections
-linear_tune : for use with voltages, provides a linear change in the tune from function_1[stop_time] to function_2[start_time]</p>
-</dd>
-</dl>
-</p></li>
-<li><p><strong>resolution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – the time in seconds between points of the interpolation</p></li>
-<li><p><strong>Ring</strong> (<em>class</em>) – A Ring type class, only used with linear_tune merge_type</p></li>
-<li><p><strong>main_h</strong> (<em>boolean</em>) – if main_h is True dE is considered in linear_tune merge_type, otherwise dE is set to 0</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>2 dimensional numpy.ndarray containing [time, value] of merged functions</p>
-</dd>
-</dl>
-</dd></dl>
-
+<div class="section" id="interfaces-machine-parameters-rf-parameters-options-module">
+<h2>interfaces.machine_parameters.rf_parameters_options module<a class="headerlink" href="#interfaces-machine-parameters-rf-parameters-options-module" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
