@@ -339,6 +339,7 @@
                                    <span class="o">+</span> <span class="s2">&quot;combined&quot;</span><span class="p">)</span>
 
         <span class="n">timeBases</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">timebase</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">]</span>
+        <span class="c1">#TODO: clean up try/except</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">assrt</span><span class="o">.</span><span class="n">equal_arrays</span><span class="p">(</span><span class="o">*</span><span class="n">timeBases</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Attempting to combine &#39;</span>
                                <span class="o">+</span> <span class="s1">&#39;sections with different &#39;</span>
@@ -537,7 +538,11 @@
 <span class="sd">        -------</span>
 <span class="sd">        datatype</span>
 <span class="sd">            If inPlace is False a new datatype array is returned.</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="s1">&#39;B_field&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_no_convert</span><span class="p">(</span><span class="n">inPlace</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert</span><span class="p">(</span><span class="s1">&#39;B_field&#39;</span><span class="p">,</span> <span class="n">inPlace</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="_synchronous_data_program.to_kin_energy"><a class="viewcode-back" href="../../datatypes_advanced.ring_programs.html#blond_common.datatypes.ring_programs._synchronous_data_program.to_kin_energy">[docs]</a>    <span class="k">def</span> <span class="nf">to_kin_energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inPlace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
