@@ -24,7 +24,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -234,9 +233,9 @@ to get an averaged value of the maximum (e.g. at &gt;95%)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
-<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
-<li><p><strong>level</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Optional: The ratio from the maximum for which the width of the profile
+<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
+<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
+<li><p><strong>level</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Optional: The ratio from the maximum for which the width of the profile
 is returned
 Default is 0.5, as for Half of the Maximum</p></li>
 </ul>
@@ -274,13 +273,13 @@ of the maximum</p></li>
 <dl class="py class">
 <dt id="blond_common.fitting.profile.FitOptions">
 <em class="property">class </em><code class="sig-prename descclassname">blond_common.fitting.profile.</code><code class="sig-name descname">FitOptions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bunchLengthFactor</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">bunchPositionOffset</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">nPointsNoise</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">fitInitialParameters</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bounds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fittingRoutine</span><span class="o">=</span><span class="default_value">'curve_fit'</span></em>, <em class="sig-param"><span class="n">method</span><span class="o">=</span><span class="default_value">'Powell'</span></em>, <em class="sig-param"><span class="n">options</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">residualFunction</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">extraOptions</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/fitting/profile.html#FitOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.fitting.profile.FitOptions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
 <dt id="blond_common.fitting.profile.PlotOptions">
 <em class="property">class </em><code class="sig-prename descclassname">blond_common.fitting.profile.</code><code class="sig-name descname">PlotOptions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">figname</span><span class="o">=</span><span class="default_value">'Bunch profile'</span></em>, <em class="sig-param"><span class="n">clf</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">interactive</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">legend</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/fitting/profile.html#PlotOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.fitting.profile.PlotOptions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 </dd></dl>
 
 <dl class="py function">
@@ -290,8 +289,8 @@ of the maximum</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
-<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
+<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
+<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -328,8 +327,8 @@ of the maximum</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
-<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
+<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
+<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
 <li><p><strong>profile_fit_function</strong> (<em>function</em>) – User defined function to fit the input data_array. The function
 should have the input arguments (time_array, <a href="#id3"><span class="problematic" id="id4">*</span></a>fit_parameters)
 and returns a profile_array which will be compared to data_array</p></li>
@@ -376,8 +375,8 @@ blond_common.interfaces.beam.analytic_distribution.binomialAmplitude2</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
-<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
+<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
+<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -421,8 +420,8 @@ blond_common.interfaces.beam.analytic_distribution.binomialAmplitudeN</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
-<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
+<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
+<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -466,23 +465,23 @@ binomial_from_width_ratio function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>levels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array with 2 elements</em>) – Optional: The levels at which the width of the profile is used
+<li><p><strong>levels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array with 2 elements</em>) – Optional: The levels at which the width of the profile is used
 to evaluate the parameters of the fitting binomial profile.
 Default is [0.8, 0.2]</p></li>
-<li><p><strong>exponent_min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Optional: The smallest exponent to consider for the binomial profile
+<li><p><strong>exponent_min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Optional: The smallest exponent to consider for the binomial profile
 Default is 0.5 (NB: cannot be smaller than 0.5)</p></li>
-<li><p><strong>exponent_max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Optional: The largest exponent to consider for the binomial profile
+<li><p><strong>exponent_max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Optional: The largest exponent to consider for the binomial profile
 Default is 10. (NB: a higher value is necessary for Gaussian profiles)</p></li>
-<li><p><strong>exponent_distrib</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <p>Optional: Define how the exponent array of the LUT is distributed
+<li><p><strong>exponent_distrib</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <p>Optional: Define how the exponent array of the LUT is distributed
 The possible settings are:</p>
 <ul>
 <li><p>logspace: uses np.logspace (default)</p></li>
 <li><p>linspace: uses np.linspace</p></li>
 </ul>
 </p></li>
-<li><p><strong>exponent_npoints</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Optional: The number of points for the lookup table
+<li><p><strong>exponent_npoints</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Optional: The number of points for the lookup table
 Default is 100</p></li>
-<li><p><strong>exponent_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – Optional: This option replaces and discards all the other optional
+<li><p><strong>exponent_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – Optional: This option replaces and discards all the other optional
 inputs</p></li>
 </ul>
 </dd>
@@ -541,9 +540,9 @@ blond_common.interfaces.beam.analytic_distribution.binomial_amplitude</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
-<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
-<li><p><strong>levels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array with 2 elements</em>) – Optional: The levels at which the width of the profile is used
+<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
+<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
+<li><p><strong>levels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array with 2 elements</em>) – Optional: The levels at which the width of the profile is used
 to evaluate the parameters of the fitting binomial profile.
 Default is [0.8, 0.2]</p></li>
 <li><p><strong>ratio_LUT</strong> (<em>output from _binomial_from_width_LUT_generation</em>) – Optional: The function uses internally a lookup table obtained from the
@@ -606,8 +605,8 @@ blond_common.interfaces.beam.analytic_distribution.cosine</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
-<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
+<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
+<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -650,8 +649,8 @@ blond_common.interfaces.beam.analytic_distribution.cosineSquared</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
-<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
+<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
+<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -694,8 +693,8 @@ blond_common.interfaces.beam.analytic_distribution.Gaussian</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
-<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
+<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
+<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -737,8 +736,8 @@ blond_common.interfaces.beam.analytic_distribution.generalizedGaussian</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
-<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
+<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
+<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -781,9 +780,9 @@ blond_common.interfaces.beam.analytic_distribution.generalizedGaussian</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
-<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
-<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <p>The method used to do the integration, the possible inputs are:</p>
+<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
+<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
+<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <p>The method used to do the integration, the possible inputs are:</p>
 <ul>
 <li><p>”sum”: uses np.sum (default)</p></li>
 <li><p>”trapz”: uses np.trapz</p></li>
@@ -795,7 +794,7 @@ blond_common.interfaces.beam.analytic_distribution.generalizedGaussian</p>
 <dd class="field-even"><p><strong>integrated_value</strong> – The integrated bunch profile, in the units of time_array*data_array</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
@@ -829,8 +828,8 @@ blond_common.interfaces.beam.analytic_distribution.parabolicAmplitude</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
-<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
+<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
+<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -874,8 +873,8 @@ blond_common.interfaces.beam.analytic_distribution.parabolicLine</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
-<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
+<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
+<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -916,9 +915,9 @@ is passed, the function averages the points above the speicifed “level”.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
-<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
-<li><p><strong>level</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Optional: The ratio of the maximum above which the profile is averaged
+<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
+<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
+<li><p><strong>level</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Optional: The ratio of the maximum above which the profile is averaged
 Default is 1.0 to return the numerical maximum</p></li>
 </ul>
 </dd>
@@ -962,8 +961,8 @@ blond_common.interfaces.beam.analytic_distribution.waterbag</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
-<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
+<li><p><strong>time_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input time</p></li>
+<li><p><strong>data_array</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><em>np.array</em>) – The input profile</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

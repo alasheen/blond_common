@@ -24,7 +24,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -211,19 +210,19 @@
 <span id="datatypes-advanced-rf-programs-module"></span><h1>datatypes_advanced.rf_programs module<a class="headerlink" href="#module-blond_common.datatypes.rf_programs" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="blond_common.datatypes.rf_programs._RF_function">
-<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.rf_programs.</code><code class="sig-name descname">_RF_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">harmonics</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">allow_single</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#_RF_function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs._RF_function" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.rf_programs.</code><code class="sig-name descname">_RF_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">harmonics</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">allow_single</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#_RF_function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs._RF_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="datatypes_advanced._core.html#blond_common.datatypes._core._function" title="blond_common.datatypes._core._function"><code class="xref py py-class docutils literal notranslate"><span class="pre">blond_common.datatypes._core._function</span></code></a></p>
 <p>Base class for defining functions used for the RFStation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs.</p></li>
+<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs.</p></li>
 <li><p><strong>harmonics</strong> (<em>iterable of ints</em>) – The harmonics covered by the data.</p></li>
 <li><p><strong>time</strong> (<em>iterable of floats</em>) – The time array to be used for the data, to be used if the time
 dependent data is not given as 2D array.</p></li>
-<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The number of turns to be used, if a single value is given it will be
+<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of turns to be used, if a single value is given it will be
 extended to n_turns length.</p></li>
-<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The type of interpolation to be used.</p></li>
+<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The type of interpolation to be used.</p></li>
 <li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Additional kwargs used to define the data_type dict.</p></li>
 </ul>
 </dd>
@@ -234,7 +233,7 @@ extended to n_turns length.</p></li>
 <dd><p>Dictionary containing relevant information to define the datatype</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -247,7 +246,7 @@ of the datatype.  As a string it is used as a key for the data_type
 dict</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -259,7 +258,7 @@ dict</p>
 the array, currently only ‘linear’ has been implemented</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -284,7 +283,7 @@ update the data_type dict.</p>
 
 <dl class="py method">
 <dt id="blond_common.datatypes.rf_programs._RF_function.reshape">
-<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">harmonics</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#_RF_function.reshape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs._RF_function.reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">harmonics</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#_RF_function.reshape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs._RF_function.reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reshape the datatype array to the given number of sections and either
 the given use_time or given use_turns.</p>
 <dl class="field-list simple">
@@ -315,7 +314,7 @@ The default is None.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
+<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
 <li><p><strong>value</strong> (<em>any</em>) – The new element to be added to the data_type dict.</p></li>
 </ul>
 </dd>
@@ -330,7 +329,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – Times to be used for the interpolation.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of ints</em>) – Turn numbers to be used for new array.</p></li>
 </ul>
@@ -353,7 +352,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -361,7 +360,7 @@ to confirm it is suitable.</p>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>excpt.InputDataError</strong> – If use_time is not monotonically increase an InputDataError is
     raised.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
     type is requested a RuntimeError is raised.</p></li>
 </ul>
 </dd>
@@ -381,7 +380,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -396,13 +395,13 @@ to confirm it is suitable.</p>
 
 <dl class="py method">
 <dt id="blond_common.datatypes.rf_programs._RF_function._prep_reshape">
-<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs._RF_function._prep_reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs._RF_function._prep_reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an empty numpy array of the required shape for the reshaped
 array to populate</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of float</em><em>, </em><em>optional</em>) – The times that the array will be interpolated onto.
 The default is None.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of int</em><em>, </em><em>optional</em>) – The turn numberss to be extracted from the array.
@@ -431,7 +430,14 @@ attributes of the object identified in the dict.</p>
 
 <dl class="py method">
 <dt id="id2">
-<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">interpolation</code><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the timebase.  Setting the timebase will update the
+data_type dict.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="id3">
+<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id3" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the timebase.  Setting the timebase will update the
 data_type dict.</p>
 </dd></dl>
@@ -444,7 +450,7 @@ data_type dict.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>shape</strong> (<em>iterable</em>) – The shape of the new array</p></li>
-<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
 The default is None.</p></li>
 </ul>
 </dd>
@@ -461,19 +467,19 @@ The default is None.</p></li>
 
 <dl class="py class">
 <dt id="blond_common.datatypes.rf_programs.voltage_program">
-<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.rf_programs.</code><code class="sig-name descname">voltage_program</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">harmonics</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">allow_single</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#voltage_program"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs.voltage_program" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.rf_programs.</code><code class="sig-name descname">voltage_program</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">harmonics</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">allow_single</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#voltage_program"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs.voltage_program" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#blond_common.datatypes.rf_programs._RF_function" title="blond_common.datatypes.rf_programs._RF_function"><code class="xref py py-class docutils literal notranslate"><span class="pre">blond_common.datatypes.rf_programs._RF_function</span></code></a></p>
 <p>Class for defining voltage functions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs.</p></li>
+<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs.</p></li>
 <li><p><strong>harmonics</strong> (<em>iterable of ints</em>) – The harmonics covered by the data.</p></li>
 <li><p><strong>time</strong> (<em>iterable of floats</em>) – The time array to be used for the data, to be used if the time
 dependent data is not given as 2D array.</p></li>
-<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The number of turns to be used, if a single value is given it will be
+<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of turns to be used, if a single value is given it will be
 extended to n_turns length.</p></li>
-<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The type of interpolation to be used.</p></li>
+<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The type of interpolation to be used.</p></li>
 <li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Additional kwargs used to define the data_type dict.</p></li>
 </ul>
 </dd>
@@ -484,7 +490,7 @@ extended to n_turns length.</p></li>
 <dd><p>Dictionary containing relevant information to define the datatype</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -497,7 +503,7 @@ of the datatype.  As a string it is used as a key for the data_type
 dict</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -509,7 +515,7 @@ dict</p>
 the array, currently only ‘linear’ has been implemented</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -532,7 +538,7 @@ the array, currently only ‘linear’ has been implemented</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
+<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
 <li><p><strong>value</strong> (<em>any</em>) – The new element to be added to the data_type dict.</p></li>
 </ul>
 </dd>
@@ -547,7 +553,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – Times to be used for the interpolation.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of ints</em>) – Turn numbers to be used for new array.</p></li>
 </ul>
@@ -570,7 +576,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -578,7 +584,7 @@ to confirm it is suitable.</p>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>excpt.InputDataError</strong> – If use_time is not monotonically increase an InputDataError is
     raised.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
     type is requested a RuntimeError is raised.</p></li>
 </ul>
 </dd>
@@ -598,7 +604,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -613,13 +619,13 @@ to confirm it is suitable.</p>
 
 <dl class="py method">
 <dt id="blond_common.datatypes.rf_programs.voltage_program._prep_reshape">
-<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.voltage_program._prep_reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.voltage_program._prep_reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an empty numpy array of the required shape for the reshaped
 array to populate</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of float</em><em>, </em><em>optional</em>) – The times that the array will be interpolated onto.
 The default is None.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of int</em><em>, </em><em>optional</em>) – The turn numberss to be extracted from the array.
@@ -640,22 +646,29 @@ The default is None.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id3">
-<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id3" title="Permalink to this definition">¶</a></dt>
+<dt id="id4">
+<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id4" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the data_type.  Setting the data_type will update all
 attributes of the object identified in the dict.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id4">
-<em class="property">property </em><code class="sig-name descname">harmonics</code><a class="headerlink" href="#id4" title="Permalink to this definition">¶</a></dt>
+<dt id="id5">
+<em class="property">property </em><code class="sig-name descname">harmonics</code><a class="headerlink" href="#id5" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the harmonics attribute.  Setting the harmonics will also
 update the data_type dict.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="id6">
+<em class="property">property </em><code class="sig-name descname">interpolation</code><a class="headerlink" href="#id6" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the timebase.  Setting the timebase will update the
+data_type dict.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="blond_common.datatypes.rf_programs.voltage_program.reshape">
-<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">harmonics</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.voltage_program.reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">harmonics</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.voltage_program.reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reshape the datatype array to the given number of sections and either
 the given use_time or given use_turns.</p>
 <dl class="field-list simple">
@@ -680,8 +693,8 @@ The default is None.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id5">
-<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id5" title="Permalink to this definition">¶</a></dt>
+<dt id="id7">
+<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id7" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the timebase.  Setting the timebase will update the
 data_type dict.</p>
 </dd></dl>
@@ -694,7 +707,7 @@ data_type dict.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>shape</strong> (<em>iterable</em>) – The shape of the new array</p></li>
-<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
 The default is None.</p></li>
 </ul>
 </dd>
@@ -711,19 +724,19 @@ The default is None.</p></li>
 
 <dl class="py class">
 <dt id="blond_common.datatypes.rf_programs.phase_program">
-<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.rf_programs.</code><code class="sig-name descname">phase_program</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">harmonics</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">allow_single</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#phase_program"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs.phase_program" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.rf_programs.</code><code class="sig-name descname">phase_program</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">harmonics</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">allow_single</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#phase_program"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs.phase_program" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#blond_common.datatypes.rf_programs._RF_function" title="blond_common.datatypes.rf_programs._RF_function"><code class="xref py py-class docutils literal notranslate"><span class="pre">blond_common.datatypes.rf_programs._RF_function</span></code></a></p>
 <p>Class for defining phase functions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs.</p></li>
+<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs.</p></li>
 <li><p><strong>harmonics</strong> (<em>iterable of ints</em>) – The harmonics covered by the data.</p></li>
 <li><p><strong>time</strong> (<em>iterable of floats</em>) – The time array to be used for the data, to be used if the time
 dependent data is not given as 2D array.</p></li>
-<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The number of turns to be used, if a single value is given it will be
+<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of turns to be used, if a single value is given it will be
 extended to n_turns length.</p></li>
-<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The type of interpolation to be used.</p></li>
+<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The type of interpolation to be used.</p></li>
 <li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Additional kwargs used to define the data_type dict.</p></li>
 </ul>
 </dd>
@@ -734,7 +747,7 @@ extended to n_turns length.</p></li>
 <dd><p>Dictionary containing relevant information to define the datatype</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -747,7 +760,7 @@ of the datatype.  As a string it is used as a key for the data_type
 dict</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -759,7 +772,7 @@ dict</p>
 the array, currently only ‘linear’ has been implemented</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -782,7 +795,7 @@ the array, currently only ‘linear’ has been implemented</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
+<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
 <li><p><strong>value</strong> (<em>any</em>) – The new element to be added to the data_type dict.</p></li>
 </ul>
 </dd>
@@ -797,7 +810,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – Times to be used for the interpolation.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of ints</em>) – Turn numbers to be used for new array.</p></li>
 </ul>
@@ -820,7 +833,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -828,7 +841,7 @@ to confirm it is suitable.</p>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>excpt.InputDataError</strong> – If use_time is not monotonically increase an InputDataError is
     raised.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
     type is requested a RuntimeError is raised.</p></li>
 </ul>
 </dd>
@@ -848,7 +861,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -863,13 +876,13 @@ to confirm it is suitable.</p>
 
 <dl class="py method">
 <dt id="blond_common.datatypes.rf_programs.phase_program._prep_reshape">
-<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.phase_program._prep_reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.phase_program._prep_reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an empty numpy array of the required shape for the reshaped
 array to populate</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of float</em><em>, </em><em>optional</em>) – The times that the array will be interpolated onto.
 The default is None.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of int</em><em>, </em><em>optional</em>) – The turn numberss to be extracted from the array.
@@ -885,338 +898,34 @@ The default is None.</p></li>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>np.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="id6">
-<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id6" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get or set the data_type.  Setting the data_type will update all
-attributes of the object identified in the dict.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="id7">
-<em class="property">property </em><code class="sig-name descname">harmonics</code><a class="headerlink" href="#id7" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get or set the harmonics attribute.  Setting the harmonics will also
-update the data_type dict.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="blond_common.datatypes.rf_programs.phase_program.reshape">
-<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">harmonics</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.phase_program.reshape" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reshape the datatype array to the given number of sections and either
-the given use_time or given use_turns.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>harmonics</strong> (<em>iterable of ints</em><em>, </em><em>optional</em>) – The harmonics to be returned in the new array.  If none all
-defined harmonics will be returned.  All specified harmonics will
-be returned, if not defined in the function they will be 0.
-The default is None.</p></li>
-<li><p><strong>use_time</strong> (<em>iterable of floats</em><em>, </em><em>optional</em>) – The times that the array will be interpolated on to.
-The default is None.</p></li>
-<li><p><strong>use_turns</strong> (<em>iterable of ints</em><em>, </em><em>optional</em>) – The turn numbers to be used for the new array. The default is None.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The newly interpolated array.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>datatype</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="id8">
-<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id8" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get or set the timebase.  Setting the timebase will update the
-data_type dict.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="blond_common.datatypes.rf_programs.phase_program.zeros">
-<em class="property">classmethod </em><code class="sig-name descname">zeros</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">shape</span></em>, <em class="sig-param"><span class="n">data_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.phase_program.zeros" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create an empty array of given shape, with required data_type dict.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>shape</strong> (<em>iterable</em>) – The shape of the new array</p></li>
-<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
-The default is None.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>newArray</strong> – The new datatype array</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>datatype</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="blond_common.datatypes.rf_programs._freq_phase_off">
-<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.rf_programs.</code><code class="sig-name descname">_freq_phase_off</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">harmonics</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">allow_single</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#_freq_phase_off"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#blond_common.datatypes.rf_programs._RF_function" title="blond_common.datatypes.rf_programs._RF_function"><code class="xref py py-class docutils literal notranslate"><span class="pre">blond_common.datatypes.rf_programs._RF_function</span></code></a></p>
-<p>Class for defining offsets to the design RF phase and frequency.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs.</p></li>
-<li><p><strong>harmonics</strong> (<em>iterable of ints</em>) – The harmonics covered by the data.</p></li>
-<li><p><strong>time</strong> (<em>iterable of floats</em>) – The time array to be used for the data, to be used if the time
-dependent data is not given as 2D array.</p></li>
-<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The number of turns to be used, if a single value is given it will be
-extended to n_turns length.</p></li>
-<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The type of interpolation to be used.</p></li>
-<li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Additional kwargs used to define the data_type dict.</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py attribute">
-<dt id="blond_common.datatypes.rf_programs._freq_phase_off.data_type">
-<code class="sig-name descname">data_type</code><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off.data_type" title="Permalink to this definition">¶</a></dt>
-<dd><p>Dictionary containing relevant information to define the datatype</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="blond_common.datatypes.rf_programs._freq_phase_off.timebase">
-<code class="sig-name descname">timebase</code><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off.timebase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Either ‘single’, ‘by_turn’, or ‘by_time’ depending on the definition
-of the datatype.  As a string it is used as a key for the data_type
-dict</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="blond_common.datatypes.rf_programs._freq_phase_off.interpolation">
-<code class="sig-name descname">interpolation</code><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off.interpolation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Identifier of the type of interpolation to be used when reshaping
-the array, currently only ‘linear’ has been implemented</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="blond_common.datatypes.rf_programs._freq_phase_off.harmonics">
-<code class="sig-name descname">harmonics</code><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off.harmonics" title="Permalink to this definition">¶</a></dt>
-<dd><p>The harmonics covered by the function.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>iterable of ints</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="blond_common.datatypes.rf_programs._freq_phase_off.calc_delta_omega">
-<code class="sig-name descname">calc_delta_omega</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">design_omega_rev</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#_freq_phase_off.calc_delta_omega"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off.calc_delta_omega" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculare the change in $Omega_{RF}$ required to give a given phase
-offset.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>design_omega_rev</strong> (<em>1D</em><em> or </em><em>2D array.</em>) – The design $Omega_{0}$ used to compute the $DeltaOmega_{RF}$.
-Taken as turn dependent if 1D or time dependent if 2D.</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – If this function is called with an omega_offset function a
-    RuntimeError is raised.
-    If timebase == ‘by_turn’ (‘by_time’) and design_omega_rev is a
-    time based (turn based) function a RuntimeError is raised.</p></li>
-<li><p><strong>excpt.InputError</strong> – If the shape of the data and the design_omega_rev are mismatched
-    and InputError is raised.</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>delta_omega</strong> – The $DeltaOmega_{RF}$ at each defined harmonic.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#blond_common.datatypes.rf_programs.omega_offset" title="blond_common.datatypes.rf_programs.omega_offset">omega_offset</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="blond_common.datatypes.rf_programs._freq_phase_off.calc_delta_phase">
-<code class="sig-name descname">calc_delta_phase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">design_omega_rev</span></em>, <em class="sig-param"><span class="n">wrap</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#_freq_phase_off.calc_delta_phase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off.calc_delta_phase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculare the change in $Omega_{RF}$ required to give a given phase
-offset.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>design_omega_rev</strong> (<em>1D</em><em> or </em><em>2D array.</em>) – The design $Omega_{0}$ used to compute the $Deltavarphi_{RF}$.
-Taken as turn dependent if 1D or time dependent if 2D.</p></li>
-<li><p><strong>wrap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – WIP:  To be used to flag the modulus of the phase offset</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – If this function is called with an omega_offset function a
-    RuntimeError is raised.
-    If timebase == ‘by_turn’ (‘by_time’) and design_omega_rev is a
-    time based (turn based) function a RuntimeError is raised.</p></li>
-<li><p><strong>excpt.InputError</strong> – If the shape of the data and the design_omega_rev are mismatched
-    and InputError is raised.</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>delta_phase</strong> – The $Deltavarphi_{RF}$ at each defined harmonic.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#blond_common.datatypes.rf_programs.phase_offset" title="blond_common.datatypes.rf_programs.phase_offset">phase_offset</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="blond_common.datatypes.rf_programs._freq_phase_off._check_data_type">
-<code class="sig-name descname">_check_data_type</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off._check_data_type" title="Permalink to this definition">¶</a></dt>
-<dd><p>Attempt to assign a value to the data_type dict</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
-<li><p><strong>value</strong> (<em>any</em>) – The new element to be added to the data_type dict.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="blond_common.datatypes.rf_programs._freq_phase_off._comp_definition_reshape">
-<code class="sig-name descname">_comp_definition_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span></em>, <em class="sig-param"><span class="n">use_time</span></em>, <em class="sig-param"><span class="n">use_turns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off._comp_definition_reshape" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compare the required reshaping data with the contents of the datatype
-to confirm it is suitable.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
-<li><p><strong>use_time</strong> (<em>iterable of floats</em>) – Times to be used for the interpolation.</p></li>
-<li><p><strong>use_turns</strong> (<em>iterable of ints</em>) – Turn numbers to be used for new array.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>excpt.DataDefinitionError</strong> – If a function self has multiple sections and n_sections does not
-    match the number of sections a DataDefintionError is raised.
-    If a function is defined by_time (by_turn) and the reshaping
-    requires by_turn (by_time) a DataDefinitionError is raised.
-    If the funtion has fewer turns of data available than required
-    for the use_turns bassed, a DataDefinitionError is raised.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="blond_common.datatypes.rf_programs._freq_phase_off._interpolate">
-<code class="sig-name descname">_interpolate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section</span></em>, <em class="sig-param"><span class="n">use_time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off._interpolate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Control the interpolation of the data</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
-<li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>excpt.InputDataError</strong> – If use_time is not monotonically increase an InputDataError is
-    raised.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
-    type is requested a RuntimeError is raised.</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The interpolated array.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>np.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="blond_common.datatypes.rf_programs._freq_phase_off._interpolate_linear">
-<code class="sig-name descname">_interpolate_linear</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section</span></em>, <em class="sig-param"><span class="n">use_time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off._interpolate_linear" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make a linear interpolation</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
-<li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The newly interpolated array.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>np.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="blond_common.datatypes.rf_programs._freq_phase_off._prep_reshape">
-<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off._prep_reshape" title="Permalink to this definition">¶</a></dt>
-<dd><p>Construct an empty numpy array of the required shape for the reshaped
-array to populate</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
-<li><p><strong>use_time</strong> (<em>iterable of float</em><em>, </em><em>optional</em>) – The times that the array will be interpolated onto.
-The default is None.</p></li>
-<li><p><strong>use_turns</strong> (<em>iterable of int</em><em>, </em><em>optional</em>) – The turn numberss to be extracted from the array.
-The default is None.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>excpt.InputError</strong> – If neither use_turns nor use_time is defined an exception is
-    raised.</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The new array to be populated when reshaping the data.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>np.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="id9">
-<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id9" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id8" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the data_type.  Setting the data_type will update all
 attributes of the object identified in the dict.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id10">
-<em class="property">property </em><code class="sig-name descname">harmonics</code><a class="headerlink" href="#id10" title="Permalink to this definition">¶</a></dt>
+<dt id="id9">
+<em class="property">property </em><code class="sig-name descname">harmonics</code><a class="headerlink" href="#id9" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the harmonics attribute.  Setting the harmonics will also
 update the data_type dict.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="blond_common.datatypes.rf_programs._freq_phase_off.reshape">
-<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">harmonics</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off.reshape" title="Permalink to this definition">¶</a></dt>
+<dt id="id10">
+<em class="property">property </em><code class="sig-name descname">interpolation</code><a class="headerlink" href="#id10" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the timebase.  Setting the timebase will update the
+data_type dict.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="blond_common.datatypes.rf_programs.phase_program.reshape">
+<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">harmonics</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.phase_program.reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reshape the datatype array to the given number of sections and either
 the given use_time or given use_turns.</p>
 <dl class="field-list simple">
@@ -1248,6 +957,324 @@ data_type dict.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="blond_common.datatypes.rf_programs.phase_program.zeros">
+<em class="property">classmethod </em><code class="sig-name descname">zeros</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">shape</span></em>, <em class="sig-param"><span class="n">data_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.phase_program.zeros" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an empty array of given shape, with required data_type dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>shape</strong> (<em>iterable</em>) – The shape of the new array</p></li>
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
+The default is None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>newArray</strong> – The new datatype array</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>datatype</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="blond_common.datatypes.rf_programs._freq_phase_off">
+<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.rf_programs.</code><code class="sig-name descname">_freq_phase_off</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">harmonics</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">allow_single</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#_freq_phase_off"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#blond_common.datatypes.rf_programs._RF_function" title="blond_common.datatypes.rf_programs._RF_function"><code class="xref py py-class docutils literal notranslate"><span class="pre">blond_common.datatypes.rf_programs._RF_function</span></code></a></p>
+<p>Class for defining offsets to the design RF phase and frequency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs.</p></li>
+<li><p><strong>harmonics</strong> (<em>iterable of ints</em>) – The harmonics covered by the data.</p></li>
+<li><p><strong>time</strong> (<em>iterable of floats</em>) – The time array to be used for the data, to be used if the time
+dependent data is not given as 2D array.</p></li>
+<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of turns to be used, if a single value is given it will be
+extended to n_turns length.</p></li>
+<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The type of interpolation to be used.</p></li>
+<li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Additional kwargs used to define the data_type dict.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="blond_common.datatypes.rf_programs._freq_phase_off.data_type">
+<code class="sig-name descname">data_type</code><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off.data_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dictionary containing relevant information to define the datatype</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.datatypes.rf_programs._freq_phase_off.timebase">
+<code class="sig-name descname">timebase</code><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off.timebase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Either ‘single’, ‘by_turn’, or ‘by_time’ depending on the definition
+of the datatype.  As a string it is used as a key for the data_type
+dict</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.datatypes.rf_programs._freq_phase_off.interpolation">
+<code class="sig-name descname">interpolation</code><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off.interpolation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identifier of the type of interpolation to be used when reshaping
+the array, currently only ‘linear’ has been implemented</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blond_common.datatypes.rf_programs._freq_phase_off.harmonics">
+<code class="sig-name descname">harmonics</code><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off.harmonics" title="Permalink to this definition">¶</a></dt>
+<dd><p>The harmonics covered by the function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>iterable of ints</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="blond_common.datatypes.rf_programs._freq_phase_off.calc_delta_omega">
+<code class="sig-name descname">calc_delta_omega</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">design_omega_rev</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#_freq_phase_off.calc_delta_omega"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off.calc_delta_omega" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculare the change in $Omega_{RF}$ required to give a given phase
+offset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>design_omega_rev</strong> (<em>1D</em><em> or </em><em>2D array.</em>) – The design $Omega_{0}$ used to compute the $DeltaOmega_{RF}$.
+Taken as turn dependent if 1D or time dependent if 2D.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – If this function is called with an omega_offset function a
+    RuntimeError is raised.
+    If timebase == ‘by_turn’ (‘by_time’) and design_omega_rev is a
+    time based (turn based) function a RuntimeError is raised.</p></li>
+<li><p><strong>excpt.InputError</strong> – If the shape of the data and the design_omega_rev are mismatched
+    and InputError is raised.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>delta_omega</strong> – The $DeltaOmega_{RF}$ at each defined harmonic.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#blond_common.datatypes.rf_programs.omega_offset" title="blond_common.datatypes.rf_programs.omega_offset">omega_offset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="blond_common.datatypes.rf_programs._freq_phase_off.calc_delta_phase">
+<code class="sig-name descname">calc_delta_phase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">design_omega_rev</span></em>, <em class="sig-param"><span class="n">wrap</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#_freq_phase_off.calc_delta_phase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off.calc_delta_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculare the change in $Omega_{RF}$ required to give a given phase
+offset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>design_omega_rev</strong> (<em>1D</em><em> or </em><em>2D array.</em>) – The design $Omega_{0}$ used to compute the $Deltavarphi_{RF}$.
+Taken as turn dependent if 1D or time dependent if 2D.</p></li>
+<li><p><strong>wrap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – WIP:  To be used to flag the modulus of the phase offset</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – If this function is called with an omega_offset function a
+    RuntimeError is raised.
+    If timebase == ‘by_turn’ (‘by_time’) and design_omega_rev is a
+    time based (turn based) function a RuntimeError is raised.</p></li>
+<li><p><strong>excpt.InputError</strong> – If the shape of the data and the design_omega_rev are mismatched
+    and InputError is raised.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>delta_phase</strong> – The $Deltavarphi_{RF}$ at each defined harmonic.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#blond_common.datatypes.rf_programs.phase_offset" title="blond_common.datatypes.rf_programs.phase_offset">phase_offset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="blond_common.datatypes.rf_programs._freq_phase_off._check_data_type">
+<code class="sig-name descname">_check_data_type</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off._check_data_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attempt to assign a value to the data_type dict</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
+<li><p><strong>value</strong> (<em>any</em>) – The new element to be added to the data_type dict.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="blond_common.datatypes.rf_programs._freq_phase_off._comp_definition_reshape">
+<code class="sig-name descname">_comp_definition_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span></em>, <em class="sig-param"><span class="n">use_time</span></em>, <em class="sig-param"><span class="n">use_turns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off._comp_definition_reshape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare the required reshaping data with the contents of the datatype
+to confirm it is suitable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
+<li><p><strong>use_time</strong> (<em>iterable of floats</em>) – Times to be used for the interpolation.</p></li>
+<li><p><strong>use_turns</strong> (<em>iterable of ints</em>) – Turn numbers to be used for new array.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>excpt.DataDefinitionError</strong> – If a function self has multiple sections and n_sections does not
+    match the number of sections a DataDefintionError is raised.
+    If a function is defined by_time (by_turn) and the reshaping
+    requires by_turn (by_time) a DataDefinitionError is raised.
+    If the funtion has fewer turns of data available than required
+    for the use_turns bassed, a DataDefinitionError is raised.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="blond_common.datatypes.rf_programs._freq_phase_off._interpolate">
+<code class="sig-name descname">_interpolate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section</span></em>, <em class="sig-param"><span class="n">use_time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off._interpolate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control the interpolation of the data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>excpt.InputDataError</strong> – If use_time is not monotonically increase an InputDataError is
+    raised.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
+    type is requested a RuntimeError is raised.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The interpolated array.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="blond_common.datatypes.rf_programs._freq_phase_off._interpolate_linear">
+<code class="sig-name descname">_interpolate_linear</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section</span></em>, <em class="sig-param"><span class="n">use_time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off._interpolate_linear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a linear interpolation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The newly interpolated array.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="blond_common.datatypes.rf_programs._freq_phase_off._prep_reshape">
+<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off._prep_reshape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct an empty numpy array of the required shape for the reshaped
+array to populate</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
+<li><p><strong>use_time</strong> (<em>iterable of float</em><em>, </em><em>optional</em>) – The times that the array will be interpolated onto.
+The default is None.</p></li>
+<li><p><strong>use_turns</strong> (<em>iterable of int</em><em>, </em><em>optional</em>) – The turn numberss to be extracted from the array.
+The default is None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>excpt.InputError</strong> – If neither use_turns nor use_time is defined an exception is
+    raised.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The new array to be populated when reshaping the data.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="id12">
+<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id12" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the data_type.  Setting the data_type will update all
+attributes of the object identified in the dict.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="id13">
+<em class="property">property </em><code class="sig-name descname">harmonics</code><a class="headerlink" href="#id13" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the harmonics attribute.  Setting the harmonics will also
+update the data_type dict.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="id14">
+<em class="property">property </em><code class="sig-name descname">interpolation</code><a class="headerlink" href="#id14" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the timebase.  Setting the timebase will update the
+data_type dict.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="blond_common.datatypes.rf_programs._freq_phase_off.reshape">
+<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">harmonics</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off.reshape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reshape the datatype array to the given number of sections and either
+the given use_time or given use_turns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>harmonics</strong> (<em>iterable of ints</em><em>, </em><em>optional</em>) – The harmonics to be returned in the new array.  If none all
+defined harmonics will be returned.  All specified harmonics will
+be returned, if not defined in the function they will be 0.
+The default is None.</p></li>
+<li><p><strong>use_time</strong> (<em>iterable of floats</em><em>, </em><em>optional</em>) – The times that the array will be interpolated on to.
+The default is None.</p></li>
+<li><p><strong>use_turns</strong> (<em>iterable of ints</em><em>, </em><em>optional</em>) – The turn numbers to be used for the new array. The default is None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The newly interpolated array.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>datatype</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="id15">
+<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id15" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the timebase.  Setting the timebase will update the
+data_type dict.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="blond_common.datatypes.rf_programs._freq_phase_off.zeros">
 <em class="property">classmethod </em><code class="sig-name descname">zeros</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">shape</span></em>, <em class="sig-param"><span class="n">data_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs._freq_phase_off.zeros" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an empty array of given shape, with required data_type dict.</p>
@@ -1255,7 +1282,7 @@ data_type dict.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>shape</strong> (<em>iterable</em>) – The shape of the new array</p></li>
-<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
 The default is None.</p></li>
 </ul>
 </dd>
@@ -1272,19 +1299,19 @@ The default is None.</p></li>
 
 <dl class="py class">
 <dt id="blond_common.datatypes.rf_programs.phase_offset">
-<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.rf_programs.</code><code class="sig-name descname">phase_offset</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">harmonics</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">allow_single</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#phase_offset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs.phase_offset" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.rf_programs.</code><code class="sig-name descname">phase_offset</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">harmonics</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">allow_single</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#phase_offset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs.phase_offset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#blond_common.datatypes.rf_programs._freq_phase_off" title="blond_common.datatypes.rf_programs._freq_phase_off"><code class="xref py py-class docutils literal notranslate"><span class="pre">blond_common.datatypes.rf_programs._freq_phase_off</span></code></a></p>
 <p>Class for defining phase offset functions used for the RFStation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs.</p></li>
+<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs.</p></li>
 <li><p><strong>harmonics</strong> (<em>iterable of ints</em>) – The harmonics covered by the data.</p></li>
 <li><p><strong>time</strong> (<em>iterable of floats</em>) – The time array to be used for the data, to be used if the time
 dependent data is not given as 2D array.</p></li>
-<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The number of turns to be used, if a single value is given it will be
+<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of turns to be used, if a single value is given it will be
 extended to n_turns length.</p></li>
-<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The type of interpolation to be used.</p></li>
+<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The type of interpolation to be used.</p></li>
 <li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Additional kwargs used to define the data_type dict.</p></li>
 </ul>
 </dd>
@@ -1295,7 +1322,7 @@ extended to n_turns length.</p></li>
 <dd><p>Dictionary containing relevant information to define the datatype</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1308,7 +1335,7 @@ of the datatype.  As a string it is used as a key for the data_type
 dict</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1320,7 +1347,7 @@ dict</p>
 the array, currently only ‘linear’ has been implemented</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1343,7 +1370,7 @@ the array, currently only ‘linear’ has been implemented</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
+<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
 <li><p><strong>value</strong> (<em>any</em>) – The new element to be added to the data_type dict.</p></li>
 </ul>
 </dd>
@@ -1358,7 +1385,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – Times to be used for the interpolation.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of ints</em>) – Turn numbers to be used for new array.</p></li>
 </ul>
@@ -1381,7 +1408,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -1389,7 +1416,7 @@ to confirm it is suitable.</p>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>excpt.InputDataError</strong> – If use_time is not monotonically increase an InputDataError is
     raised.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
     type is requested a RuntimeError is raised.</p></li>
 </ul>
 </dd>
@@ -1409,7 +1436,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -1424,13 +1451,13 @@ to confirm it is suitable.</p>
 
 <dl class="py method">
 <dt id="blond_common.datatypes.rf_programs.phase_offset._prep_reshape">
-<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.phase_offset._prep_reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.phase_offset._prep_reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an empty numpy array of the required shape for the reshaped
 array to populate</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of float</em><em>, </em><em>optional</em>) – The times that the array will be interpolated onto.
 The default is None.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of int</em><em>, </em><em>optional</em>) – The turn numberss to be extracted from the array.
@@ -1462,7 +1489,7 @@ Taken as turn dependent if 1D or time dependent if 2D.</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – If this function is called with an omega_offset function a
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – If this function is called with an omega_offset function a
     RuntimeError is raised.
     If timebase == ‘by_turn’ (‘by_time’) and design_omega_rev is a
     time based (turn based) function a RuntimeError is raised.</p></li>
@@ -1489,12 +1516,12 @@ offset.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>design_omega_rev</strong> (<em>1D</em><em> or </em><em>2D array.</em>) – The design $Omega_{0}$ used to compute the $Deltavarphi_{RF}$.
 Taken as turn dependent if 1D or time dependent if 2D.</p></li>
-<li><p><strong>wrap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – WIP:  To be used to flag the modulus of the phase offset</p></li>
+<li><p><strong>wrap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – WIP:  To be used to flag the modulus of the phase offset</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – If this function is called with an omega_offset function a
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – If this function is called with an omega_offset function a
     RuntimeError is raised.
     If timebase == ‘by_turn’ (‘by_time’) and design_omega_rev is a
     time based (turn based) function a RuntimeError is raised.</p></li>
@@ -1512,22 +1539,29 @@ Taken as turn dependent if 1D or time dependent if 2D.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id12">
-<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id12" title="Permalink to this definition">¶</a></dt>
+<dt id="id16">
+<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id16" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the data_type.  Setting the data_type will update all
 attributes of the object identified in the dict.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id13">
-<em class="property">property </em><code class="sig-name descname">harmonics</code><a class="headerlink" href="#id13" title="Permalink to this definition">¶</a></dt>
+<dt id="id17">
+<em class="property">property </em><code class="sig-name descname">harmonics</code><a class="headerlink" href="#id17" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the harmonics attribute.  Setting the harmonics will also
 update the data_type dict.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="id18">
+<em class="property">property </em><code class="sig-name descname">interpolation</code><a class="headerlink" href="#id18" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the timebase.  Setting the timebase will update the
+data_type dict.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="blond_common.datatypes.rf_programs.phase_offset.reshape">
-<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">harmonics</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.phase_offset.reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">harmonics</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.phase_offset.reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reshape the datatype array to the given number of sections and either
 the given use_time or given use_turns.</p>
 <dl class="field-list simple">
@@ -1552,8 +1586,8 @@ The default is None.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id14">
-<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id14" title="Permalink to this definition">¶</a></dt>
+<dt id="id19">
+<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id19" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the timebase.  Setting the timebase will update the
 data_type dict.</p>
 </dd></dl>
@@ -1566,7 +1600,7 @@ data_type dict.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>shape</strong> (<em>iterable</em>) – The shape of the new array</p></li>
-<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
 The default is None.</p></li>
 </ul>
 </dd>
@@ -1583,19 +1617,19 @@ The default is None.</p></li>
 
 <dl class="py class">
 <dt id="blond_common.datatypes.rf_programs.omega_offset">
-<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.rf_programs.</code><code class="sig-name descname">omega_offset</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">harmonics</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">allow_single</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#omega_offset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs.omega_offset" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.rf_programs.</code><code class="sig-name descname">omega_offset</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">harmonics</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">allow_single</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/rf_programs.html#omega_offset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.rf_programs.omega_offset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#blond_common.datatypes.rf_programs._freq_phase_off" title="blond_common.datatypes.rf_programs._freq_phase_off"><code class="xref py py-class docutils literal notranslate"><span class="pre">blond_common.datatypes.rf_programs._freq_phase_off</span></code></a></p>
 <p>Class for defining phase offset functions used for the RFStation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs.</p></li>
+<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs.</p></li>
 <li><p><strong>harmonics</strong> (<em>iterable of ints</em>) – The harmonics covered by the data.</p></li>
 <li><p><strong>time</strong> (<em>iterable of floats</em>) – The time array to be used for the data, to be used if the time
 dependent data is not given as 2D array.</p></li>
-<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The number of turns to be used, if a single value is given it will be
+<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of turns to be used, if a single value is given it will be
 extended to n_turns length.</p></li>
-<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The type of interpolation to be used.</p></li>
+<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The type of interpolation to be used.</p></li>
 <li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Additional kwargs used to define the data_type dict.</p></li>
 </ul>
 </dd>
@@ -1606,7 +1640,7 @@ extended to n_turns length.</p></li>
 <dd><p>Dictionary containing relevant information to define the datatype</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1619,7 +1653,7 @@ of the datatype.  As a string it is used as a key for the data_type
 dict</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1631,7 +1665,7 @@ dict</p>
 the array, currently only ‘linear’ has been implemented</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1654,7 +1688,7 @@ the array, currently only ‘linear’ has been implemented</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
+<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
 <li><p><strong>value</strong> (<em>any</em>) – The new element to be added to the data_type dict.</p></li>
 </ul>
 </dd>
@@ -1669,7 +1703,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – Times to be used for the interpolation.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of ints</em>) – Turn numbers to be used for new array.</p></li>
 </ul>
@@ -1692,7 +1726,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -1700,7 +1734,7 @@ to confirm it is suitable.</p>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>excpt.InputDataError</strong> – If use_time is not monotonically increase an InputDataError is
     raised.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
     type is requested a RuntimeError is raised.</p></li>
 </ul>
 </dd>
@@ -1720,7 +1754,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -1735,13 +1769,13 @@ to confirm it is suitable.</p>
 
 <dl class="py method">
 <dt id="blond_common.datatypes.rf_programs.omega_offset._prep_reshape">
-<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.omega_offset._prep_reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.omega_offset._prep_reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an empty numpy array of the required shape for the reshaped
 array to populate</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of float</em><em>, </em><em>optional</em>) – The times that the array will be interpolated onto.
 The default is None.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of int</em><em>, </em><em>optional</em>) – The turn numberss to be extracted from the array.
@@ -1773,7 +1807,7 @@ Taken as turn dependent if 1D or time dependent if 2D.</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – If this function is called with an omega_offset function a
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – If this function is called with an omega_offset function a
     RuntimeError is raised.
     If timebase == ‘by_turn’ (‘by_time’) and design_omega_rev is a
     time based (turn based) function a RuntimeError is raised.</p></li>
@@ -1800,12 +1834,12 @@ offset.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>design_omega_rev</strong> (<em>1D</em><em> or </em><em>2D array.</em>) – The design $Omega_{0}$ used to compute the $Deltavarphi_{RF}$.
 Taken as turn dependent if 1D or time dependent if 2D.</p></li>
-<li><p><strong>wrap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – WIP:  To be used to flag the modulus of the phase offset</p></li>
+<li><p><strong>wrap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – WIP:  To be used to flag the modulus of the phase offset</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – If this function is called with an omega_offset function a
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – If this function is called with an omega_offset function a
     RuntimeError is raised.
     If timebase == ‘by_turn’ (‘by_time’) and design_omega_rev is a
     time based (turn based) function a RuntimeError is raised.</p></li>
@@ -1823,22 +1857,29 @@ Taken as turn dependent if 1D or time dependent if 2D.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id15">
-<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id15" title="Permalink to this definition">¶</a></dt>
+<dt id="id20">
+<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id20" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the data_type.  Setting the data_type will update all
 attributes of the object identified in the dict.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id16">
-<em class="property">property </em><code class="sig-name descname">harmonics</code><a class="headerlink" href="#id16" title="Permalink to this definition">¶</a></dt>
+<dt id="id21">
+<em class="property">property </em><code class="sig-name descname">harmonics</code><a class="headerlink" href="#id21" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the harmonics attribute.  Setting the harmonics will also
 update the data_type dict.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="id22">
+<em class="property">property </em><code class="sig-name descname">interpolation</code><a class="headerlink" href="#id22" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the timebase.  Setting the timebase will update the
+data_type dict.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="blond_common.datatypes.rf_programs.omega_offset.reshape">
-<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">harmonics</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.omega_offset.reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">harmonics</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.rf_programs.omega_offset.reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reshape the datatype array to the given number of sections and either
 the given use_time or given use_turns.</p>
 <dl class="field-list simple">
@@ -1863,8 +1904,8 @@ The default is None.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id17">
-<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id17" title="Permalink to this definition">¶</a></dt>
+<dt id="id23">
+<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id23" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the timebase.  Setting the timebase will update the
 data_type dict.</p>
 </dd></dl>
@@ -1877,7 +1918,7 @@ data_type dict.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>shape</strong> (<em>iterable</em>) – The shape of the new array</p></li>
-<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
 The default is None.</p></li>
 </ul>
 </dd>

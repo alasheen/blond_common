@@ -24,7 +24,6 @@
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
@@ -1055,6 +1054,31 @@
     <span class="n">heeta</span> <span class="o">=</span> <span class="n">harmonic</span><span class="o">*</span><span class="n">charge</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
         
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">delta_E</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">twoPiBetaE</span><span class="o">*</span><span class="n">tune</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">heeta</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="choose_potential_wells"><a class="viewcode-back" href="../../rf_functions.potential.html#blond_common.rf_functions.potential.choose_potential_wells">[docs]</a><span class="k">def</span> <span class="nf">choose_potential_wells</span><span class="p">(</span><span class="n">phis</span><span class="p">,</span> <span class="n">times</span><span class="p">,</span> <span class="n">wells</span><span class="p">):</span>
+    
+    <span class="n">relevant</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="k">if</span> <span class="n">phis</span><span class="o">&gt;</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> 
+                                                      <span class="n">phis</span><span class="o">&lt;</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+    <span class="n">subTime</span> <span class="o">=</span> <span class="p">[</span><span class="n">times</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">relevant</span><span class="p">]</span>
+    <span class="n">subWell</span> <span class="o">=</span> <span class="p">[</span><span class="n">wells</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">relevant</span><span class="p">]</span>
+    <span class="n">biggest</span> <span class="o">=</span> <span class="n">sort_potential_wells</span><span class="p">(</span><span class="n">subTime</span><span class="p">,</span> <span class="n">subWell</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s1">&#39;size&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1">#check which subwells are within the bounds of the largest well </span>
+    <span class="c1">#containing the current particle</span>
+    <span class="n">relevant</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">biggest</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span>
+                                                  <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">biggest</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    
+    <span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="n">times</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">relevant</span><span class="p">]</span>
+    <span class="n">wells</span> <span class="o">=</span> <span class="p">[</span><span class="n">wells</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">relevant</span><span class="p">]</span>
+
+    <span class="n">mins</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">wells</span><span class="p">]</span>
+    <span class="n">wells</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">mins</span><span class="p">)</span>
+    
+    <span class="n">times</span><span class="p">,</span> <span class="n">wells</span> <span class="o">=</span> <span class="n">sort_potential_wells</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">wells</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s1">&#39;t_start&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">times</span><span class="p">,</span> <span class="n">wells</span></div>
 </pre></div>
 
            </div>

@@ -24,7 +24,6 @@
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
@@ -204,6 +203,7 @@
   <h1>Source code for blond_common.datatypes._core</h1><div class="highlight"><pre>
 <span></span><span class="c1"># General imports</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numbers</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
@@ -249,24 +249,22 @@
 <span class="sd">        the array, currently only &#39;linear&#39; has been implemented</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
-    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">input_array</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        
-        <span class="k">if</span> <span class="n">data_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;data_type must be specified&quot;</span><span class="p">)</span>
-        
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">input_array</span><span class="p">,</span> <span class="n">data_type</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">dtype</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">obj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">input_array</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">input_array</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;Function components could not be &quot;</span> \
                                         <span class="o">+</span> <span class="s2">&quot;correctly coerced into ndarray, &quot;</span> \
                                         <span class="o">+</span> <span class="s2">&quot;check input dimensionality&quot;</span><span class="p">)</span>
-        
+
         <span class="n">obj</span><span class="o">.</span><span class="n">data_type</span> <span class="o">=</span> <span class="n">data_type</span>
-        
+
         <span class="n">obj</span><span class="o">.</span><span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span>
-        
+
         <span class="k">return</span> <span class="n">obj</span>
-    
+
     <span class="k">def</span> <span class="nf">__array_finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -276,7 +274,164 @@
         <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">data_type</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;data_type&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="c1">#Duplicate data_type dict to prevent two objects referencing the same</span>
+        <span class="c1"># dict</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_type</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;data_type&#39;</span><span class="p">)}</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_type</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operate</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">,</span> <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__iadd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_operate</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">,</span> <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="fm">__radd__</span> <span class="o">=</span> <span class="fm">__add__</span>
+    <span class="n">__riadd__</span> <span class="o">=</span> <span class="fm">__iadd__</span>
+
+
+    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operate</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">subtract</span><span class="p">,</span> <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__isub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_operate</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">subtract</span><span class="p">,</span> <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operate</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">,</span> <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__imul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_operate</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">,</span> <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="fm">__rmul__</span> <span class="o">=</span> <span class="fm">__mul__</span>
+    <span class="n">__rimul__</span> <span class="o">=</span> <span class="fm">__imul__</span>
+
+    <span class="k">def</span> <span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operate</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">true_divide</span><span class="p">,</span> <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__itruediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_operate</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">true_divide</span><span class="p">,</span> <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="c1">#Casting to regular numpy array as _function of bool makes no sense.</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operate</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">greater_equal</span><span class="p">,</span>
+                             <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="c1">#Casting to regular numpy array as _function of bool makes no sense.</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operate</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">greater</span><span class="p">,</span>
+                             <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="c1">#Casting to regular numpy array as _function of bool makes no sense.</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operate</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">less_equal</span><span class="p">,</span>
+                             <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="c1">#Casting to regular numpy array as _function of bool makes no sense.</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operate</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">less</span><span class="p">,</span>
+                             <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_operate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">operation</span><span class="p">,</span> <span class="n">inPlace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_data_and_type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+            <span class="n">newArray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operate_equivalent_functions</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">operation</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">newArray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operate_other_functions</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">operation</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">inPlace</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">newArray</span>
+        <span class="k">if</span> <span class="n">inPlace</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">[:,</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">newArray</span><span class="p">[:,</span><span class="mi">1</span><span class="p">,:]</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;single&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">[()]</span> <span class="o">=</span> <span class="n">newArray</span><span class="p">[()]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">newArray</span><span class="p">[:]</span>
+
+        <span class="k">return</span>
+
+
+    <span class="k">def</span> <span class="nf">_operate_equivalent_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">operation</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">timebase</span><span class="p">:</span>
+            <span class="c1">#should never be reached</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Only functions with the same timebase can be &quot;</span>
+                            <span class="o">+</span> <span class="s2">&quot;used.&quot;</span><span class="p">)</span>
+
+        <span class="c1">#TODO: How to handle indexed functions?</span>
+        <span class="c1">#      Change timebase after operation?  Convert to ndarray?</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operate_general</span><span class="p">(</span><span class="n">other</span><span class="p">[:,</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">operation</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operate_general</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">operation</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_operate_other_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">operation</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Number</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operate_general</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">operation</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">otherShape</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">shape</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;unrecognised other&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">otherShape</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operate_general</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">operation</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;other shape incorrect&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_operate_general</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">operation</span><span class="p">):</span>
+
+        <span class="n">newArray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">newArray</span><span class="p">[:,</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">operation</span><span class="p">(</span><span class="bp">self</span><span class="p">[:,</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">other</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1">#TODO: Is this safe?</span>
+                <span class="n">newArray</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;single&#39;</span><span class="p">:</span>
+            <span class="n">newArray</span><span class="p">[()]</span> <span class="o">=</span> <span class="n">operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">():</span>
+                <span class="n">newArray</span><span class="p">[()]</span> <span class="o">=</span> <span class="n">operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">newArray</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">newArray</span>
+
+
+    <span class="k">def</span> <span class="nf">_type_check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Datatypes should be the same, but they are &quot;</span>
+                            <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">other</span><span class="o">.</span><span class="vm">__class__</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_data_check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+
+        <span class="c1">#Shouldn&#39;t be necessary, but sometimes &#39;==&#39; between two dicts that</span>
+        <span class="c1"># include np.array values raises a ValueError</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span> <span class="ow">in</span> <span class="n">other</span><span class="o">.</span><span class="n">data_type</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_type</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">keys</span><span class="p">):</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">data_type</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">==</span><span class="n">other</span><span class="o">.</span><span class="n">data_type</span><span class="p">[</span><span class="n">k</span><span class="p">],))</span> <span class="k">for</span> <span class="n">k</span>
+                                                            <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_type</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+                <span class="k">return</span>
+            
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Datatypes should have the same `data_type` dict &quot;</span>
+                            <span class="o">+</span><span class="sa">f</span><span class="s2">&quot;but they are </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data_type</span><span class="si">}</span><span class="s2"> and &quot;</span>
+                            <span class="o">+</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">other</span><span class="o">.</span><span class="n">data_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_check_data_and_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_type_check</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_check</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="_function.zeros"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._function.zeros">[docs]</a>    <span class="nd">@classmethod</span>
@@ -323,9 +478,9 @@
                 <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
                     <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">value</span><span class="p">[</span><span class="n">d</span><span class="p">])</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputDataError</span><span class="p">(</span><span class="s2">&quot;data_type has &quot;</span>
-                                                    <span class="o">+</span> <span class="s2">&quot;unrecognised option &#39;&quot;</span>
-                                                    <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputDataError</span><span class="p">(</span><span class="s2">&quot;data_type has unrecognised &quot;</span>
+                                               <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;option &#39;</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">timebase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -344,6 +499,23 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_timebase</span> <span class="o">=</span> <span class="n">value</span>
 
 
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get or set the timebase.  Setting the timebase will update the</span>
+<span class="sd">        data_type dict.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interpolation</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="nd">@interpolation</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_data_type</span><span class="p">(</span><span class="s1">&#39;interpolation&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_interpolation</span> <span class="o">=</span> <span class="n">value</span>
+
+
 <div class="viewcode-block" id="_function._check_data_type"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._function._check_data_type">[docs]</a>    <span class="k">def</span> <span class="nf">_check_data_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Attempt to assign a value to the data_type dict</span>
@@ -358,7 +530,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_type</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
 
 
-<div class="viewcode-block" id="_function._prep_reshape"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._function._prep_reshape">[docs]</a>    <span class="k">def</span> <span class="nf">_prep_reshape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_sections</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">use_time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="_function._prep_reshape"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._function._prep_reshape">[docs]</a>    <span class="k">def</span> <span class="nf">_prep_reshape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_sections</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">use_time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                      <span class="n">store_time</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct an empty numpy array of the required shape for the reshaped</span>
 <span class="sd">        array to populate</span>
@@ -402,7 +575,12 @@
             <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;If function is defined by_time &quot;</span>
                                         <span class="o">+</span> <span class="s2">&quot;use_time must be given&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">n_sections</span><span class="p">,</span> <span class="n">nPts</span><span class="p">])</span></div>
+        <span class="k">if</span> <span class="n">store_time</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">n_sections</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">nPts</span><span class="p">],</span>
+                                      <span class="n">data_type</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">data_type</span><span class="p">})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">n_sections</span><span class="p">,</span> <span class="n">nPts</span><span class="p">],</span>
+                              <span class="n">data_type</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">data_type</span><span class="p">})</span></div>
 
 
 <div class="viewcode-block" id="_function._comp_definition_reshape"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._function._comp_definition_reshape">[docs]</a>    <span class="k">def</span> <span class="nf">_comp_definition_reshape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_sections</span><span class="p">,</span> <span class="n">use_time</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">):</span>
@@ -429,12 +607,15 @@
 <span class="sd">            If the funtion has fewer turns of data available than required</span>
 <span class="sd">            for the use_turns bassed, a DataDefinitionError is raised.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">if</span> <span class="n">n_sections</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;multi-section required, but &quot;</span>
                           <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; function is single&quot;</span>
                           <span class="o">+</span> <span class="s2">&quot; section, expanding to match n_sections&quot;</span><span class="p">)</span>
 
         <span class="k">elif</span> <span class="n">n_sections</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+
             <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">DataDefinitionError</span><span class="p">(</span><span class="s2">&quot;n_sections (&quot;</span> \
                                                  <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n_sections</span><span class="p">)</span> \
                                                  <span class="o">+</span> <span class="s2">&quot;) does not match function &quot;</span>
@@ -498,7 +679,8 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpolation</span> <span class="o">==</span> <span class="s1">&#39;linear&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interpolate_linear</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">use_time</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Invalid interpolation requested&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Only linear interpolation implemented, &quot;</span>
+                                      <span class="o">+</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">interpolation</span><span class="si">}</span><span class="s2"> not available.&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="_function._interpolate_linear"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._function._interpolate_linear">[docs]</a>    <span class="k">def</span> <span class="nf">_interpolate_linear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">use_time</span><span class="p">):</span>
@@ -523,7 +705,8 @@
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">use_time</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="n">section</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="p">[</span><span class="n">section</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span></div>
 
 
-<div class="viewcode-block" id="_function.reshape"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._function.reshape">[docs]</a>    <span class="k">def</span> <span class="nf">reshape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_sections</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">use_time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="_function.reshape"><a class="viewcode-back" href="../../datatypes_advanced._core.html#blond_common.datatypes.beam_data._function.reshape">[docs]</a>    <span class="k">def</span> <span class="nf">reshape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_sections</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">store_time</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reshape the datatype array to the given number of sections and either</span>
 <span class="sd">        the given use_time or given use_turns.</span>
@@ -544,26 +727,41 @@
 <span class="sd">        datatype</span>
 <span class="sd">            The newly interpolated array.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_comp_definition_reshape</span><span class="p">(</span><span class="n">n_sections</span><span class="p">,</span> <span class="n">use_time</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">)</span>        
-        <span class="n">newArray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prep_reshape</span><span class="p">(</span><span class="n">n_sections</span><span class="p">,</span> <span class="n">use_time</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">)</span>
-        
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_turn&#39;</span> <span class="ow">and</span> <span class="n">store_time</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">excpt</span><span class="o">.</span><span class="n">InputError</span><span class="p">(</span><span class="s2">&quot;A function defined by_turn cannot have &quot;</span>
+                                   <span class="o">+</span> <span class="s2">&quot;store_time=True&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">n_sections</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">n_sections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_comp_definition_reshape</span><span class="p">(</span><span class="n">n_sections</span><span class="p">,</span> <span class="n">use_time</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">)</span>
+        <span class="n">interpArray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prep_reshape</span><span class="p">(</span><span class="n">n_sections</span><span class="p">,</span> <span class="n">use_time</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">,</span>
+                                         <span class="n">store_time</span><span class="p">)</span>
+
         <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_sections</span><span class="p">):</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;single&#39;</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span>
+                    <span class="n">interpArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+                    <span class="n">interpArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
 
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_turn&#39;</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">]</span>
+                    <span class="n">interpArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">]</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">]</span>
+                    <span class="n">interpArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">]</span>
 
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
-                    <span class="n">newArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interpolate</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">use_time</span><span class="p">)</span>
+                    <span class="n">interpArray</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interpolate</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">use_time</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">newArray</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span></div></div>
+        <span class="k">if</span> <span class="n">store_time</span><span class="p">:</span>
+            <span class="n">interpArray</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">use_time</span>
+            <span class="n">interpArray</span><span class="o">.</span><span class="n">timebase</span> <span class="o">=</span> <span class="s1">&#39;by_time&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">interpArray</span><span class="o">.</span><span class="n">timebase</span> <span class="o">=</span> <span class="s1">&#39;interpolated&#39;</span>
+
+        <span class="k">return</span> <span class="n">interpArray</span></div></div>
 
 
 <span class="c1">###############################################</span>
@@ -792,10 +990,12 @@
     <span class="k">try</span><span class="p">:</span>
         <span class="nb">iter</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">n_turns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">n_turns</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;single&#39;</span>
-        <span class="k">else</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">n_turns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[</span><span class="n">data</span><span class="p">]</span><span class="o">*</span><span class="n">n_turns</span><span class="p">,</span> <span class="s1">&#39;by_turn&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">time</span><span class="p">,</span> <span class="p">[</span><span class="n">data</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">)],</span> <span class="s1">&#39;by_time&#39;</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
@@ -871,7 +1071,10 @@
 
     <span class="n">input_times</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data_points</span><span class="p">:</span>
-        <span class="n">input_times</span> <span class="o">+=</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">input_times</span> <span class="o">+=</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="n">input_times</span> <span class="o">+=</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="n">interp_times</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">input_times</span><span class="p">))</span>
 
@@ -929,7 +1132,8 @@
     <span class="n">newArgs</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">_function</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">bf</span><span class="o">.</span><span class="n">machine_program</span><span class="p">):</span>
-            <span class="n">newArgs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+                <span class="n">newArgs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">newArgs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">newArgs</span><span class="p">)</span></div>

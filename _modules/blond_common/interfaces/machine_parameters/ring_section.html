@@ -24,7 +24,6 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
@@ -212,7 +211,7 @@
 <span class="c1"># Project website: http://blond.web.cern.ch/</span>
 
 <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">**Module handling all parameters related to the RingSection object.**</span>
+<span class="sd">**Module gathering all general input parameters used for the simulation.**</span>
 <span class="sd">    :Authors: **Simon Albright**, **Alexandre Lasheen**</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
@@ -288,21 +287,21 @@
 <span class="sd">    ----------</span>
 <span class="sd">    length_design : float</span>
 <span class="sd">        Length of the section on the reference orbit [m]</span>
-<span class="sd">    length : datatype.ring_programs.orbit_length_program</span>
+<span class="sd">    length : datatype.machine_program.orbit_length</span>
 <span class="sd">        Length of the beam trajectory, including possible</span>
 <span class="sd">        orbit bump programs [m]</span>
-<span class="sd">    orbit_bump : None or datatype.ring_programs.orbit_length_program</span>
+<span class="sd">    orbit_bump : None or datatype.machine_program.orbit_length</span>
 <span class="sd">        Length of the orbit bump only if declared by the user [m]</span>
-<span class="sd">    synchronous_data : datatype.machine_program._synchronous_data_program</span>
+<span class="sd">    synchronous_data : datatype.machine_program._ring_program</span>
 <span class="sd">        The user input synchronous data, with no conversion applied.</span>
 <span class="sd">        The datatype depends on the user input and can be</span>
 <span class="sd">        momentum_program, kinetic_energy_program, total_energy_program,</span>
 <span class="sd">        bending_field_program</span>
 <span class="sd">    bending_radius : float (or None)</span>
 <span class="sd">        Bending radius in dipole magnets, :math:`\rho` [m]</span>
-<span class="sd">    alpha_0 : datatype.ring_programs.momentum_compaction</span>
+<span class="sd">    alpha_0 : datatype.machine_program.momentum_compaction</span>
 <span class="sd">        Momentum compaction factor of zeroth order</span>
-<span class="sd">    alpha_n : datatype.ring_programs.momentum_compaction (or undefined)</span>
+<span class="sd">    alpha_n : datatype.machine_program.momentum_compaction (or undefined)</span>
 <span class="sd">        Momentum compaction factor of higher orders</span>
 <span class="sd">    alpha_orders : int</span>
 <span class="sd">        Orders of momentum compaction defined by the user</span>
@@ -312,7 +311,7 @@
 <span class="sd">    &gt;&gt;&gt; # To declare a section of a synchrotron with very simple</span>
 <span class="sd">    &gt;&gt;&gt; # parameters</span>
 <span class="sd">    &gt;&gt;&gt; from blond_common.interfaces.machine_parameters.ring_section import \</span>
-<span class="sd">    &gt;&gt;&gt;     RingSection</span>
+<span class="sd">    &gt;&gt;&gt;     Section</span>
 <span class="sd">    &gt;&gt;&gt;</span>
 <span class="sd">    &gt;&gt;&gt; length = 300</span>
 <span class="sd">    &gt;&gt;&gt; alpha_0 = 1e-3</span>
@@ -323,7 +322,7 @@
 <span class="sd">    &gt;&gt;&gt; # To declare a section of a synchrotron with very complex</span>
 <span class="sd">    &gt;&gt;&gt; # parameters and programs</span>
 <span class="sd">    &gt;&gt;&gt; from blond_common.interfaces.machine_parameters.ring_section import \</span>
-<span class="sd">    &gt;&gt;&gt;     RingSection</span>
+<span class="sd">    &gt;&gt;&gt;     Section</span>
 <span class="sd">    &gt;&gt;&gt;</span>
 <span class="sd">    &gt;&gt;&gt; length = 300</span>
 <span class="sd">    &gt;&gt;&gt; alpha_0 = [1e-3, 0.9e-3, 1e-3]</span>
@@ -396,16 +395,17 @@
 
             <span class="c1"># orbit_bump was checked</span>
             <span class="c1"># The length attribute is created with no further checks</span>
-            <span class="k">if</span> <span class="n">orbit_bump</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orbit_bump</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">length_design</span>
+            <span class="c1"># if orbit_bump.timebase == &#39;by_time&#39;:</span>
 
-                <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="n">ring_programs</span><span class="o">.</span><span class="n">orbit_length_program</span><span class="p">(</span>
-                    <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">length_design</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orbit_bump</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]),</span>
-                    <span class="n">time</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">orbit_bump</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orbit_bump</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="c1">#     self.length = ring_programs.orbit_length_program(</span>
+            <span class="c1">#         [self.length_design] * len(self.orbit_bump[0, 0, :]),</span>
+            <span class="c1">#         time=self.orbit_bump[0, 0, :])</span>
+            <span class="c1">#     self.length[:, 1, :] += self.orbit_bump[:, 1, :]</span>
 
-            <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># else:</span>
 
-                <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orbit_bump</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">length_design</span>
+            <span class="c1">#     self.length = self.orbit_bump + self.length_design</span>
 
         <span class="c1"># Setting the linear momentum compaction factor</span>
         <span class="c1"># Checking that the synchronous data and the momentum compaction</span>

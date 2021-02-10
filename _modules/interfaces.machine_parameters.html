@@ -24,7 +24,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -222,7 +221,7 @@
 <dl class="py class">
 <dt id="blond_common.interfaces.machine_parameters.ring.Ring">
 <em class="property">class </em><code class="sig-prename descclassname">blond_common.interfaces.machine_parameters.ring.</code><code class="sig-name descname">Ring</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Particle</span></em>, <em class="sig-param"><span class="n">RingSection_list</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/interfaces/machine_parameters/ring.html#Ring"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring.Ring" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Class containing the general properties of the synchrotron that are
 independent of the RF system or the beam.</p>
 <p>The index <span class="math notranslate nohighlight">\(n\)</span> denotes time steps, <span class="math notranslate nohighlight">\(k\)</span> ring segments/sections
@@ -232,12 +231,12 @@ and <span class="math notranslate nohighlight">\(i\)</span> momentum compaction 
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>Particle</strong> (<em>class</em>) – A Particle-based class defining the primary, synchronous particle (mass
 and charge) that is reference for the momentum/energy in the ring.</p></li>
-<li><p><strong>RingSection_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> (or </em><em>iterable</em><em>) </em><em>of RingSection objects</em>) – The list of all the sections to build the Ring.</p></li>
-<li><p><strong>t_start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> (</em><em>optional</em><em>, </em><em>default 0</em><em>)</em>) – Starting time from which the time array input should be taken into
+<li><p><strong>RingSection_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> (or </em><em>iterable</em><em>) </em><em>of RingSection objects</em>) – The list of all the sections to build the Ring.</p></li>
+<li><p><strong>t_start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em> (</em><em>optional</em><em>, </em><em>default 0</em><em>)</em>) – Starting time from which the time array input should be taken into
 account.</p></li>
-<li><p><strong>t_end</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> (</em><em>optional</em><em>, </em><em>default np</em><em>,</em><em>inf</em><em>)</em>) – Last time up to which the time array input should be taken into
+<li><p><strong>t_end</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em> (</em><em>optional</em><em>, </em><em>default np</em><em>,</em><em>inf</em><em>)</em>) – Last time up to which the time array input should be taken into
 account.</p></li>
-<li><p><strong>eta_orders</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em> (</em><em>optional</em><em>, </em><em>default 0</em><em>)</em>) – The orders of slippage factor to be computed (alpha_1 and alpha_2,
+<li><p><strong>eta_orders</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em> (</em><em>optional</em><em>, </em><em>default 0</em><em>)</em>) – The orders of slippage factor to be computed (alpha_1 and alpha_2,
 will be assumed to be 0 by default if not defined in the sections).</p></li>
 </ul>
 </dd>
@@ -250,7 +249,7 @@ lengths,
 <span class="math notranslate nohighlight">\(C_s = \sum_k L_{s,k}\)</span> [m]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -273,7 +272,7 @@ lengths,
 <dd><p>Design radius of the synchrotron, <span class="math notranslate nohighlight">\(R_s = C_s/(2 \pi)\)</span> [m]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -307,7 +306,7 @@ lengths,
 <dd><p>Bending radius in dipole magnets on design orbit, <span class="math notranslate nohighlight">\(\rho\)</span> [m]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -610,7 +609,7 @@ to the moments contained in the ‘cycle_moments’ array</p>
 <div class="section" id="module-blond_common.interfaces.machine_parameters.ring_section">
 <span id="interfaces-machine-parameters-ring-section-module"></span><h2>interfaces.machine_parameters.ring_section module<a class="headerlink" href="#module-blond_common.interfaces.machine_parameters.ring_section" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
-<dt><strong>Module handling all parameters related to the RingSection object.</strong></dt><dd><dl class="field-list simple">
+<dt><strong>Module gathering all general input parameters used for the simulation.</strong></dt><dd><dl class="field-list simple">
 <dt class="field-odd">Authors</dt>
 <dd class="field-odd"><p><strong>Simon Albright</strong>, <strong>Alexandre Lasheen</strong></p>
 </dd>
@@ -620,7 +619,7 @@ to the moments contained in the ‘cycle_moments’ array</p>
 <dl class="py class">
 <dt id="blond_common.interfaces.machine_parameters.ring_section.RingSection">
 <em class="property">class </em><code class="sig-prename descclassname">blond_common.interfaces.machine_parameters.ring_section.</code><code class="sig-name descname">RingSection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">length</span></em>, <em class="sig-param"><span class="n">alpha_0</span></em>, <em class="sig-param"><span class="n">momentum</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">kin_energy</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">energy</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bending_field</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bending_radius</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">orbit_bump</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">alpha_1</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/interfaces/machine_parameters/ring_section.html#RingSection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.interfaces.machine_parameters.ring_section.RingSection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Class containing the general properties of a section of the
 accelerator that are independent of the RF system or the beam.</p>
 <p>The user has to input the synchronous data with at least but no more
@@ -629,37 +628,37 @@ than one of the following: momentum, kin_energy, energy, bending_field.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Length [m] of accelerator section on the reference orbit (see
+<li><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Length [m] of accelerator section on the reference orbit (see
 orbit_length option).</p></li>
-<li><p><strong>alpha_0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Momentum compaction factor of zeroth order <span class="math notranslate nohighlight">\(\alpha_{0}\)</span>;
+<li><p><strong>alpha_0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Momentum compaction factor of zeroth order <span class="math notranslate nohighlight">\(\alpha_{0}\)</span>;
 can be input as single float or as a program (1D array is a
 turn-by-turn program and 2D array is a time dependent program).
 If a turn-by-turn program is passed, should be of the same size
 as the synchronous data.</p></li>
-<li><p><strong>momentum</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Design particle momentum [eV]
+<li><p><strong>momentum</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Design particle momentum [eV]
 on the design orbit <span class="math notranslate nohighlight">\(p_{s}\)</span>;
 can be input as single float or as a program (1D array is a
 turn-by-turn program and 2D array is a time dependent program).</p></li>
-<li><p><strong>kin_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Design particle kinetic energy [eV]
+<li><p><strong>kin_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Design particle kinetic energy [eV]
 on the design orbit <span class="math notranslate nohighlight">\(E_{k,s}\)</span>;
 can be input as single float or as a program (1D array is a
 turn-by-turn program and 2D array is a time dependent program).</p></li>
-<li><p><strong>energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Design particle total energy [eV]
+<li><p><strong>energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Design particle total energy [eV]
 on the design orbit <span class="math notranslate nohighlight">\(E_{s}\)</span>;
 can be input as single float or as a program (1D array is a
 turn-by-turn program and 2D array is a time dependent program).</p></li>
-<li><p><strong>bending_field</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Design bending field [T] on the design orbit <span class="math notranslate nohighlight">\(B_{s}\)</span>,
+<li><p><strong>bending_field</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Design bending field [T] on the design orbit <span class="math notranslate nohighlight">\(B_{s}\)</span>,
 this is used to defined the design particle momentum;
 can be input as single float or as a program (1D array is a
 turn-by-turn program and 2D array is a time dependent program).</p></li>
-<li><p><strong>bending_radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Optional: Radius [m] of the bending magnets,
+<li><p><strong>bending_radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Optional: Radius [m] of the bending magnets,
 required if ‘bending field’ is set for the synchronous_data_type</p></li>
-<li><p><strong>orbit_bump</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Length of orbit bump to add as increment to the design length;
+<li><p><strong>orbit_bump</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Length of orbit bump to add as increment to the design length;
 can be input as single float or as a program (1D array is a
 turn-by-turn program and 2D array is a time dependent program).
 If a turn-by-turn program is passed, should be of the same size
 as the synchronous data.</p></li>
-<li><p><strong>alpha_n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Optional : Higher order momentum compaction can also be passed through
+<li><p><strong>alpha_n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em> (</em><em>opt: list</em><em> or </em><em>np.ndarray</em><em>)</em>) – Optional : Higher order momentum compaction can also be passed through
 keyword arguments (orders not limited, e.g. alpha_3 is recognized);
 can be input as single float or as a program (1D array is a
 turn-by-turn program and 2D array is a time dependent program).
@@ -674,7 +673,7 @@ as the synchronous data.</p></li>
 <dd><p>Length of the section on the reference orbit [m]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -686,7 +685,7 @@ as the synchronous data.</p></li>
 orbit bump programs [m]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>datatype.ring_programs.orbit_length_program</p>
+<dd class="field-odd"><p>datatype.machine_program.orbit_length</p>
 </dd>
 </dl>
 </dd></dl>
@@ -697,7 +696,7 @@ orbit bump programs [m]</p>
 <dd><p>Length of the orbit bump only if declared by the user [m]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a> or datatype.ring_programs.orbit_length_program</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a> or datatype.machine_program.orbit_length</p>
 </dd>
 </dl>
 </dd></dl>
@@ -711,7 +710,7 @@ momentum_program, kinetic_energy_program, total_energy_program,
 bending_field_program</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>datatype.machine_program._synchronous_data_program</p>
+<dd class="field-odd"><p>datatype.machine_program._ring_program</p>
 </dd>
 </dl>
 </dd></dl>
@@ -722,7 +721,7 @@ bending_field_program</p>
 <dd><p>Bending radius in dipole magnets, <span class="math notranslate nohighlight">\(\rho\)</span> [m]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a> (or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a>)</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a> (or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -733,7 +732,7 @@ bending_field_program</p>
 <dd><p>Momentum compaction factor of zeroth order</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>datatype.ring_programs.momentum_compaction</p>
+<dd class="field-odd"><p>datatype.machine_program.momentum_compaction</p>
 </dd>
 </dl>
 </dd></dl>
@@ -744,7 +743,7 @@ bending_field_program</p>
 <dd><p>Momentum compaction factor of higher orders</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>datatype.ring_programs.momentum_compaction (or undefined)</p>
+<dd class="field-odd"><p>datatype.machine_program.momentum_compaction (or undefined)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -755,7 +754,7 @@ bending_field_program</p>
 <dd><p>Orders of momentum compaction defined by the user</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -764,7 +763,7 @@ bending_field_program</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># To declare a section of a synchrotron with very simple</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># parameters</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">blond_common.interfaces.machine_parameters.ring_section</span> <span class="kn">import</span> \
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">RingSection</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">Section</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">length</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_0</span> <span class="o">=</span> <span class="mf">1e-3</span>
@@ -776,7 +775,7 @@ bending_field_program</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># To declare a section of a synchrotron with very complex</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># parameters and programs</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">blond_common.interfaces.machine_parameters.ring_section</span> <span class="kn">import</span> \
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">RingSection</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">Section</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">length</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">0.9e-3</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">]</span>

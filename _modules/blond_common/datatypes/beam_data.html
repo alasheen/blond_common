@@ -24,7 +24,6 @@
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
@@ -258,7 +257,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
-                <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         
         <span class="n">_check_time_turns</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">n_turns</span><span class="p">)</span>
             
@@ -283,7 +282,8 @@
         <span class="n">data_type</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;timebase&#39;</span><span class="p">:</span> <span class="n">data_types</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;bunching&#39;</span><span class="p">:</span> <span class="n">bunching</span><span class="p">,</span>
                      <span class="s1">&#39;units&#39;</span><span class="p">:</span> <span class="n">units</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">}</span>
         
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_points</span><span class="p">,</span> <span class="n">data_type</span><span class="p">,</span> <span class="n">interpolation</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_points</span><span class="p">,</span> <span class="n">data_type</span><span class="p">,</span> <span class="n">interpolation</span><span class="p">,</span>
+                               <span class="n">dtype</span><span class="p">)</span>
 
 
     <span class="nd">@property</span>
@@ -358,11 +358,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;eVs&#39;</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
-                <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">):</span>
+                <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">units</span> <span class="o">=</span> <span class="n">units</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">time</span><span class="p">,</span> 
                                <span class="n">n_turns</span> <span class="o">=</span> <span class="n">n_turns</span><span class="p">,</span> 
-                               <span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span><span class="p">)</span></div>
+                               <span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="emittance"><a class="viewcode-back" href="../../datatypes_advanced.beam_data.html#blond_common.datatypes.beam_data.emittance">[docs]</a><span class="k">class</span> <span class="nc">emittance</span><span class="p">(</span><span class="n">_beam_data</span><span class="p">):</span>
@@ -409,13 +409,14 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">emittance_type</span> <span class="o">=</span> <span class="s1">&#39;matched_area&#39;</span><span class="p">,</span> <span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;eVs&#39;</span><span class="p">,</span> 
-                <span class="n">time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">):</span>
+                <span class="n">time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> 
                                <span class="n">emittance_type</span> <span class="o">=</span> <span class="n">emittance_type</span><span class="p">,</span>
                                <span class="n">units</span> <span class="o">=</span> <span class="n">units</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">time</span><span class="p">,</span> 
                                <span class="n">n_turns</span> <span class="o">=</span> <span class="n">n_turns</span><span class="p">,</span>
-                               <span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span><span class="p">)</span>
+                               <span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
 
 
     <span class="nd">@property</span>
@@ -479,12 +480,13 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">length_type</span> <span class="o">=</span> <span class="s1">&#39;full_length&#39;</span><span class="p">,</span> <span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span>
-                <span class="n">time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">):</span>
+                <span class="n">time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">length_type</span> <span class="o">=</span> <span class="n">length_type</span><span class="p">,</span> 
                                <span class="n">units</span> <span class="o">=</span> <span class="n">units</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">time</span><span class="p">,</span> 
                                <span class="n">n_turns</span> <span class="o">=</span> <span class="n">n_turns</span><span class="p">,</span>
-                               <span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span><span class="p">)</span>
+                               <span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
 
 
     <span class="nd">@property</span>
@@ -547,11 +549,12 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">height_type</span> <span class="o">=</span> <span class="s1">&#39;half_height&#39;</span><span class="p">,</span> <span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;eV&#39;</span><span class="p">,</span>
-                <span class="n">time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">):</span>
+                <span class="n">time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">height_type</span> <span class="o">=</span> <span class="n">height_type</span><span class="p">,</span> 
                                <span class="n">units</span> <span class="o">=</span> <span class="n">units</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">time</span><span class="p">,</span> <span class="n">n_turns</span> <span class="o">=</span> <span class="n">n_turns</span><span class="p">,</span>
-                               <span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span><span class="p">)</span>
+                               <span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
 
 
     <span class="nd">@property</span>
@@ -607,11 +610,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
-                <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">):</span>
+                <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">units</span> <span class="o">=</span> <span class="n">units</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">time</span><span class="p">,</span> 
                                <span class="n">n_turns</span> <span class="o">=</span> <span class="n">n_turns</span><span class="p">,</span> 
-                               <span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span><span class="p">)</span></div>
+                               <span class="n">interpolation</span> <span class="o">=</span> <span class="n">interpolation</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

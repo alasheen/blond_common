@@ -24,7 +24,6 @@
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
@@ -256,7 +255,8 @@
 <span class="sd">        The harmonics covered by the function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">harmonics</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> \
-                <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">allow_single</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">allow_single</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 
         <span class="n">args</span> <span class="o">=</span> <span class="n">_expand_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
 
@@ -281,12 +281,12 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="s1">&#39;by_turn&#39;</span> <span class="ow">in</span> <span class="n">data_types</span><span class="p">:</span>
             <span class="n">data_points</span> <span class="o">=</span> <span class="n">_interpolate_input</span><span class="p">(</span><span class="n">data_points</span><span class="p">,</span> <span class="n">data_types</span><span class="p">,</span> 
                                             <span class="n">interpolation</span><span class="p">)</span>
-                
+
         <span class="n">data_type</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;timebase&#39;</span><span class="p">:</span> <span class="n">data_types</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;harmonics&#39;</span><span class="p">:</span> <span class="n">harmonics</span><span class="p">,</span> 
                      <span class="o">**</span><span class="n">kwargs</span><span class="p">}</span>
-        
+
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_points</span><span class="p">,</span> <span class="n">data_type</span><span class="p">,</span> 
-                               <span class="n">interpolation</span><span class="p">)</span>
+                               <span class="n">interpolation</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
 
 
     <span class="nd">@property</span>
@@ -307,7 +307,8 @@
 
 
     <span class="c1">#TODO: Safe treatment of use_turns &gt; n_turns</span>
-<div class="viewcode-block" id="_RF_function.reshape"><a class="viewcode-back" href="../../datatypes_advanced.rf_programs.html#blond_common.datatypes.rf_programs._RF_function.reshape">[docs]</a>    <span class="k">def</span> <span class="nf">reshape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">harmonics</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="_RF_function.reshape"><a class="viewcode-back" href="../../datatypes_advanced.rf_programs.html#blond_common.datatypes.rf_programs._RF_function.reshape">[docs]</a>    <span class="k">def</span> <span class="nf">reshape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">harmonics</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_time</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_turns</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">store_time</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reshape the datatype array to the given number of sections and either</span>
 <span class="sd">        the given use_time or given use_turns.</span>
@@ -337,8 +338,9 @@
             <span class="n">use_turns</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">turn</span><span class="p">)</span> <span class="k">for</span> <span class="n">turn</span> <span class="ow">in</span> <span class="n">use_turns</span><span class="p">]</span>
 
         <span class="n">newArray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prep_reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">harmonics</span><span class="p">),</span> 
-                                      <span class="n">use_time</span> <span class="o">=</span> <span class="n">use_time</span><span class="p">,</span> 
-                                      <span class="n">use_turns</span> <span class="o">=</span> <span class="n">use_turns</span><span class="p">)</span>
+                                      <span class="n">use_time</span> <span class="o">=</span> <span class="n">use_time</span><span class="p">,</span>
+                                      <span class="n">use_turns</span> <span class="o">=</span> <span class="n">use_turns</span><span class="p">,</span>
+                                      <span class="n">store_time</span> <span class="o">=</span> <span class="n">store_time</span><span class="p">)</span>
         
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">harmonics</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">harmonics</span><span class="p">):</span>
@@ -349,17 +351,26 @@
             
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;single&#39;</span><span class="p">:</span>
                 <span class="n">newArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-    
+
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_turn&#39;</span><span class="p">:</span>
                 <span class="n">newArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">use_turns</span><span class="p">]</span>
-            
+
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="o">==</span> <span class="s1">&#39;by_time&#39;</span><span class="p">:</span>
                 <span class="n">newArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interpolate</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">use_time</span><span class="p">)</span>
-        
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Only single, by_turn or by_time functions&quot;</span>
+                                   <span class="o">+</span><span class="sa">f</span><span class="s2">&quot; can be reshaped, not </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">timebase</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
         <span class="n">newArray</span> <span class="o">=</span> <span class="n">newArray</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
 
-        <span class="n">newArray</span><span class="o">.</span><span class="n">data_type</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;timebase&#39;</span><span class="p">:</span>  <span class="s1">&#39;interpolated&#39;</span><span class="p">,</span>
-                              <span class="s1">&#39;harmonics&#39;</span><span class="p">:</span> <span class="n">harmonics</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">store_time</span><span class="p">:</span>
+            <span class="n">newArray</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">use_time</span>
+            <span class="n">newArray</span><span class="o">.</span><span class="n">timebase</span> <span class="o">=</span> <span class="s1">&#39;by_time&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">newArray</span><span class="o">.</span><span class="n">timebase</span> <span class="o">=</span> <span class="s1">&#39;interpolated&#39;</span>
+
+        <span class="n">newArray</span><span class="o">.</span><span class="n">harmonics</span> <span class="o">=</span> <span class="n">harmonics</span>
 
         <span class="k">return</span> <span class="n">newArray</span></div></div>
 
@@ -532,16 +543,19 @@
         
         <span class="n">delta_omega</span> <span class="o">=</span> <span class="n">omega_offset</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">delta_phase</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_type</span><span class="p">)</span>
         <span class="n">delta_omega</span><span class="o">.</span><span class="n">timebase</span> <span class="o">=</span> <span class="s1">&#39;interpolated&#39;</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">harmonics</span><span class="p">):</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;by_turn&#39;</span><span class="p">,</span> <span class="s1">&#39;interpolated&#39;</span><span class="p">):</span>
-                <span class="n">delta_omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">design_omega_rev</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> \
-                                    <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">delta_phase</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">delta_omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">design_omega_rev</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> \
-                                    <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">delta_phase</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>\
-                                        <span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">design_omega_rev</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        
-        <span class="k">return</span> <span class="n">delta_omega</span></div>
+        <span class="k">if</span> <span class="n">delta_omega</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">delta_omega</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">harmonics</span><span class="p">):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;by_turn&#39;</span><span class="p">,</span> <span class="s1">&#39;interpolated&#39;</span><span class="p">):</span>
+                    <span class="n">delta_omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">design_omega_rev</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> \
+                                        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">delta_phase</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">delta_omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">design_omega_rev</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> \
+                                        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">delta_phase</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>\
+                                            <span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">design_omega_rev</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            
+            <span class="k">return</span> <span class="n">delta_omega</span></div>
     
     
 <div class="viewcode-block" id="_freq_phase_off.calc_delta_phase"><a class="viewcode-back" href="../../datatypes_advanced.rf_programs.html#blond_common.datatypes.rf_programs._freq_phase_off.calc_delta_phase">[docs]</a>    <span class="k">def</span> <span class="nf">calc_delta_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">design_omega_rev</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -601,18 +615,21 @@
 
         <span class="n">delta_phase</span> <span class="o">=</span> <span class="n">phase_offset</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">delta_omega</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_type</span><span class="p">)</span>
         <span class="n">delta_phase</span><span class="o">.</span><span class="n">timebase</span> <span class="o">=</span> <span class="s1">&#39;interpolated&#39;</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">harmonics</span><span class="p">):</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;by_turn&#39;</span><span class="p">,</span> <span class="s1">&#39;interpolated&#39;</span><span class="p">):</span>
-                <span class="n">delta_phase</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>\
-                                           <span class="o">*</span><span class="p">(</span><span class="n">delta_omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>\
-                                             <span class="o">/</span><span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="n">design_omega_rev</span><span class="p">)))</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">delta_phase</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>\
+        <span class="k">if</span> <span class="n">delta_phase</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">delta_phase</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">harmonics</span><span class="p">):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timebase</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;by_turn&#39;</span><span class="p">,</span> <span class="s1">&#39;interpolated&#39;</span><span class="p">):</span>
+                    <span class="n">delta_phase</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>\
                                                <span class="o">*</span><span class="p">(</span><span class="n">delta_omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>\
-                                                 <span class="o">/</span><span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="n">design_omega_rev</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span> \
-                                    <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">design_omega_rev</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            
-        <span class="k">return</span> <span class="n">delta_phase</span></div></div>
+                                                 <span class="o">/</span><span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="n">design_omega_rev</span><span class="p">)))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">delta_phase</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>\
+                                                 <span class="o">*</span><span class="p">(</span><span class="n">delta_omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>\
+                                                 <span class="o">/</span><span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="n">design_omega_rev</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>\
+                                        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">design_omega_rev</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                
+            <span class="k">return</span> <span class="n">delta_phase</span></div></div>
 
 
 <div class="viewcode-block" id="phase_offset"><a class="viewcode-back" href="../../datatypes_advanced.rf_programs.html#blond_common.datatypes.rf_programs.phase_offset">[docs]</a><span class="k">class</span> <span class="nc">phase_offset</span><span class="p">(</span><span class="n">_freq_phase_off</span><span class="p">):</span>

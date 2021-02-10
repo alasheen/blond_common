@@ -24,7 +24,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -211,19 +210,19 @@
 <span id="datatypes-advanced-beam-data-module"></span><h1>datatypes_advanced.beam_data module<a class="headerlink" href="#module-blond_common.datatypes.beam_data" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="blond_common.datatypes.beam_data._beam_data">
-<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.beam_data.</code><code class="sig-name descname">_beam_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">units</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/beam_data.html#_beam_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.beam_data._beam_data" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.beam_data.</code><code class="sig-name descname">_beam_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">units</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/beam_data.html#_beam_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.beam_data._beam_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="datatypes_advanced._core.html#blond_common.datatypes._core._function" title="blond_common.datatypes._core._function"><code class="xref py py-class docutils literal notranslate"><span class="pre">blond_common.datatypes._core._function</span></code></a></p>
 <p>Base class defining the data relevant to beam measurements</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs</p></li>
-<li><p><strong>units</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The units of the data</p></li>
+<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs</p></li>
+<li><p><strong>units</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The units of the data</p></li>
 <li><p><strong>time</strong> (<em>iterable of floats</em>) – The time array to be used for the data, to be used if the time
 dependent data is not given as 2D array</p></li>
-<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The number of turns to be used, if a single value is given it will be
+<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of turns to be used, if a single value is given it will be
 extended to n_turns length</p></li>
-<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The type of interpolation to be used</p></li>
+<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The type of interpolation to be used</p></li>
 <li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Additional kwargs used to define the data_type dict.</p></li>
 </ul>
 </dd>
@@ -234,7 +233,7 @@ extended to n_turns length</p></li>
 <dd><p>Dictionary containing relevant information to define the datatype.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -247,7 +246,7 @@ of the datatype.  As a string it is used as a key for the data_type
 dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -259,7 +258,7 @@ dict.</p>
 data_type dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -271,7 +270,7 @@ data_type dict.</p>
 the array, currently only ‘linear’ has been implemented.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -297,7 +296,7 @@ when the attribute is set.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
+<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
 <li><p><strong>value</strong> (<em>any</em>) – The new element to be added to the data_type dict.</p></li>
 </ul>
 </dd>
@@ -312,7 +311,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – Times to be used for the interpolation.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of ints</em>) – Turn numbers to be used for new array.</p></li>
 </ul>
@@ -335,7 +334,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -343,7 +342,7 @@ to confirm it is suitable.</p>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>excpt.InputDataError</strong> – If use_time is not monotonically increase an InputDataError is
     raised.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
     type is requested a RuntimeError is raised.</p></li>
 </ul>
 </dd>
@@ -363,7 +362,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -378,13 +377,13 @@ to confirm it is suitable.</p>
 
 <dl class="py method">
 <dt id="blond_common.datatypes.beam_data._beam_data._prep_reshape">
-<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data._beam_data._prep_reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data._beam_data._prep_reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an empty numpy array of the required shape for the reshaped
 array to populate</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of float</em><em>, </em><em>optional</em>) – The times that the array will be interpolated onto.
 The default is None.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of int</em><em>, </em><em>optional</em>) – The turn numberss to be extracted from the array.
@@ -412,14 +411,21 @@ attributes of the object identified in the dict.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="id2">
+<em class="property">property </em><code class="sig-name descname">interpolation</code><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the timebase.  Setting the timebase will update the
+data_type dict.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="blond_common.datatypes.beam_data._beam_data.reshape">
-<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data._beam_data.reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data._beam_data.reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reshape the datatype array to the given number of sections and either
 the given use_time or given use_turns.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections required for the new array.
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections required for the new array.
 The default is 1.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em><em>, </em><em>optional</em>) – The times that the array will be interpolated on to.
 The default is None.</p></li>
@@ -436,8 +442,8 @@ The default is None.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id2">
-<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
+<dt id="id3">
+<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id3" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the timebase.  Setting the timebase will update the
 data_type dict.</p>
 </dd></dl>
@@ -450,7 +456,7 @@ data_type dict.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>shape</strong> (<em>iterable</em>) – The shape of the new array</p></li>
-<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
 The default is None.</p></li>
 </ul>
 </dd>
@@ -467,19 +473,19 @@ The default is None.</p></li>
 
 <dl class="py class">
 <dt id="blond_common.datatypes.beam_data.acceptance">
-<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.beam_data.</code><code class="sig-name descname">acceptance</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">units</span><span class="o">=</span><span class="default_value">'eVs'</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/beam_data.html#acceptance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.beam_data.acceptance" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.beam_data.</code><code class="sig-name descname">acceptance</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">units</span><span class="o">=</span><span class="default_value">'eVs'</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/beam_data.html#acceptance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.beam_data.acceptance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#blond_common.datatypes.beam_data._beam_data" title="blond_common.datatypes.beam_data._beam_data"><code class="xref py py-class docutils literal notranslate"><span class="pre">blond_common.datatypes.beam_data._beam_data</span></code></a></p>
 <p>Class defining the acceptance of the RF bucket.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs</p></li>
-<li><p><strong>units</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>optional</em>) – The units of the data.  The default is ‘eVs’</p></li>
+<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs</p></li>
+<li><p><strong>units</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The units of the data.  The default is ‘eVs’</p></li>
 <li><p><strong>time</strong> (<em>iterable of floats</em><em>, </em><em>optional</em>) – The time array to be used for the data, to be used if the time
 dependent data is not given as 2D array.  The default is None</p></li>
-<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>option</em>) – The number of turns to be used, if a single value is given it will be
+<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>option</em>) – The number of turns to be used, if a single value is given it will be
 extended to n_turns length.  The default is None.</p></li>
-<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>optional</em>) – The type of interpolation to be used.  The default is ‘linear’.</p></li>
+<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The type of interpolation to be used.  The default is ‘linear’.</p></li>
 <li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Additional kwargs used to define the data_type dict.</p></li>
 </ul>
 </dd>
@@ -490,7 +496,7 @@ extended to n_turns length.  The default is None.</p></li>
 <dd><p>Dictionary containing relevant information to define the datatype.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -503,7 +509,7 @@ of the datatype.  As a string it is used as a key for the data_type
 dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -515,7 +521,7 @@ dict.</p>
 data_type dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -527,7 +533,7 @@ data_type dict.</p>
 the array, currently only ‘linear’ has been implemented.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -539,7 +545,7 @@ the array, currently only ‘linear’ has been implemented.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
+<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
 <li><p><strong>value</strong> (<em>any</em>) – The new element to be added to the data_type dict.</p></li>
 </ul>
 </dd>
@@ -554,7 +560,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – Times to be used for the interpolation.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of ints</em>) – Turn numbers to be used for new array.</p></li>
 </ul>
@@ -577,7 +583,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -585,7 +591,7 @@ to confirm it is suitable.</p>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>excpt.InputDataError</strong> – If use_time is not monotonically increase an InputDataError is
     raised.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
     type is requested a RuntimeError is raised.</p></li>
 </ul>
 </dd>
@@ -605,7 +611,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -620,13 +626,13 @@ to confirm it is suitable.</p>
 
 <dl class="py method">
 <dt id="blond_common.datatypes.beam_data.acceptance._prep_reshape">
-<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.acceptance._prep_reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.acceptance._prep_reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an empty numpy array of the required shape for the reshaped
 array to populate</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of float</em><em>, </em><em>optional</em>) – The times that the array will be interpolated onto.
 The default is None.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of int</em><em>, </em><em>optional</em>) – The turn numberss to be extracted from the array.
@@ -654,21 +660,28 @@ when the attribute is set.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id3">
-<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id3" title="Permalink to this definition">¶</a></dt>
+<dt id="id4">
+<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id4" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the data_type.  Setting the data_type will update all
 attributes of the object identified in the dict.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="id5">
+<em class="property">property </em><code class="sig-name descname">interpolation</code><a class="headerlink" href="#id5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the timebase.  Setting the timebase will update the
+data_type dict.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="blond_common.datatypes.beam_data.acceptance.reshape">
-<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.acceptance.reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.acceptance.reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reshape the datatype array to the given number of sections and either
 the given use_time or given use_turns.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections required for the new array.
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections required for the new array.
 The default is 1.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em><em>, </em><em>optional</em>) – The times that the array will be interpolated on to.
 The default is None.</p></li>
@@ -685,15 +698,15 @@ The default is None.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id4">
-<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id4" title="Permalink to this definition">¶</a></dt>
+<dt id="id6">
+<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id6" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the timebase.  Setting the timebase will update the
 data_type dict.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id5">
-<em class="property">property </em><code class="sig-name descname">units</code><a class="headerlink" href="#id5" title="Permalink to this definition">¶</a></dt>
+<dt id="id7">
+<em class="property">property </em><code class="sig-name descname">units</code><a class="headerlink" href="#id7" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get and set units attribute.  The data_type dict will be updated
 when the attribute is set.</p>
 </dd></dl>
@@ -706,7 +719,7 @@ when the attribute is set.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>shape</strong> (<em>iterable</em>) – The shape of the new array</p></li>
-<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
 The default is None.</p></li>
 </ul>
 </dd>
@@ -723,21 +736,21 @@ The default is None.</p></li>
 
 <dl class="py class">
 <dt id="blond_common.datatypes.beam_data.emittance">
-<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.beam_data.</code><code class="sig-name descname">emittance</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">emittance_type</span><span class="o">=</span><span class="default_value">'matched_area'</span></em>, <em class="sig-param"><span class="n">units</span><span class="o">=</span><span class="default_value">'eVs'</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/beam_data.html#emittance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.beam_data.emittance" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.beam_data.</code><code class="sig-name descname">emittance</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">emittance_type</span><span class="o">=</span><span class="default_value">'matched_area'</span></em>, <em class="sig-param"><span class="n">units</span><span class="o">=</span><span class="default_value">'eVs'</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/beam_data.html#emittance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.beam_data.emittance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#blond_common.datatypes.beam_data._beam_data" title="blond_common.datatypes.beam_data._beam_data"><code class="xref py py-class docutils literal notranslate"><span class="pre">blond_common.datatypes.beam_data._beam_data</span></code></a></p>
 <p>Class defining the longitudinal emittance of the bunch.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs</p></li>
-<li><p><strong>emittance_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>optional</em>) – The emittance type of the measurement (e.g. 90%, matched area, RMS).
+<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs</p></li>
+<li><p><strong>emittance_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The emittance type of the measurement (e.g. 90%, matched area, RMS).
 The default is ‘matched_area’.</p></li>
-<li><p><strong>units</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>optional</em>) – The units of the data.  The default is ‘eVs’</p></li>
+<li><p><strong>units</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The units of the data.  The default is ‘eVs’</p></li>
 <li><p><strong>time</strong> (<em>iterable of floats</em><em>, </em><em>optional</em>) – The time array to be used for the data, to be used if the time
 dependent data is not given as 2D array.  The default is None</p></li>
-<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>option</em>) – The number of turns to be used, if a single value is given it will be
+<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>option</em>) – The number of turns to be used, if a single value is given it will be
 extended to n_turns length.  The default is None.</p></li>
-<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>optional</em>) – The type of interpolation to be used.  The default is ‘linear’.</p></li>
+<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The type of interpolation to be used.  The default is ‘linear’.</p></li>
 </ul>
 </dd>
 </dl>
@@ -747,7 +760,7 @@ extended to n_turns length.  The default is None.</p></li>
 <dd><p>Dictionary containing relevant information to define the datatype.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -760,7 +773,7 @@ of the datatype.  As a string it is used as a key for the data_type
 dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -776,7 +789,7 @@ RMS).  Used as</p>
 <p>a string key in the data_type dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -788,7 +801,7 @@ RMS).  Used as</p>
 data_type dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -800,14 +813,14 @@ data_type dict.</p>
 the array, currently only ‘linear’ has been implemented.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id6">
-<em class="property">property </em><code class="sig-name descname">emittance_type</code><a class="headerlink" href="#id6" title="Permalink to this definition">¶</a></dt>
+<dt id="id8">
+<em class="property">property </em><code class="sig-name descname">emittance_type</code><a class="headerlink" href="#id8" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get and set emittance_type.  When set the data_type dict is also
 updated</p>
 </dd></dl>
@@ -819,7 +832,7 @@ updated</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
+<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
 <li><p><strong>value</strong> (<em>any</em>) – The new element to be added to the data_type dict.</p></li>
 </ul>
 </dd>
@@ -834,7 +847,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – Times to be used for the interpolation.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of ints</em>) – Turn numbers to be used for new array.</p></li>
 </ul>
@@ -857,7 +870,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -865,7 +878,7 @@ to confirm it is suitable.</p>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>excpt.InputDataError</strong> – If use_time is not monotonically increase an InputDataError is
     raised.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
     type is requested a RuntimeError is raised.</p></li>
 </ul>
 </dd>
@@ -885,7 +898,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -900,13 +913,13 @@ to confirm it is suitable.</p>
 
 <dl class="py method">
 <dt id="blond_common.datatypes.beam_data.emittance._prep_reshape">
-<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.emittance._prep_reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.emittance._prep_reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an empty numpy array of the required shape for the reshaped
 array to populate</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of float</em><em>, </em><em>optional</em>) – The times that the array will be interpolated onto.
 The default is None.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of int</em><em>, </em><em>optional</em>) – The turn numberss to be extracted from the array.
@@ -934,21 +947,28 @@ when the attribute is set.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id7">
-<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id7" title="Permalink to this definition">¶</a></dt>
+<dt id="id9">
+<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id9" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the data_type.  Setting the data_type will update all
 attributes of the object identified in the dict.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="id10">
+<em class="property">property </em><code class="sig-name descname">interpolation</code><a class="headerlink" href="#id10" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the timebase.  Setting the timebase will update the
+data_type dict.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="blond_common.datatypes.beam_data.emittance.reshape">
-<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.emittance.reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.emittance.reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reshape the datatype array to the given number of sections and either
 the given use_time or given use_turns.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections required for the new array.
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections required for the new array.
 The default is 1.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em><em>, </em><em>optional</em>) – The times that the array will be interpolated on to.
 The default is None.</p></li>
@@ -965,15 +985,15 @@ The default is None.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id8">
-<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id8" title="Permalink to this definition">¶</a></dt>
+<dt id="id11">
+<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id11" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the timebase.  Setting the timebase will update the
 data_type dict.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id9">
-<em class="property">property </em><code class="sig-name descname">units</code><a class="headerlink" href="#id9" title="Permalink to this definition">¶</a></dt>
+<dt id="id12">
+<em class="property">property </em><code class="sig-name descname">units</code><a class="headerlink" href="#id12" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get and set units attribute.  The data_type dict will be updated
 when the attribute is set.</p>
 </dd></dl>
@@ -986,7 +1006,7 @@ when the attribute is set.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>shape</strong> (<em>iterable</em>) – The shape of the new array</p></li>
-<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
 The default is None.</p></li>
 </ul>
 </dd>
@@ -1003,21 +1023,21 @@ The default is None.</p></li>
 
 <dl class="py class">
 <dt id="blond_common.datatypes.beam_data.length">
-<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.beam_data.</code><code class="sig-name descname">length</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">length_type</span><span class="o">=</span><span class="default_value">'full_length'</span></em>, <em class="sig-param"><span class="n">units</span><span class="o">=</span><span class="default_value">'s'</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/beam_data.html#length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.beam_data.length" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.beam_data.</code><code class="sig-name descname">length</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">length_type</span><span class="o">=</span><span class="default_value">'full_length'</span></em>, <em class="sig-param"><span class="n">units</span><span class="o">=</span><span class="default_value">'s'</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/beam_data.html#length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.beam_data.length" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#blond_common.datatypes.beam_data._beam_data" title="blond_common.datatypes.beam_data._beam_data"><code class="xref py py-class docutils literal notranslate"><span class="pre">blond_common.datatypes.beam_data._beam_data</span></code></a></p>
 <p>Class defining the bunch length.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs</p></li>
-<li><p><strong>length_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>optional</em>) – The emittance type of the measurement (e.g. 4 sigma, full length, RMS).
+<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs</p></li>
+<li><p><strong>length_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The emittance type of the measurement (e.g. 4 sigma, full length, RMS).
 The default is ‘matched_area’.</p></li>
-<li><p><strong>units</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>optional</em>) – The units of the data.  The default is ‘s’</p></li>
+<li><p><strong>units</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The units of the data.  The default is ‘s’</p></li>
 <li><p><strong>time</strong> (<em>iterable of floats</em><em>, </em><em>optional</em>) – The time array to be used for the data, to be used if the time
 dependent data is not given as 2D array.  The default is None</p></li>
-<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>option</em>) – The number of turns to be used, if a single value is given it will be
+<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>option</em>) – The number of turns to be used, if a single value is given it will be
 extended to n_turns length.  The default is None.</p></li>
-<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>optional</em>) – The type of interpolation to be used.  The default is ‘linear’.</p></li>
+<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The type of interpolation to be used.  The default is ‘linear’.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1027,7 +1047,7 @@ extended to n_turns length.  The default is None.</p></li>
 <dd><p>Dictionary containing relevant information to define the datatype.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1040,7 +1060,7 @@ of the datatype.  As a string it is used as a key for the data_type
 dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1056,7 +1076,7 @@ RMS).  Used as</p>
 <p>a string key in the data_type dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1068,7 +1088,7 @@ RMS).  Used as</p>
 data_type dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1080,14 +1100,14 @@ data_type dict.</p>
 the array, currently only ‘linear’ has been implemented.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id10">
-<em class="property">property </em><code class="sig-name descname">length_type</code><a class="headerlink" href="#id10" title="Permalink to this definition">¶</a></dt>
+<dt id="id13">
+<em class="property">property </em><code class="sig-name descname">length_type</code><a class="headerlink" href="#id13" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get and set length_type attribute.  On set the data_type dict will
 also be updated</p>
 </dd></dl>
@@ -1099,7 +1119,7 @@ also be updated</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
+<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
 <li><p><strong>value</strong> (<em>any</em>) – The new element to be added to the data_type dict.</p></li>
 </ul>
 </dd>
@@ -1114,7 +1134,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – Times to be used for the interpolation.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of ints</em>) – Turn numbers to be used for new array.</p></li>
 </ul>
@@ -1137,7 +1157,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -1145,7 +1165,7 @@ to confirm it is suitable.</p>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>excpt.InputDataError</strong> – If use_time is not monotonically increase an InputDataError is
     raised.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
     type is requested a RuntimeError is raised.</p></li>
 </ul>
 </dd>
@@ -1165,7 +1185,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -1180,13 +1200,13 @@ to confirm it is suitable.</p>
 
 <dl class="py method">
 <dt id="blond_common.datatypes.beam_data.length._prep_reshape">
-<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.length._prep_reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.length._prep_reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an empty numpy array of the required shape for the reshaped
 array to populate</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of float</em><em>, </em><em>optional</em>) – The times that the array will be interpolated onto.
 The default is None.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of int</em><em>, </em><em>optional</em>) – The turn numberss to be extracted from the array.
@@ -1214,21 +1234,28 @@ when the attribute is set.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id11">
-<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id11" title="Permalink to this definition">¶</a></dt>
+<dt id="id14">
+<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id14" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the data_type.  Setting the data_type will update all
 attributes of the object identified in the dict.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="id15">
+<em class="property">property </em><code class="sig-name descname">interpolation</code><a class="headerlink" href="#id15" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the timebase.  Setting the timebase will update the
+data_type dict.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="blond_common.datatypes.beam_data.length.reshape">
-<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.length.reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.length.reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reshape the datatype array to the given number of sections and either
 the given use_time or given use_turns.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections required for the new array.
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections required for the new array.
 The default is 1.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em><em>, </em><em>optional</em>) – The times that the array will be interpolated on to.
 The default is None.</p></li>
@@ -1245,15 +1272,15 @@ The default is None.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id12">
-<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id12" title="Permalink to this definition">¶</a></dt>
+<dt id="id16">
+<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id16" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the timebase.  Setting the timebase will update the
 data_type dict.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id13">
-<em class="property">property </em><code class="sig-name descname">units</code><a class="headerlink" href="#id13" title="Permalink to this definition">¶</a></dt>
+<dt id="id17">
+<em class="property">property </em><code class="sig-name descname">units</code><a class="headerlink" href="#id17" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get and set units attribute.  The data_type dict will be updated
 when the attribute is set.</p>
 </dd></dl>
@@ -1266,7 +1293,7 @@ when the attribute is set.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>shape</strong> (<em>iterable</em>) – The shape of the new array</p></li>
-<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
 The default is None.</p></li>
 </ul>
 </dd>
@@ -1283,21 +1310,21 @@ The default is None.</p></li>
 
 <dl class="py class">
 <dt id="blond_common.datatypes.beam_data.height">
-<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.beam_data.</code><code class="sig-name descname">height</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">height_type</span><span class="o">=</span><span class="default_value">'half_height'</span></em>, <em class="sig-param"><span class="n">units</span><span class="o">=</span><span class="default_value">'eV'</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/beam_data.html#height"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.beam_data.height" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.beam_data.</code><code class="sig-name descname">height</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">height_type</span><span class="o">=</span><span class="default_value">'half_height'</span></em>, <em class="sig-param"><span class="n">units</span><span class="o">=</span><span class="default_value">'eV'</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/beam_data.html#height"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.beam_data.height" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#blond_common.datatypes.beam_data._beam_data" title="blond_common.datatypes.beam_data._beam_data"><code class="xref py py-class docutils literal notranslate"><span class="pre">blond_common.datatypes.beam_data._beam_data</span></code></a></p>
 <p>Class defining the bunch height in energy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs</p></li>
-<li><p><strong>height_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>optional</em>) – The emittance type of the measurement (e.g. half height, full height).
+<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs</p></li>
+<li><p><strong>height_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The emittance type of the measurement (e.g. half height, full height).
 The default is ‘half height’.</p></li>
-<li><p><strong>units</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>optional</em>) – The units of the data.  The default is ‘eV’</p></li>
+<li><p><strong>units</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The units of the data.  The default is ‘eV’</p></li>
 <li><p><strong>time</strong> (<em>iterable of floats</em><em>, </em><em>optional</em>) – The time array to be used for the data, to be used if the time
 dependent data is not given as 2D array.  The default is None</p></li>
-<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>option</em>) – The number of turns to be used, if a single value is given it will be
+<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>option</em>) – The number of turns to be used, if a single value is given it will be
 extended to n_turns length.  The default is None.</p></li>
-<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>optional</em>) – The type of interpolation to be used.  The default is ‘linear’.</p></li>
+<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The type of interpolation to be used.  The default is ‘linear’.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1307,7 +1334,7 @@ extended to n_turns length.  The default is None.</p></li>
 <dd><p>Dictionary containing relevant information to define the datatype.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1320,7 +1347,7 @@ of the datatype.  As a string it is used as a key for the data_type
 dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1335,7 +1362,7 @@ dict.</p>
 <p>Used as a string key in the data_type dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1347,7 +1374,7 @@ dict.</p>
 data_type dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1359,7 +1386,7 @@ data_type dict.</p>
 the array, currently only ‘linear’ has been implemented.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1371,7 +1398,7 @@ the array, currently only ‘linear’ has been implemented.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
+<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
 <li><p><strong>value</strong> (<em>any</em>) – The new element to be added to the data_type dict.</p></li>
 </ul>
 </dd>
@@ -1386,7 +1413,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – Times to be used for the interpolation.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of ints</em>) – Turn numbers to be used for new array.</p></li>
 </ul>
@@ -1409,7 +1436,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -1417,7 +1444,7 @@ to confirm it is suitable.</p>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>excpt.InputDataError</strong> – If use_time is not monotonically increase an InputDataError is
     raised.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
     type is requested a RuntimeError is raised.</p></li>
 </ul>
 </dd>
@@ -1437,7 +1464,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -1452,13 +1479,13 @@ to confirm it is suitable.</p>
 
 <dl class="py method">
 <dt id="blond_common.datatypes.beam_data.height._prep_reshape">
-<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.height._prep_reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.height._prep_reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an empty numpy array of the required shape for the reshaped
 array to populate</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of float</em><em>, </em><em>optional</em>) – The times that the array will be interpolated onto.
 The default is None.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of int</em><em>, </em><em>optional</em>) – The turn numberss to be extracted from the array.
@@ -1486,21 +1513,28 @@ when the attribute is set.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id14">
-<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id14" title="Permalink to this definition">¶</a></dt>
+<dt id="id18">
+<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id18" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the data_type.  Setting the data_type will update all
 attributes of the object identified in the dict.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="id19">
+<em class="property">property </em><code class="sig-name descname">interpolation</code><a class="headerlink" href="#id19" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the timebase.  Setting the timebase will update the
+data_type dict.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="blond_common.datatypes.beam_data.height.reshape">
-<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.height.reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.height.reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reshape the datatype array to the given number of sections and either
 the given use_time or given use_turns.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections required for the new array.
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections required for the new array.
 The default is 1.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em><em>, </em><em>optional</em>) – The times that the array will be interpolated on to.
 The default is None.</p></li>
@@ -1517,15 +1551,15 @@ The default is None.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id15">
-<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id15" title="Permalink to this definition">¶</a></dt>
+<dt id="id20">
+<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id20" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the timebase.  Setting the timebase will update the
 data_type dict.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id16">
-<em class="property">property </em><code class="sig-name descname">units</code><a class="headerlink" href="#id16" title="Permalink to this definition">¶</a></dt>
+<dt id="id21">
+<em class="property">property </em><code class="sig-name descname">units</code><a class="headerlink" href="#id21" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get and set units attribute.  The data_type dict will be updated
 when the attribute is set.</p>
 </dd></dl>
@@ -1538,7 +1572,7 @@ when the attribute is set.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>shape</strong> (<em>iterable</em>) – The shape of the new array</p></li>
-<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
 The default is None.</p></li>
 </ul>
 </dd>
@@ -1552,8 +1586,8 @@ The default is None.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id17">
-<em class="property">property </em><code class="sig-name descname">height_type</code><a class="headerlink" href="#id17" title="Permalink to this definition">¶</a></dt>
+<dt id="id22">
+<em class="property">property </em><code class="sig-name descname">height_type</code><a class="headerlink" href="#id22" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get and set emittance_type.  When set the data_type dict is also
 updated</p>
 </dd></dl>
@@ -1562,19 +1596,19 @@ updated</p>
 
 <dl class="py class">
 <dt id="blond_common.datatypes.beam_data.synchronous_phase">
-<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.beam_data.</code><code class="sig-name descname">synchronous_phase</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">units</span><span class="o">=</span><span class="default_value">'s'</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/beam_data.html#synchronous_phase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.beam_data.synchronous_phase" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">blond_common.datatypes.beam_data.</code><code class="sig-name descname">synchronous_phase</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">units</span><span class="o">=</span><span class="default_value">'s'</span></em>, <em class="sig-param"><span class="n">time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interpolation</span><span class="o">=</span><span class="default_value">'linear'</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="blond_common/datatypes/beam_data.html#synchronous_phase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#blond_common.datatypes.beam_data.synchronous_phase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#blond_common.datatypes.beam_data._beam_data" title="blond_common.datatypes.beam_data._beam_data"><code class="xref py py-class docutils literal notranslate"><span class="pre">blond_common.datatypes.beam_data._beam_data</span></code></a></p>
 <p>Class defining the synchronous phase.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs</p></li>
-<li><p><strong>units</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>optional</em>) – The units of the data.  The default is ‘s’</p></li>
+<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>1D iterable of floats</em><em>, </em><em>2D iterable of floats</em>) – The data defining the programs</p></li>
+<li><p><strong>units</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The units of the data.  The default is ‘s’</p></li>
 <li><p><strong>time</strong> (<em>iterable of floats</em><em>, </em><em>optional</em>) – The time array to be used for the data, to be used if the time
 dependent data is not given as 2D array.  The default is None</p></li>
-<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>option</em>) – The number of turns to be used, if a single value is given it will be
+<li><p><strong>n_turns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>option</em>) – The number of turns to be used, if a single value is given it will be
 extended to n_turns length.  The default is None.</p></li>
-<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>optional</em>) – The type of interpolation to be used.  The default is ‘linear’.</p></li>
+<li><p><strong>interpolation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The type of interpolation to be used.  The default is ‘linear’.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1584,7 +1618,7 @@ extended to n_turns length.  The default is None.</p></li>
 <dd><p>Dictionary containing relevant information to define the datatype.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1597,7 +1631,7 @@ of the datatype.  As a string it is used as a key for the data_type
 dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1609,7 +1643,7 @@ dict.</p>
 data_type dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1621,7 +1655,7 @@ data_type dict.</p>
 the array, currently only ‘linear’ has been implemented.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1633,7 +1667,7 @@ the array, currently only ‘linear’ has been implemented.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
+<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – str identifying the element of the data_type dict to be updated.</p></li>
 <li><p><strong>value</strong> (<em>any</em>) – The new element to be added to the data_type dict.</p></li>
 </ul>
 </dd>
@@ -1648,7 +1682,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of sections required for the new array.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – Times to be used for the interpolation.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of ints</em>) – Turn numbers to be used for new array.</p></li>
 </ul>
@@ -1671,7 +1705,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -1679,7 +1713,7 @@ to confirm it is suitable.</p>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>excpt.InputDataError</strong> – If use_time is not monotonically increase an InputDataError is
     raised.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.8)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.9)"><strong>RuntimeError</strong></a> – At present only linear interpolation is available, if another
     type is requested a RuntimeError is raised.</p></li>
 </ul>
 </dd>
@@ -1699,7 +1733,7 @@ to confirm it is suitable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Section number to be interpolated.</p></li>
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Section number to be interpolated.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em>) – The times the array will be interpolated onto.</p></li>
 </ul>
 </dd>
@@ -1714,13 +1748,13 @@ to confirm it is suitable.</p>
 
 <dl class="py method">
 <dt id="blond_common.datatypes.beam_data.synchronous_phase._prep_reshape">
-<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.synchronous_phase._prep_reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_prep_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.synchronous_phase._prep_reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct an empty numpy array of the required shape for the reshaped
 array to populate</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections described by the array. The default is 1.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of float</em><em>, </em><em>optional</em>) – The times that the array will be interpolated onto.
 The default is None.</p></li>
 <li><p><strong>use_turns</strong> (<em>iterable of int</em><em>, </em><em>optional</em>) – The turn numberss to be extracted from the array.
@@ -1748,21 +1782,28 @@ when the attribute is set.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id18">
-<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id18" title="Permalink to this definition">¶</a></dt>
+<dt id="id23">
+<em class="property">property </em><code class="sig-name descname">data_type</code><a class="headerlink" href="#id23" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the data_type.  Setting the data_type will update all
 attributes of the object identified in the dict.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="id24">
+<em class="property">property </em><code class="sig-name descname">interpolation</code><a class="headerlink" href="#id24" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set the timebase.  Setting the timebase will update the
+data_type dict.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="blond_common.datatypes.beam_data.synchronous_phase.reshape">
-<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.synchronous_phase.reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_sections</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_turns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_time</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blond_common.datatypes.beam_data.synchronous_phase.reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reshape the datatype array to the given number of sections and either
 the given use_time or given use_turns.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections required for the new array.
+<li><p><strong>n_sections</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – The number of sections required for the new array.
 The default is 1.</p></li>
 <li><p><strong>use_time</strong> (<em>iterable of floats</em><em>, </em><em>optional</em>) – The times that the array will be interpolated on to.
 The default is None.</p></li>
@@ -1779,15 +1820,15 @@ The default is None.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id19">
-<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id19" title="Permalink to this definition">¶</a></dt>
+<dt id="id25">
+<em class="property">property </em><code class="sig-name descname">timebase</code><a class="headerlink" href="#id25" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get or set the timebase.  Setting the timebase will update the
 data_type dict.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id20">
-<em class="property">property </em><code class="sig-name descname">units</code><a class="headerlink" href="#id20" title="Permalink to this definition">¶</a></dt>
+<dt id="id26">
+<em class="property">property </em><code class="sig-name descname">units</code><a class="headerlink" href="#id26" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get and set units attribute.  The data_type dict will be updated
 when the attribute is set.</p>
 </dd></dl>
@@ -1800,7 +1841,7 @@ when the attribute is set.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>shape</strong> (<em>iterable</em>) – The shape of the new array</p></li>
-<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
+<li><p><strong>data_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – The dict defining the data_type attribute of the new array.
 The default is None.</p></li>
 </ul>
 </dd>
